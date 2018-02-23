@@ -5,7 +5,7 @@ import Routers from './router/router';
 import store from './store';
 import Util from './libs/util';
 import App from './app.vue';
-import 'iview/dist/styles/iview.css';
+import './theme/index.less';
 
 
 Vue.use(VueRouter);
