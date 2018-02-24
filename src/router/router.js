@@ -11,6 +11,10 @@ const routers = [{
 }, {
     path: '/regist',
     name: 'regist',
-    component: (resolve) => require(['../views/regist/regist.vue'], resolve)
+    component: (resolve) => require(['../views/user/regist.vue'], resolve)
+}, {
+    path: '/login',
+    name: 'login',
+    component: (resolve) => require(['../views/user/login.vue'], resolve)
 }];
 export default routers;

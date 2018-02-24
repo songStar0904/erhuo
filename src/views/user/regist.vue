@@ -1,55 +1,47 @@
 <template>
-	<Card :padding="30" style="width:800px;height:500px;margin:50px auto;">
-        <Row>
-	        <Col span="16" style="padding:0 80px">
-		        <Menu mode="horizontal" theme="light" active-name="email">
-			        <MenuItem name="email">
-			            <Icon type="ios-eamil"></Icon>
-			            用户注册
-			        </MenuItem>
-			    </Menu>
-
-			    <Form ref="userForm" :model="userForm" :label-width="80" :rules="ruleInline" style="padding: 30px 0;">
-			        <FormItem label="手机 / 邮箱" prop="user_name">
-			            <Input v-model="userForm.user_name" placeholder="请输入您的手机号码或邮箱..."></Input>
-			        </FormItem>
-			        <FormItem label="验证码" prop="code">
-			        	<div style="display:inline-block;width:154px;">
-                            <Input v-model="userForm.code" placeholder="请输入6位验证码..."></Input>
-                        </div>
-                        <div style="display:inline-block;position:relative;">
-                            <Button @click="getIdentifyCode" :disabled="canGetIdentifyCode">{{ gettingIdentifyCodeBtnContent }}</Button>
-                        </div>
-			        </FormItem>
-			        <FormItem label="密码" prop="user_psd">
-			            <Input v-model="userForm.user_psd" placeholder="请输入您的密码..."></Input>
-			        </FormItem>
-			        <FormItem label="学校" prop="user_sid">
-			            <Cascader :data="schoolData" v-model="userForm.user_sid"></Cascader>
-			        </FormItem>
-			        <FormItem label="性别" prop="user_sex">
-			            <RadioGroup v-model="userForm.user_sex">
-			                <Radio label="male">男生</Radio>
-			                <Radio label="female">女生</Radio>
-			            </RadioGroup>
-			        </FormItem>
-			        <FormItem>
-			            <Button type="primary" @click="handleSubmit('userForm')" long>注  册</Button>
-			        </FormItem>
-			    </Form>
-	        </Col>
-	        <Col span="8" style="margin-top:50px;padding:150px 30px; border-left:1px solid #dddee1;">
+    <layout :title="'用户注册'">
+        <Form slot="form" ref="userForm" :model="userForm" :label-width="80" :rules="ruleInline" style="padding: 30px 0;">
+            <FormItem label="手机 / 邮箱" prop="user_name">
+                <Input v-model="userForm.user_name" placeholder="请输入您的手机号码或邮箱..."></Input>
+            </FormItem>
+            <FormItem label="验证码" prop="code">
+                <div style="display:inline-block;width:154px;">
+                    <Input v-model="userForm.code" placeholder="请输入6位验证码..."></Input>
+                </div>
+                <div style="display:inline-block;position:relative;">
+                    <Button @click="getIdentifyCode" :disabled="canGetIdentifyCode">{{ gettingIdentifyCodeBtnContent }}</Button>
+                </div>
+            </FormItem>
+            <FormItem label="密码" prop="user_psd">
+                <Input v-model="userForm.user_psd" placeholder="请输入您的密码..."></Input>
+            </FormItem>
+            <FormItem label="学校" prop="user_sid">
+                <Cascader :data="schoolData" v-model="userForm.user_sid"></Cascader>
+            </FormItem>
+            <FormItem label="性别" prop="user_sex">
+                <RadioGroup v-model="userForm.user_sex">
+                    <Radio label="male">男生</Radio>
+                    <Radio label="female">女生</Radio>
+                </RadioGroup>
+            </FormItem>
+            <FormItem>
+                <Button type="primary" @click="handleSubmit('userForm')" long>注  册</Button>
+            </FormItem>
+        </Form>
+        <div slot="right">
             <p>已有二货帐号:</p>
             <Button type="text">立即登录</Button>
-            </Col>
-	    </Row>
-    </Card>
+        </div>
+    </layout>
 </template>
 <script>
-import layout from ''
 import util from '../../libs/util.js';
 import md5 from 'js-md5';
+import layout from './user-components/layout.vue';
     export default {
+        components: {
+            layout
+        },
         data () {
         	const validatePassCheck = (rule, value, callback) => {
                 if (value.length < 6 || value.length > 10) {

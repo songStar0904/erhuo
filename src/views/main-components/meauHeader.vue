@@ -50,7 +50,7 @@
         	<MenuItem name="regist">
                 注册
             </MenuItem>
-            <MenuItem name="6">
+            <MenuItem name="login">
                 <Icon type="android-person"></Icon>
                 登录
             </MenuItem>
