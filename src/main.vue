@@ -7,15 +7,13 @@
             <Header>
                 <meau-header></meau-header>
             </Header>
-            <Content :style="{padding: '0 50px'}">
-                <router-view></router-view>
-            </Content>
+            <router-view></router-view>
             <Footer class="layout-footer-center">2011-2016 &copy; TalkingData</Footer>
         </Layout>
     </div>
 </template>
 <script>
-import {meauHeader} from './main-components';
+import {meauHeader} from './views/main-components';
     export default {
         components: {
             meauHeader

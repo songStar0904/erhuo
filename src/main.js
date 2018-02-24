@@ -4,9 +4,11 @@ import VueRouter from 'vue-router';
 import Routers from './router/router';
 import store from './store';
 import Util from './libs/util';
-import App from './app.vue';
+import App from './main.vue';
 import './theme/index.less';
-
+// 引入api
+import api from './api'
+Vue.use(api)
 
 Vue.use(VueRouter);
 Vue.use(iView);
