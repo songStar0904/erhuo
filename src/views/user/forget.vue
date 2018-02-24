@@ -1,5 +1,5 @@
 <template>
-    <layout :title="'用户注册'" :router="'login'" :h1="'已有二货账号'" :btn_text="'立即登录'">
+    <layout :title="'找回密码'" :router="'login'" :h1="'已有二货账号'" :btn_text="'立即登录'">
         <Form slot="form" ref="userForm" :model="userForm" :label-width="80" :rules="ruleInline" style="padding: 30px 0;">
             <FormItem label="手机 / 邮箱" prop="user_name">
                 <Input v-model="userForm.user_name" placeholder="请输入您的手机号码或邮箱..."></Input>
@@ -12,24 +12,16 @@
                     <Button @click="getIdentifyCode" :disabled="canGetIdentifyCode">{{ gettingIdentifyCodeBtnContent }}</Button>
                 </div>
             </FormItem>
-            <FormItem label="密码" prop="user_psd">
-                <Input type="password" v-model="userForm.user_psd" placeholder="请输入您的密码..."></Input>
+            <FormItem label="新密码" prop="user_psd">
+                <Input type="password" v-model="userForm.user_psd" placeholder="请输入新密码..."></Input>
             </FormItem>
-            <FormItem label="学校" prop="user_sid">
-                <Cascader :data="schoolData" v-model="userForm.user_sid"></Cascader>
-            </FormItem>
-            <FormItem label="性别" prop="user_sex">
-                <RadioGroup v-model="userForm.user_sex">
-                    <Radio label="male">男生</Radio>
-                    <Radio label="female">女生</Radio>
-                </RadioGroup>
+            <FormItem label="确认新密码" prop="user_rpsd">
+                <Input type="password" v-model="userForm.user_rpsd" placeholder="请确认新密码..."></Input>
             </FormItem>
             <FormItem>
                 <Button type="primary" @click="handleSubmit('userForm')" long>找回密码</Button>
             </FormItem>
         </Form>
-        <div slot="right">
-        </div>
     </layout>
 </template>
 <script>
@@ -50,13 +42,21 @@ import layout from './user-components/layout.vue';
                     callback();
                 }
             };
+            const validatePassCheck2 = (rule, value, callback) => {
+                if (value.length < 6 || value.length > 10) {
+                    callback(new Error('请输入6-10位密码'));
+                } else if (value !== this.userForm.user_psd) {
+                    callback(new Error('密码不一致'));
+                } else {
+                    callback();
+                }
+            };
             return {
                 userForm: {
                 	user_name: '',
-                	user_sex: '',
+                	user_rpsd: '',
                 	user_psd: '',
                 	code: '',
-                	user_sid: [],
                 },
                 timer: null,
                 schoolData: [],
@@ -69,23 +69,18 @@ import layout from './user-components/layout.vue';
                         { required: true, message: '输入用户名', trigger: 'blur' }
                     ],
                     user_psd: [{ validator: validatePassCheck, trigger: 'blur'}],
-                    code: [{ required: true, min: 6, max: 6, message: '请输入6位验证码', trigger: 'blur'}],
-                    user_sex: [{ required: true, type: 'string', message: '请选择性别', trigger: 'change'}],
-                    user_sid: [{ required: true, type: 'array', message: '请选择学校', trigger: 'change'}]
+                    user_rpsd: [{ validator: validatePassCheck2, trigger: 'blur'}],
+                    code: [{ required: true, min: 6, max: 6, message: '请输入6位验证码', trigger: 'blur'}]
                 }
             }
-        },
-        created () {
-        	this.init();
         },
         methods: {
             handleSubmit(name) {
                 this.$refs[name].validate((valid) => {
                     if (valid) {
                     	let data = util.cloneObj(this.userForm);
-                    	data.user_sid = this.userForm.user_sid[1];
                     	data.user_psd = md5(this.userForm.user_psd);
-                        this.$fetch.user.regist(data)
+                        this.$fetch.user.find_psd(data)
                         .then(res => {
                         	if (res.code === 200) {
                         		this.$Message.info(res.msg);
@@ -129,9 +124,6 @@ import layout from './user-components/layout.vue';
 	        	clearInterval(this.timer);
                 this.gettingIdentifyCodeBtnContent = '获取验证码';
                 this.canGetIdentifyCode = false;
-                    },
-            init () {
-            	this.schoolData = util.getSchool();
             }
         }
     }

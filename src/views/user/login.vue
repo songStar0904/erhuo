@@ -1,5 +1,8 @@
+<style scoped>
+	@import '../../style/common.css';
+</style>
 <template>
-    <layout :title="'用户登录'">
+    <layout :title="'用户登录'" :router="'regist'" :h1="'没有二货账号'" :btn_text="'立即注册'">
         <Form slot="form" ref="userForm" :model="userForm" :label-width="80" :rules="ruleInline" style="padding: 30px 0;">
             <FormItem label="手机 / 邮箱" prop="user_name">
                 <Input v-model="userForm.user_name" placeholder="请输入您的手机号码或邮箱..."></Input>
@@ -7,14 +10,13 @@
             <FormItem label="密码" prop="user_psd">
                 <Input type="password" v-model="userForm.user_psd" placeholder="请输入您的密码..."></Input>
             </FormItem>
+            <Row type="flex" justify="end">
+	            <p class="text-success btn" style="margin-bottom:20px;" @click="forget">忘记密码？</p>
+	        </Row>
             <FormItem>
                 <Button type="primary" @click="handleSubmit('userForm')" long>登  录</Button>
             </FormItem>
         </Form>
-        <div slot="right">
-            <p>没有二货帐号:</p>
-            <Button type="text">立即注册</Button>
-        </div>
     </layout>
 </template>
 <script>
@@ -66,6 +68,11 @@ import layout from './user-components/layout.vue';
                         this.$Message.error('请填写正确表单');
                     }
                 })
+            },
+            forget () {
+            	this.$router.push({
+                    name: 'forget'
+                });
             }
         }
     }

@@ -16,5 +16,9 @@ const routers = [{
     path: '/login',
     name: 'login',
     component: (resolve) => require(['../views/user/login.vue'], resolve)
+}, {
+    path: '/forget',
+    name: 'forget',
+    component: (resolve) => require(['../views/user/forget.vue'], resolve)
 }];
 export default routers;

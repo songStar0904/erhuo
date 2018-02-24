@@ -48,6 +48,15 @@ export function change_psd (data) {
     data
   })
 }
+// 找回密码
+
+export function find_psd (data) {
+  return fetch({
+    url: 'user/find_psd',
+    method: 'post',
+    data
+  })
+}
 // upload
 export function upload (data) {
   return fetch({
@@ -77,14 +86,6 @@ export function edit (data) {
     url: 'user/edit',
     method: 'post',
     data
-  })
-}
-// smsCode
-export function getSmsCode (params) {
-  return fetch({
-    url: 'service/sms',
-    method: 'get',
-    params
   })
 }
 // getMsg
