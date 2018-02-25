@@ -17,6 +17,14 @@ import {meauHeader} from './views/main-components';
     export default {
         components: {
             meauHeader
+        },
+        created () {
+            this.init()
+        },
+        methods: {
+            init () {
+                this.$store.commit('getUser');
+            }
         }
     }
 </script>

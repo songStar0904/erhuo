@@ -24,6 +24,14 @@
 .ivu-menu-horizontal.ivu-menu-light:after{
 	background: #fff;
 }
+.user_icon{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: relative;
+    top: 12px;
+    left: -5px;
+}
 </style>
 <template>
     <Menu mode="horizontal" theme="light" active-name="home" @on-select="changeMenu">
@@ -46,7 +54,17 @@
                 Item 4
             </MenuItem>
         </div>
-        <div class="layout-login">
+        <div class="layout-login" v-if="isLogin">
+            <Submenu name="3">
+                <template slot="title">
+                    <img :src="user_icon" alt="" class="user_icon">
+                </template>
+                    <MenuItem name="user">个人中心</MenuItem>
+                    <MenuItem name="3-2">活跃分析</MenuItem>
+                    <MenuItem name="3-3">退出登录</MenuItem>
+            </Submenu>
+        </div>
+        <div class="layout-login" v-else>
         	<MenuItem name="regist">
                 注册
             </MenuItem>
@@ -58,13 +76,23 @@
     </Menu>
 </template>
 <script>
-	export default{
+	export default {
 		methods: {
 			changeMenu (name) {
 				this.$router.push({
                     name
                 });
 			}
-		}
+		},
+        computed: {
+            isLogin () {
+                return this.$store.getters.isLogin;
+            },
+            user_icon () {
+                if (this.$store.state.user.info.user_icon) {
+                    return this.$store.state.user.info.user_icon;
+                }
+            }
+        }
 	}
 </script>

@@ -25,7 +25,7 @@
                 </RadioGroup>
             </FormItem>
             <FormItem>
-                <Button type="primary" @click="handleSubmit('userForm')" long>找回密码</Button>
+                <Button type="primary" @click="handleSubmit('userForm')" long>注  册</Button>
             </FormItem>
         </Form>
         <div slot="right">

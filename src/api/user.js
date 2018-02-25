@@ -57,6 +57,14 @@ export function find_psd (data) {
     data
   })
 }
+// 反馈意见
+export function send_fmsg (data) {
+  return fetch({
+    url: 'user/send_fmsg',
+    method: 'post',
+    data
+  })
+}
 // upload
 export function upload (data) {
   return fetch({

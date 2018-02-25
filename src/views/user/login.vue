@@ -60,6 +60,10 @@ import layout from './user-components/layout.vue';
                         .then(res => {
                         	if (res.code === 200) {
                         		this.$Message.info(res.msg);
+                                this.$store.commit('setUser', res.data);
+                                this.$router.push({
+                                    name: 'home'
+                                });
                         	} else {
                         		this.$Message.error(res.msg);
                         	}

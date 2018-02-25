@@ -20,5 +20,14 @@ const routers = [{
     path: '/forget',
     name: 'forget',
     component: (resolve) => require(['../views/user/forget.vue'], resolve)
+}, {
+    path: '/user',
+    name: 'user',
+    component: (resolve) => require(['../views/user/index.vue'], resolve),
+    children: [{
+        path: '/user/fmsg',
+        name: 'fmsg',
+        component: (resolve) => require(['../views/user/fmsg.vue'], resolve)
+    }]
 }];
 export default routers;
