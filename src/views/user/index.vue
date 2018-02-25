@@ -6,7 +6,7 @@
 	<div class="box">
 		<Row :gutter="50">
 	        <Col span="8">
-	        <div style="padding:20px; background:#fff;">
+	        <div style="padding:20px; background:#fff; text-align: center;">
 	        	<div class="user_icon">
 	        		<img :src="user_info.user_icon" alt="">
 	        	</div>
@@ -38,7 +38,7 @@
 			                <Icon type="heart"></Icon>
 			                我的留言
 			            </MenuItem>
-			            <MenuItem name="4">
+			            <MenuItem name="info">
 			                <Icon type="heart-broken"></Icon>
 			                个人信息
 			            </MenuItem>

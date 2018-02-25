@@ -28,6 +28,10 @@ const routers = [{
         path: '/user/fmsg',
         name: 'fmsg',
         component: (resolve) => require(['../views/user/fmsg.vue'], resolve)
+    }, {
+        path: '/user/info',
+        name: 'info',
+        component: (resolve) => require(['../views/user/info.vue'], resolve)
     }]
 }];
 export default routers;
