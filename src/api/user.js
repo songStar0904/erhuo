@@ -82,9 +82,9 @@ export function checkPhone (params) {
   })
 }
 // get user
-export function get (params) {
+export function get_one (params) {
   return fetch({
-    url: 'user/get',
+    url: 'user/get_one',
     method: 'get',
     params
   })

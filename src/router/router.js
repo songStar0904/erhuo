@@ -7,7 +7,7 @@ const routers = [{
     component: (resolve) => require(['../views/home/home.vue'], resolve)
 }, {
       path: '*',
-      redirect: '/'
+      // redirect: '/'
 }, {
     path: '/regist',
     name: 'regist',
@@ -32,6 +32,23 @@ const routers = [{
         path: '/user/info',
         name: 'info',
         component: (resolve) => require(['../views/user/info.vue'], resolve)
+    }]
+}, {
+    path: '/person/:uid',
+    name: 'person',
+    component: (resolve) => require(['../views/person/index.vue'], resolve),
+    children: [{
+        path: '/person/:uid/sell',
+        name: 'sell',
+        component: (resolve) => require(['../views/person/sell.vue'], resolve)
+    }, {
+        path: '/person/:uid/fans',
+        name: 'fans',
+        component: (resolve) => require(['../views/person/fans.vue'], resolve)
+    }, {
+        path: '/person/:uid/followers',
+        name: 'followers',
+        component: (resolve) => require(['../views/person/followers.vue'], resolve)
     }]
 }];
 export default routers;
