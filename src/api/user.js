@@ -65,6 +65,14 @@ export function send_fmsg (data) {
     data
   })
 }
+// 获得粉丝和关注
+export function get_followers (params) {
+  return fetch({
+    url: 'user/get_follower',
+    method: 'get',
+    params
+  })
+}
 // upload
 export function upload (data) {
   return fetch({

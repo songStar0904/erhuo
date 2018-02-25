@@ -48,7 +48,7 @@ const routers = [{
     }, {
         path: '/person/:uid/followers',
         name: 'followers',
-        component: (resolve) => require(['../views/person/followers.vue'], resolve)
+        component: (resolve) => require(['../views/person/fans.vue'], resolve)
     }]
 }];
 export default routers;
