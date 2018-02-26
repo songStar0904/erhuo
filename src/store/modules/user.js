@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
 
 const user = {
-    state: {info: {}},
+    state: {info: null},
     mutations: {
         logout (state, vm) {
             Cookies.remove('user');
@@ -29,7 +29,7 @@ const user = {
     },
     getters: {
         isLogin (state) {
-            return state.info.user_name ? true : false;
+            return state.info ? true : false;
         }
     }
 };

@@ -31,7 +31,7 @@ const seeBtn = (vm, h, params) => {
             },
             on: {
                 click: () => {
-                    vm.see(params.index)
+                    vm.see(params)
                 }
             }
         }, '查看TA');
@@ -127,7 +127,13 @@ const seeBtn = (vm, h, params) => {
 				})
 			},
 			see (val) {
-				console.log(val);
+				console.log(val.row)
+				this.$router.push({
+					name: 'sell',
+					params: {
+						uid: val.row.user_id
+					}
+				})
 			}
 		}
 	}

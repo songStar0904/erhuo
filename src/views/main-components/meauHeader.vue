@@ -61,7 +61,7 @@
                 </template>
                     <MenuItem name="info">个人中心</MenuItem>
                     <MenuItem name="3-2">活跃分析</MenuItem>
-                    <MenuItem name="3-3">退出登录</MenuItem>
+                    <MenuItem name="loginOut">退出登录</MenuItem>
             </Submenu>
         </div>
         <div class="layout-login" v-else>
@@ -79,10 +79,25 @@
 	export default {
 		methods: {
 			changeMenu (name) {
-				this.$router.push({
-                    name
-                });
-			}
+                if (name == 'loginOut') {
+                    this.loginOut();
+                } else {
+                    this.$router.push({
+                        name
+                    });
+                }
+				
+			},
+            loginOut () {
+                this.$fetch.user.loginOut()
+                .then(res => {
+                    if (res.code === 200) {
+                        this.$store.commit('setUser', null);
+                    } else {
+                        this.$Message.error(res.msg);
+                    }
+                })
+            }
 		},
         computed: {
             isLogin () {

@@ -13,7 +13,7 @@
 			<Card :dis-hover="true" style="margin:20px 0;">{{user_info.user_sign}}</Card>
 			<Card :dis-hover="true">
 				<Row type="flex" justify="center">
-			        <Col span="12"><Button type="success" long>关注TA</Button></Col>
+			        <Col span="12"><Button :type="user_info.user_rship.is_fans ? 'warning' : 'success'" @click="follow" long>{{user_info.user_rship.is_fans ? '取消关注': '关注TA'}}</Button></Col>
 			        <Col span="12"><Button type="success" long>私信TA</Button></Col>
 			    </Row>
 			</Card>
@@ -50,6 +50,11 @@ import layout from '../layout/layout.vue';
 				}
 			}
 		},
+		watch: {
+			user_id () {
+				this.get_user();
+			}
+		},
 		filters: {
 	        formatSex (val) {
 	            if (val === 'male') {
@@ -73,7 +78,8 @@ import layout from '../layout/layout.vue';
 		methods: {
 			get_user () {
 				this.$fetch.user.get_one({
-					user_id: this.$route.params.uid
+					uid: this.uid,
+					user_id: this.user_id
 				}).then(res => {
 					if (res.code === 200) {
 						this.user_info = res.data;
@@ -86,9 +92,30 @@ import layout from '../layout/layout.vue';
             	this.$router.push({
                     name
                 });
-            }
+            },
+            follow () {
+				this.$fetch.user.follow({
+					user_id: this.uid,
+					type: this.type,
+					followers_id: this.user_id
+				}).then(res => {
+					if (res.code === 200) {
+						this.data[val.index].is_fans = res.data;
+					} else {
+						this.$Message.error(res.msg);
+					}
+				})
+			}
 		},
 		computed: {
+			uid () {
+                if (this.$store.state.user.info) {
+                    return this.$store.state.user.info.user_id;
+                }
+            },
+            user_id () {
+            	return this.$route.params.uid;
+            }
         }
 	}
 </script>

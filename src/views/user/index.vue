@@ -59,6 +59,13 @@
 			return {
 			}
 		},
+		created () {
+			if (!this.isLogin) {
+				this.$router.push({
+					name: 'home'
+				})
+			}
+		},
 		methods: {
 			btn_type (val) {
             	if (this.user_info && this.user_info[val]){
