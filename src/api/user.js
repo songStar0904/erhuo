@@ -73,6 +73,13 @@ export function get_followers (params) {
     params
   })
 }
+export function follow (data) {
+  return fetch({
+    url: 'user/follow',
+    method: 'post',
+    data
+  })
+}
 // upload
 export function upload (data) {
   return fetch({

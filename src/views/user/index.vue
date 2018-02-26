@@ -68,7 +68,6 @@
             	}
             },
             changeMeau (name) {
-            	console.log(name);
             	this.$router.push({
                     name
                 });

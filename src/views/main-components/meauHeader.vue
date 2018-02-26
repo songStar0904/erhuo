@@ -59,7 +59,7 @@
                 <template slot="title">
                     <img :src="user_icon" alt="" class="user_icon">
                 </template>
-                    <MenuItem name="user">个人中心</MenuItem>
+                    <MenuItem name="info">个人中心</MenuItem>
                     <MenuItem name="3-2">活跃分析</MenuItem>
                     <MenuItem name="3-3">退出登录</MenuItem>
             </Submenu>

@@ -1,15 +1,71 @@
 <template>
-	<Table border :columns="followersColumns" :data="data" style="margin-top: 30px;"></Table>
+	<div>
+		<my-table :data="data" :columns="followersColumns" :loading="loading" @changePage="changePage" :total="total" pageSize="small"></my-table>
+		
+	</div>
 </template>
 <script>
 import {followersColumns} from '../table/columns_data.js';
+import myTable from '../table/my_table.vue';
+const followBtn = (vm, h, params) => {
+    return h('Button', {
+            props: {
+                type: params.row.is_fans ? 'warning' : 'primary',
+                size: 'small'
+            },
+            style: {
+                marginRight: '2px'
+            },
+            on: {
+                click: () => {
+                    vm.follow(params)
+                }
+            }
+        }, params.row.is_fans ? '取消关注' : '关注TA');
+};
+const seeBtn = (vm, h, params) => {
+    return h('Button', {
+            props: {
+                type: 'error',
+                size: 'small'
+            },
+            on: {
+                click: () => {
+                    vm.see(params.index)
+                }
+            }
+        }, '查看TA');
+};
+
 	export default{
+		components: {
+			myTable
+		},
 		data () {
 			return {
 				data: [],
-			    followersColumns
+			    followersColumns,
+			    loading: false,
+			    page: 1,
+			    total: 0
 			}
 		},
+		computed: {
+			uid () {
+                if (this.$store.state.user.info) {
+                    return this.$store.state.user.info.user_id;
+                }
+            },
+            type () {
+            	return this.$route.name;
+            },
+            user_id () {
+            	return this.$route.params.uid;
+            }
+		},
+		created () {
+	        this.init();
+	    },
 		mounted () {
 			this.get_followers();
 		},
@@ -19,18 +75,59 @@ import {followersColumns} from '../table/columns_data.js';
 			}
 		},
 		methods: {
+			init () {
+				this.followersColumns.forEach((item) => {
+					if (item.handle){
+						item.render = (h, param) => {
+	                        let children = [];
+	                        item.handle.forEach(item => {
+	                            if (item === 'follow') {
+	                                children.push(followBtn(this, h, param));
+	                            } else if (item === 'see') {
+	                                children.push(seeBtn(this, h, param));
+	                            }
+	                        });
+	                        return h('div', children);
+	                    };
+					}
+				})
+			},
+			changePage (val) {
+				this.page = val;
+			},
 			get_followers () {
-				console.log(this.$route)
+				this.loading = true;
 				this.$fetch.user.get_followers({
-					user_id: this.$route.params.uid,
-					type: this.$route.name
+					uid: this.uid,
+					user_id: this.user_id,
+					type: this.type,
+					page: this.page
 				}).then(res => {
+					this.loading = false;
 					if (res.code === 200) {
 						this.data = res.data;
+						this.total = res.total;
 					} else {
 						this.$Message.error(res.msg);
 					}
 				})
+			},
+			follow (val) {
+				console.log(val);
+				this.$fetch.user.follow({
+					user_id: this.user_id,
+					type: this.type,
+					followers_id: val.row.user_id
+				}).then(res => {
+					if (res.code === 200) {
+						this.data[val.index].is_fans = res.data;
+					} else {
+						this.$Message.error(res.msg);
+					}
+				})
+			},
+			see (val) {
+				console.log(val);
 			}
 		}
 	}

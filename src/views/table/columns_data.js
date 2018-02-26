@@ -47,39 +47,10 @@ export const followersColumns = [
         }
     },
     {
-        title: 'Action',
-        key: 'action',
-        width: 150,
+        title: '操作',
+        width: 160,
         align: 'center',
-        render: (h, params) => {
-            return h('div', [
-                h('Button', {
-                    props: {
-                        type: 'primary',
-                        size: 'small'
-                    },
-                    style: {
-                        marginRight: '2px'
-                    },
-                    on: {
-                        click: () => {
-                            this.show(params.index)
-                        }
-                    }
-                }, '关注TA'),
-                h('Button', {
-                    props: {
-                        type: 'error',
-                        size: 'small'
-                    },
-                    on: {
-                        click: () => {
-                            this.remove(params.index)
-                        }
-                    }
-                }, '查看TA')
-            ]);
-        }
+        handle: ['follow', 'see']
     }
 ]
 const tableData = {
