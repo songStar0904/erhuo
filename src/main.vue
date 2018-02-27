@@ -24,6 +24,18 @@ import {meauHeader} from './views/main-components';
         methods: {
             init () {
                 this.$store.commit('getUser');
+                this.getClassify();
+            },
+            getClassify () {
+                this.$fetch.classify.get({
+                    type: 'gclassify'
+                }).then(res => {
+                    if (res.code === 200) {
+                        this.$store.commit('setClassify', res.data);
+                    } else {
+                        this.$Message.error(res.msg);
+                    }
+                })
             }
         }
     }

@@ -5,6 +5,7 @@ import schoolData from './school.js';
 let util = {
 
 };
+util.env = env === 'development' ? 'dev' : 'prod';
 util.title = function(title) {
     title = title ? title : '-二货-';
     window.document.title = title;

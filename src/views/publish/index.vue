@@ -58,135 +58,140 @@
                         ref="upload"
                         :show-upload-list="false"
                         :on-success="handleSuccess"
+                        :default-file-list="defaultList"
                         :format="['jpg','jpeg','png']"
                         :max-size="2048"
                         :on-format-error="handleFormatError"
                         :on-exceeded-size="handleMaxSize"
                         :before-upload="handleBeforeUpload"
+                        name="goods_icon"
                         multiple
                         type="drag"
-                        action="http://localhost:3000/api/goods/upload"
+                        :action="path"
                         style="display: inline-block;width:58px;">
                         <div style="width: 58px;height:58px;line-height: 58px;">
                             <Icon type="camera" size="20"></Icon>
                         </div>
                     </Upload>
-                    <Modal title="View Image" v-model="visible">
-                        <img :src="'https://o5wwk8baw.qnssl.com/' + imgName + '/large'" v-if="visible" style="width: 100%">
+                    <Modal title="查看图片" v-model="visible">
+                        <img :src="imgName" v-if="visible" style="width: 100%">
                     </Modal>
                 </FormItem>
-                <FormItem label="Name" prop="name">
-                    <Input v-model="goods.name" placeholder="Enter your name"></Input>
+                <FormItem label="二货名称" prop="goods_name">
+                    <Input v-model="goods.goods_name" placeholder="输入二货名称"></Input>
                 </FormItem>
-                <FormItem label="E-mail" prop="mail">
-                    <Input v-model="goods.mail" placeholder="Enter your e-mail"></Input>
+                <FormItem label="原价" prop="mail">
+                    <InputNumber :min="1" v-model="goods.goods_oprice"></InputNumber>
                 </FormItem>
-                <FormItem label="二货分类" prop="cid">
-                    <Select v-model="goods.cid" placeholder="Select your cid">
-                        <Option value="beijing">New York</Option>
-                        <Option value="shanghai">London</Option>
-                        <Option value="shenzhen">Sydney</Option>
+                <FormItem label="现价" prop="mail">
+                    <InputNumber :min="1" v-model="goods.goods_nprice"></InputNumber>
+                </FormItem>
+                <FormItem label="二货分类" prop="goods_cid">
+                    <Select v-model="goods.goods_cid" placeholder="选择二货分类">
+                        <Option v-for="item in classify" :value="item.gclassify_id">{{item.gclassify_name}}</Option>
                     </Select>
                 </FormItem>
-                <FormItem label="Date">
-                    <Row>
-                        <Col span="11">
-                            <FormItem prop="date">
-                                <DatePicker type="date" placeholder="Select date" v-model="goods.date"></DatePicker>
-                            </FormItem>
-                        </Col>
-                        <Col span="2" style="text-align: center">-</Col>
-                        <Col span="11">
-                            <FormItem prop="time">
-                                <TimePicker type="time" placeholder="Select time" v-model="goods.time"></TimePicker>
-                            </FormItem>
-                        </Col>
-                    </Row>
-                </FormItem>
-                <FormItem label="Gender" prop="gender">
-                    <RadioGroup v-model="goods.gender">
-                        <Radio label="male">Male</Radio>
-                        <Radio label="female">Female</Radio>
+                <FormItem label="交易方式" prop="goods_type">
+                    <RadioGroup v-model="goods.goods_type">
+                        <Radio label="1">线上交易</Radio>
+                        <Radio label="2">线下交易</Radio>
+                        <Radio label="0">线上/线下交易</Radio>
                     </RadioGroup>
                 </FormItem>
-                <FormItem label="Hobby" prop="interest">
-                    <CheckboxGroup v-model="goods.interest">
-                        <Checkbox label="Eat"></Checkbox>
-                        <Checkbox label="Sleep"></Checkbox>
-                        <Checkbox label="Run"></Checkbox>
-                        <Checkbox label="Movie"></Checkbox>
-                    </CheckboxGroup>
+                <FormItem label="交易地址" prop="name" v-show="goods.goods_type!=1">
+                    <Input v-model="goods.goods_address" placeholder="交易地址"></Input>
                 </FormItem>
-                <FormItem label="Desc" prop="desc">
-                    <Input v-model="goods.desc" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter something..."></Input>
+                <FormItem label="详情" prop="goods_summary">
+                    <Input v-model="goods.goods_summary" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="输入详情"></Input>
                 </FormItem>
                 <FormItem>
-                    <Button type="primary" @click="handleSubmit('goods')">Submit</Button>
-                    <Button type="ghost" @click="handleReset('goods')" style="margin-left: 8px">Reset</Button>
+                    <Button type="primary" @click="handleSubmit('goods')">确认发布</Button>
                 </FormItem>
             </Form>
         </Card>
     </div>
 </template>
 <script>
+import util from '../../libs/util.js';
     export default {
         data () {
             return {
                 goods: {
-                    name: '',
-                    mail: '',
-                    cid: '',
-                    gender: '',
-                    interest: [],
-                    date: '',
-                    time: '',
-                    desc: ''
+                    goods_name: '小谈表情',
+                    goods_cid: null,
+                    goods_summary: '小谈表情小谈表情',
+                    goods_type: '0',
+                    goods_nprice: 1,
+                    goods_oprice: 1,
+                    goods_address: '小谈表情小谈表情',
+                    goods_icon: []
                 },
                 ruleValidate: {
-                    name: [
-                        { required: true, message: 'The name cannot be empty', trigger: 'blur' }
+                    goods_name: [
+                        { required: true, message: '请填写二货名称', trigger: 'blur' }
                     ],
-                    mail: [
-                        { required: true, message: 'Mailbox cannot be empty', trigger: 'blur' },
-                        { type: 'email', message: 'Incorrect email format', trigger: 'blur' }
+                    goods_cid: [
+                        { required: true, type: 'number', message: '请选择分类', trigger: 'blur' }
                     ],
-                    cid: [
-                        { required: true, message: 'Please select the cid', trigger: 'change' }
+                    goods_type: [
+                        { required: true, message: '请选择交易方式', trigger: 'change' }
                     ],
-                    gender: [
-                        { required: true, message: 'Please select gender', trigger: 'change' }
-                    ],
-                    interest: [
-                        { required: true, type: 'array', min: 1, message: 'Choose at least one hobby', trigger: 'change' },
-                        { type: 'array', max: 2, message: 'Choose two hobbies at best', trigger: 'change' }
-                    ],
-                    date: [
-                        { required: true, type: 'date', message: 'Please select the date', trigger: 'change' }
-                    ],
-                    time: [
-                        { required: true, type: 'date', message: 'Please select time', trigger: 'change' }
-                    ],
-                    desc: [
-                        { required: true, message: 'Please enter a personal introduction', trigger: 'blur' },
-                        { type: 'string', min: 20, message: 'Introduce no less than 20 words', trigger: 'blur' }
+                    goods_summary: [
+                        { required: true, message: '请输入详情', trigger: 'blur' },
+                        { type: 'string', max: 255, message: '不能超过255字符', trigger: 'blur' }
                     ]
                 },
                 imgName: '',
-                visible: false
+                visible: false,
+                path: '',
+                defaultList: []
             }
         },
+        computed: {
+            classify () {
+                return this.$store.state.app.classify;
+            },
+            uid () {
+                return this.$store.state.user.info.user_id;
+            }
+        },
+        created () {
+            this.setPath();
+        },
         methods: {
+            setPath () {
+                if (util.env == 'dev') {
+                    this.path = '/api/goods/upload';
+                } else {
+                    this.path = 'api.erhuo.com/goods/upload';
+                }
+            },
             handleSubmit (name) {
                 this.$refs[name].validate((valid) => {
                     if (valid) {
-                        this.$Message.success('Success!');
+                        // let icon = [];
+                        // this.goods.goods_icon.forEach((item, index) => {
+                        //     icon[index] = item.url;
+                        //     console.log(icon);
+                        // })
+                        // this.goods['goods_icon'] = icon;
+                        this.goods.goods_uid = this.uid;
+                        console.log(this.goods['goods_icon'])
+                        this.$fetch.goods.add(this.goods)
+                        .then(res => {
+                            if (res.code === 200) {
+                                this.$Message.success('发布成功');
+                                this.$router.push({
+                                    name: 'user'
+                                });
+                            } else {
+                                this.$Message.error(res.msg);
+                            }
+                        })
                     } else {
-                        this.$Message.error('Fail!');
+                        this.$Message.error('请输入正确的表单内容!');
                     }
                 })
-            },
-            handleReset (name) {
-                this.$refs[name].resetFields();
             },
             handleView (name) {
                 this.imgName = name;
@@ -197,8 +202,11 @@
                 this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
             },
             handleSuccess (res, file) {
-                file.url = 'https://o5wwk8baw.qnssl.com/7eb99afb9d5f317c912f08b5212fd69a/avatar';
-                file.name = '7eb99afb9d5f317c912f08b5212fd69a';
+                if (res.code === 200) {
+                    file.url = res.data;
+                } else {
+                    this.$Message.error(res.msg);
+                }
             },
             handleFormatError (file) {
                 this.$Notice.warning({
