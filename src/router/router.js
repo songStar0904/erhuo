@@ -32,6 +32,10 @@ const routers = [{
         path: '/user/info',
         name: 'info',
         component: (resolve) => require(['../views/user/info.vue'], resolve)
+    }, {
+        path: '/user/sell',
+        name: 'sell',
+        component: (resolve) => require(['../views/user/sell.vue'], resolve)
     }]
 }, {
     path: '/person/:uid',

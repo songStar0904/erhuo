@@ -16,9 +16,9 @@
 		            <Button :type="btn_type('user_email')" shape="circle" icon="ios-email-outline" size="small"></Button>
 		        </Col>
 		    </Row>
-            <Menu :theme="'light'" active-name="1" @on-select="changeMeau">
+            <Menu :theme="'light'" active-name="sell" @on-select="changeMeau">
 		        <MenuGroup title="我的二货">
-		            <MenuItem name="1">
+		            <MenuItem name="sell">
 		                <Icon type="ios-compose"></Icon>
 		                我发布的
 		            </MenuItem>
