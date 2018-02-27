@@ -13,9 +13,9 @@
 			return {
 			}
 		},
-		motheds: {
+		methods: {
 			changePage (val) {
-				this.$emit('changePage', val);
+				this.$emit('setPage', val);
 			}
 		}
 	}

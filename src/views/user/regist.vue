@@ -89,6 +89,9 @@ import layout from './user-components/layout.vue';
                         .then(res => {
                         	if (res.code === 200) {
                         		this.$Message.info(res.msg);
+                                this.$router.push({
+                                    name: 'login'
+                                })
                         	} else {
                         		this.$Message.error(res.msg);
                         	}

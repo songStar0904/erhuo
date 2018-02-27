@@ -7,7 +7,7 @@
 			<p>{{user_info.user_sex | formatSex}}</p>
         	<p>{{user_info.user_sid | formatSchool}}</p>
         	<p>{{user_info.user_ltime | formatDate}}</p>
-        	<span class="text-success btn">关注 ({{user_info.user_rship.followers_num}})</span>  &nbsp; <span class="text-success btn">粉丝 ({{user_info.user_rship.fans_num}})</span>
+        	<span class="text-success btn">关注 ({{user_info.user_rship.fans_num}})</span>  &nbsp; <span class="text-success btn">粉丝 ({{user_info.user_rship.followers_num}})</span>
 		</div>
 		<div slot="leftBottom">
 			<Card :dis-hover="true" style="margin:20px 0;">{{user_info.user_sign}}</Card>
@@ -100,7 +100,7 @@ import layout from '../layout/layout.vue';
 					followers_id: this.user_id
 				}).then(res => {
 					if (res.code === 200) {
-						this.data[val.index].is_fans = res.data;
+						this.user_info.user_rship.is_fans = res.data;
 					} else {
 						this.$Message.error(res.msg);
 					}

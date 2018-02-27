@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<my-table :data="data" :columns="followersColumns" :loading="loading" @changePage="changePage" :total="total" pageSize="small"></my-table>
+		<my-table :data="data" :columns="followersColumns" :loading="loading" @setPage="setPage" :total="total" pageSize="small"></my-table>
 		
 	</div>
 </template>
@@ -92,7 +92,7 @@ const seeBtn = (vm, h, params) => {
 					}
 				})
 			},
-			changePage (val) {
+			setPage (val) {
 				this.page = val;
 			},
 			get_followers () {

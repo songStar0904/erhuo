@@ -50,5 +50,9 @@ const routers = [{
         name: 'followers',
         component: (resolve) => require(['../views/person/fans.vue'], resolve)
     }]
+},  {
+    path: '/publish',
+    name: 'publish',
+    component: (resolve) => require(['../views/publish/index.vue'], resolve)
 }];
 export default routers;

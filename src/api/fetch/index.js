@@ -14,11 +14,11 @@ import md5 from 'js-md5';
 import qs from 'qs';
 import {Message} from 'iview';
 const ajaxUrl = env === 'development'
-    ? 'http://api.erhuo.com'
+    ? '/api'
     : env === 'production'
         ? 'http://api.erhuo.com'
         : 'http://api.erhuo.com';
-
+axios.defaults.withCredentials=true;//让ajax携带cookie
 export default function fetch (options) {
   return new Promise((resolve, reject) => {
     // 创建一个axios实例

@@ -108,10 +108,13 @@ import layout from './user-components/layout.vue';
                 // you can write ajax request here
                 this.$fetch.user.getCode({
                 	username: this.userForm.user_name,
-                	is_exist: 0
+                	is_exist: 1
                 }).then(res => {
                 	if (res.code === 200) {
                 		this.$Message.info(res.msg);
+                        this.$router.push({
+                            name: 'login'
+                        })
                 	} else {
 	                	this.canGetCode()
                 		this.$Message.error(res.msg);

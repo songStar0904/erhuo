@@ -41,9 +41,9 @@
                 <Icon type="ios-navigate"></Icon>
                 首页
             </MenuItem>
-            <MenuItem name="2">
+            <MenuItem name="publish">
                 <Icon type="ios-keypad"></Icon>
-                Item 2
+                发布
             </MenuItem>
             <MenuItem name="3">
                 <Icon type="ios-analytics"></Icon>
@@ -86,13 +86,15 @@
                         name
                     });
                 }
-				
 			},
             loginOut () {
                 this.$fetch.user.loginOut()
                 .then(res => {
                     if (res.code === 200) {
                         this.$store.commit('setUser', null);
+                        this.$router.push({
+                            name: 'home'
+                        });
                     } else {
                         this.$Message.error(res.msg);
                     }

@@ -31,5 +31,14 @@ module.exports = merge(webpackBaseConfig, {
             template: './src/template/index.ejs',
             inject: false
         })
-    ]
+    ],
+    devServer:{
+        port: 3000,
+        proxy: {
+            "/api": {
+                target: "http://api.erhuo.com/",
+                secure: false
+            }
+        }
+    }
 });
