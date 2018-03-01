@@ -1,5 +1,4 @@
 <style lang="less" scoped>
-@import "../../style/common.css";
 .user_name{
 	font-size: 18px;
 }

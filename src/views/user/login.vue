@@ -1,5 +1,4 @@
 <style scoped>
-	@import '../../style/common.css';
 </style>
 <template>
     <layout :title="'用户登录'" :router="'regist'" :h1="'没有二货账号'" :btn_text="'立即注册'">

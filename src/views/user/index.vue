@@ -1,5 +1,4 @@
 <style lang="less" scoped>
-  @import "../../style/common.css";
   @import "./style/index.less";
 </style>
 <template>

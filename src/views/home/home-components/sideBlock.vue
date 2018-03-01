@@ -36,7 +36,7 @@ import util from '../../../libs/util.js';
 			},
 			toPerson (uid) {
 				this.$router.push({
-					name: 'person',
+					name: 'sell',
 					params: {
 						uid
 					}

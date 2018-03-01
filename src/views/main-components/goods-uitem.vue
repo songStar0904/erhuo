@@ -15,7 +15,7 @@
 	<Card :dis-hover="true">
 		<Row :gutter="16">
         <Col span="8">
-            <img :src="data.goods_icon[0]" :alt="data.goods_name" style="width:145px; height:145px;">
+            <img :src="data.goods_icon[0].url" :alt="data.goods_name" style="width:145px; height:145px;">
         </Col>
         <Col span="16">
             <h3 class="goods_name text-success">{{data.goods_name}}</h3>

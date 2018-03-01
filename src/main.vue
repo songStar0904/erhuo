@@ -1,4 +1,5 @@
 <style lang="less" scoped>
+@import "./style/common.css";
   @import "./main.less";
 </style>
 <template>
@@ -8,7 +9,7 @@
                 <meau-header></meau-header>
             </Header>
             <router-view></router-view>
-            <Footer class="layout-footer-center">2011-2016 &copy; TalkingData</Footer>
+            <Footer class="layout-footer-center">2017-2018 &copy; Songstar</Footer>
         </Layout>
     </div>
 </template>

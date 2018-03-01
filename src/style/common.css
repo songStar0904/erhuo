@@ -1,6 +1,15 @@
 .text-success{
 	color: #19be6b;
 }
+.text-warning{
+	color: #ff9900;
+}
+.text-sub{
+	color: #80848f;
+}
+.text-disabled{
+	color: #bbbec4;
+}
 .fl{
 	float: left;
 }
@@ -26,4 +35,22 @@
 }
 .mb20{
 	margin-bottom: 20px;
+}
+.mb8{
+	margin-bottom: 8px;
+}
+.mr10{
+	margin-right: 10px;
+}
+.p8{
+	padding: 8px;
+}
+.fz16{
+	font-size:16px;
+}
+.fz12{
+	font-size:12px;
+}
+.disabled{
+	text-decoration: line-through;
 }

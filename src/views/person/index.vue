@@ -1,5 +1,4 @@
 <style lang="less" scoped>
-  @import "../../style/common.css";
 </style>
 <template>
 	<layout :info="user_info">

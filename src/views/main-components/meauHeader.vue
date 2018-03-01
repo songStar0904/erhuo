@@ -53,10 +53,6 @@
                 <Icon type="ios-analytics"></Icon>
                 Item 3
             </MenuItem>
-            <MenuItem name="4">
-                <Icon type="ios-paper"></Icon>
-                Item 4
-            </MenuItem>
         </div>
         <div class="layout-login" v-if="isLogin">
             <Submenu name="3">
