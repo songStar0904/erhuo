@@ -60,7 +60,7 @@ import layout from './user-components/layout.vue';
                         .then(res => {
                         	if (res.code === 200) {
                         		this.$Message.info(res.msg);
-                                this.$store.commit('setUser', res.data);
+                                this.$store.commit('setUser', this.filterData(res.data));
                                 this.$router.push({
                                     name: 'home'
                                 });
@@ -72,6 +72,33 @@ import layout from './user-components/layout.vue';
                         this.$Message.error('请填写正确表单');
                     }
                 })
+            },
+            // 格式 性别与学校
+            filterData (data) {
+                console.log()
+                data.user_sid = this.formatSchool(data.user_sid);
+                data.user_sex = this.formatSex(data.user_sex);
+                data.user_ltime = this.formatDate(data.user_ltime);
+                data.user_phone = this.formatPhone(data.user_phone);
+                return data;
+            },
+            formatSex (val) {
+                if (val === 'male') {
+                    return '男生';
+                } else {
+                    return '女生';
+                }
+            },
+            formatPhone (val) {
+                return val.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2');
+            },
+            formatSchool (val) {
+                if (val) {
+                    return util.formatSchool(val);
+                }
+            },
+            formatDate (val) {
+                return util.formatDate(val);
             },
             forget () {
             	this.$router.push({

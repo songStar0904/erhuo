@@ -57,10 +57,14 @@ const seeBtn = (vm, h, params) => {
                 }
             },
             type () {
-            	return this.$route.name;
+            	return this.$route.meta.title;
             },
             user_id () {
-            	return this.$route.params.uid;
+            	if (this.$route.params.uid) {
+            		return this.$route.params.uid;
+            	} else {
+            		return this.uid;
+            	}
             }
 		},
 		created () {

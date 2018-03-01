@@ -13,7 +13,7 @@
         </FormItem>
         <FormItem label="手机：">
             <Row v-if="userForm.user_phone">
-                <Col span="12">{{ userForm.user_phone | formatPhone }}</Col>
+                <Col span="12">{{ userForm.user_phone}}</Col>
                 <Col span="12"><Button type="text">修改</Button></Col>
             </Row>
             <Row v-else>
@@ -32,13 +32,13 @@
             </Row>
         </FormItem>
         <FormItem label="性别：">
-            <span>{{ userForm.user_sex | formatSex }}</span>
+            <span>{{ userForm.user_sex}}</span>
         </FormItem>
         <FormItem label="学校：">
-            <span>{{userForm.user_sid | formatSchool }}</span>
+            <span>{{userForm.user_sid}}</span>
         </FormItem>
         <FormItem label="上次登录时间：">
-            <span>{{userForm.user_ltime | formatDate }}</span>
+            <span>{{userForm.user_ltime}}</span>
         </FormItem>
         <FormItem label="登录密码：">
             <Button type="text" size="small" @click="showEditPassword">修改密码</Button>
@@ -70,8 +70,8 @@
     </Form>
 </template>
 <script>
-import util from '../../libs/util.js';
 import md5 from 'js-md5';
+import util from '../../libs/util.js';
 export default {
     name: 'ownspace_index',
     data () {
@@ -136,26 +136,6 @@ export default {
             initPhone: '',
             gettingIdentifyCodeBtnContent: '获取验证码' // “获取验证码”按钮的文字
         };
-    },
-    filters: {
-        formatSex (val) {
-            if (val === 'male') {
-                return '男生';
-            } else {
-                return '女生';
-            }
-        },
-        formatPhone (val) {
-            return val.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2');
-        },
-        formatSchool (val) {
-        	if (val) {
-        		return util.formatSchool(val);
-        	}
-        },
-        formatDate (val) {
-            return util.formatDate(val);
-        }
     },
     methods: {
         showEditPassword () {

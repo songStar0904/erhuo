@@ -34,8 +34,22 @@ const routers = [{
         component: (resolve) => require(['../views/user/info.vue'], resolve)
     }, {
         path: '/user/sell',
-        name: 'sell',
-        component: (resolve) => require(['../views/user/sell.vue'], resolve)
+        name: 'usell',
+        component: (resolve) => require(['../views/user/sell.vue'], resolve),
+    }, {
+        path: '/user/fans',
+        name: 'ufans',
+        meta: {
+            title: 'fans'
+        },
+        component: (resolve) => require(['../views/user/fans.vue'], resolve),
+    }, {
+        path: '/user/followers',
+        name: 'ufollowers',
+        meta: {
+            title: 'followers'
+        },
+        component: (resolve) => require(['../views/user/fans.vue'], resolve),
     }]
 }, {
     path: '/person/:uid',
@@ -48,11 +62,17 @@ const routers = [{
     }, {
         path: '/person/:uid/fans',
         name: 'fans',
-        component: (resolve) => require(['../views/person/fans.vue'], resolve)
+        meta: {
+            title: 'fans'
+        },
+        component: (resolve) => require(['../views/user/fans.vue'], resolve)
     }, {
         path: '/person/:uid/followers',
+        meta: {
+            title: 'followers'
+        },
         name: 'followers',
-        component: (resolve) => require(['../views/person/fans.vue'], resolve)
+        component: (resolve) => require(['../views/user/fans.vue'], resolve)
     }]
 },  {
     path: '/publish',

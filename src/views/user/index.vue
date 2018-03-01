@@ -3,28 +3,30 @@
   @import "./style/index.less";
 </style>
 <template>
-	<layout :user_name="user_info.user_name" :user_icon="user_info.user_icon">
-		<div slot="leftMeau">
-			<Row :gutter="16" style="padding:20px 0">
-		        <Col span="8">
-		            <Button :type="btn_type('user_access')" shape="circle" icon="card" size="small"></Button>
-		        </Col>
-		        <Col span="8">
-		            <Button :type="btn_type('user_phone')" shape="circle" icon="android-phone-portrait" size="small"></Button>
-		        </Col>
-		        <Col span="8">
-		            <Button :type="btn_type('user_email')" shape="circle" icon="ios-email-outline" size="small"></Button>
-		        </Col>
-		    </Row>
-            <Menu :theme="'light'" active-name="sell" @on-select="changeMeau">
+	<layout :info="user_info">
+		<div slot="leftInfo">
+			<p style="color: #999;"><span>{{user_info.user_sid}}</span> | <span>{{user_info.user_sex}}</span></p>
+			<Button type="success" icon="card" style="width:150px; margin-top:10px;">发布二货</Button>
+		</div>
+		<Menu :theme="'light'" :active-name="active" @on-select="changeMeau" slot="leftMeau" style="width: 283px;">
 		        <MenuGroup title="我的二货">
-		            <MenuItem name="sell">
-		                <Icon type="ios-compose"></Icon>
+		            <MenuItem name="usell">
+		                <Icon type="bag"></Icon>
 		                我发布的
 		            </MenuItem>
 		            <MenuItem name="2">
 		                <Icon type="ios-heart"></Icon>
 		                我想要的
+		            </MenuItem>
+		        </MenuGroup>
+		        <MenuGroup title="粉丝/关注">
+		            <MenuItem name="ufans">
+		                <Icon type="happy-outline"></Icon>
+		                我的粉丝
+		            </MenuItem>
+		            <MenuItem name="ufollowers">
+		                <Icon type="android-happy"></Icon>
+		                我的关注
 		            </MenuItem>
 		        </MenuGroup>
 		        <MenuGroup title="个人中心">
@@ -46,17 +48,44 @@
 		            </MenuItem>
 		        </MenuGroup>
 		    </Menu>
-		</div>
+		    <user-meau slot="rightMeau" :meau="meau" v-show="isShow" style="margin-bottom:20px;"></user-meau>
 	</layout>
 </template>
 <script>
     import layout from '../layout/layout.vue';
+    import userMeau from './user-components/userMeau.vue';
 	export default{
 		components: {
-			layout
+			layout,
+			userMeau
 		},
 		data () {
 			return {
+				meau: [{
+					name: 'usell',
+					icon: 'bag',
+					title: '出售'
+				}, {
+					name: 'ufans',
+					icon: 'happy-outline',
+					title: '粉丝'
+				}, {
+					name: 'ufollowers',
+					icon: 'android-happy',
+					title: '关注'
+				}],
+				mactive: '',
+				isShow: false
+			}
+		},
+		watch:{
+			$route (val) {
+				this.isShow = false;
+				this.meau.forEach((item) => {
+					if (val.name === item.name) {
+						this.isShow = true;
+					}
+				})
 			}
 		},
 		created () {
@@ -88,6 +117,9 @@
                 if (this.$store.state.user.info) {
                     return this.$store.state.user.info;
                 }
+            },
+            active () {
+            	return this.$route.name;
             }
         }
 	}

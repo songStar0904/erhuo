@@ -2,44 +2,33 @@
   @import "../../style/common.css";
 </style>
 <template>
-	<layout :user_name="user_info.user_name" :user_icon="user_info.user_icon">
-		<div slot="leftMeau" style="font-size:14px;">
+	<layout :info="user_info">
+		<div slot="leftInfo" style="font-size:14px;">
 			<p>{{user_info.user_sex | formatSex}}</p>
         	<p>{{user_info.user_sid | formatSchool}}</p>
         	<p>{{user_info.user_ltime | formatDate}}</p>
         	<span class="text-success btn">关注 ({{user_info.user_rship.fans_num}})</span>  &nbsp; <span class="text-success btn">粉丝 ({{user_info.user_rship.followers_num}})</span>
 		</div>
-		<div slot="leftBottom">
-			<Card :dis-hover="true" style="margin:20px 0;">{{user_info.user_sign}}</Card>
-			<Card :dis-hover="true">
-				<Row type="flex" justify="center">
-			        <Col span="12"><Button :type="user_info.user_rship.is_fans ? 'warning' : 'success'" @click="follow" long>{{user_info.user_rship.is_fans ? '取消关注': '关注TA'}}</Button></Col>
-			        <Col span="12"><Button type="success" long>私信TA</Button></Col>
-			    </Row>
-			</Card>
+		<div slot="leftMeau">
+			{{user_info.user_sign}}
 		</div>
-		<Menu mode="horizontal" theme="light" active-name="sell" slot="rightMeau" @on-select="changeMeau">
-			<MenuItem name="sell">
-	            <Icon type="ios-paper"></Icon>
-	            出售
-	        </MenuItem>
-	        <MenuItem name="followers">
-	            <Icon type="ios-paper"></Icon>
-	            关注
-	        </MenuItem>
-	        <MenuItem name="fans">
-	            <Icon type="ios-paper"></Icon>
-	            粉丝
-	        </MenuItem>
-		</Menu>
+		<div slot="leftBottom">
+			<Row :gutter="16">
+		        <Col span="12"><Button :type="user_info.user_rship.is_fans ? 'warning' : 'success'" @click="follow" long>{{user_info.user_rship.is_fans ? '取消关注': '关注TA'}}</Button></Col>
+		        <Col span="12"><Button type="success" long>私信TA</Button></Col>
+		    </Row>
+		</div>
+		<user-meau slot="rightMeau" :meau="meau" style="margin-bottom:20px;"></user-meau>
 	</layout>
 </template>
 <script>
 import util from '../../libs/util.js';
 import layout from '../layout/layout.vue';
+import userMeau from '../user/user-components/userMeau.vue';
 	export default{
 		components: {
-			layout
+			layout,
+			userMeau
 		},
 		data () {
 			return {
@@ -47,7 +36,20 @@ import layout from '../layout/layout.vue';
 					user_rship: {
 						followers_num: 0
 					}
-				}
+				},
+				meau: [{
+					name: 'sell',
+					icon: 'bag',
+					title: '出售'
+				}, {
+					name: 'fans',
+					icon: 'happy-outline',
+					title: '粉丝'
+				}, {
+					name: 'followers',
+					icon: 'android-happy',
+					title: '关注'
+				}]
 			}
 		},
 		watch: {
