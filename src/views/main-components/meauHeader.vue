@@ -41,6 +41,10 @@
                 <Icon type="ios-navigate"></Icon>
                 首页
             </MenuItem>
+            <MenuItem name="3">
+                <Icon type="ios-analytics"></Icon>
+                发现
+            </MenuItem>
             <MenuItem name="publish">
                 <Icon type="ios-keypad"></Icon>
                 发布

@@ -58,7 +58,7 @@ const routers = [{
     children: [{
         path: '/person/:uid/sell',
         name: 'sell',
-        component: (resolve) => require(['../views/person/sell.vue'], resolve)
+        component: (resolve) => require(['../views/user/sell.vue'], resolve)
     }, {
         path: '/person/:uid/fans',
         name: 'fans',

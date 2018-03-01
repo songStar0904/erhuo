@@ -10,6 +10,9 @@
 .btn{
 	cursor: pointer;
 }
+.btn:hover{
+	color: #19be6b;
+}
 .box{
 	width: 1000px;
 	margin: 50px auto;
@@ -20,4 +23,7 @@
 	border-radius: 50%!important;
 	display: block!important;
 	margin: 0 auto 20px!important;
+}
+.mb20{
+	margin-bottom: 20px;
 }

@@ -104,6 +104,13 @@ export function get_one (params) {
     params
   })
 }
+export function get (params) {
+  return fetch({
+    url: 'user/get',
+    method: 'get',
+    params
+  })
+}
 export function edit (data) {
   return fetch({
     url: 'user/edit',
