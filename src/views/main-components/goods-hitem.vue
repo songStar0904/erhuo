@@ -22,12 +22,9 @@
 				<span class="mr10"><Icon type="fireball"></Icon> {{data.goods_view}}</span>
 				<span class="mr10"><Icon type="chatbox-working"></Icon> {{data.goods_view}}</span>
 			</div>
-			<div style="border-top:1px solid #e9eaec; padding-top:8px;">
-				<Row type="flex" justify="space-between" class="code-row-bg">
-			        <Col span="12" class="btn"><Avatar :src="data.user.icon" size="small" /> <span @click="toPerson(data.user.id)">{{data.user.name}}</span></Col>
-			        <Col span="12"><p class="fr">{{data.goods_time | filterDate}}</p></Col>
-			    </Row>
-				
+			<div style="border-top:1px solid #e9eaec; padding-top:8px;" class="clearfix">
+			        <div span="16" class="btn fl"><Avatar :src="data.user.icon" size="small" /> <span @click="toPerson(data.user.id)">{{data.user.name}}</span></div>
+			        <p class="fr">{{data.goods_time | filterDate}}</p>
 			</div>
 		</div>
 	</Card>

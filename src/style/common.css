@@ -16,6 +16,9 @@
 .fr{
 	float: right;
 }
+.clearfix{
+	overflow: hidden;
+}
 .btn{
 	cursor: pointer;
 }
@@ -42,8 +45,14 @@
 .mr10{
 	margin-right: 10px;
 }
+.mr20{
+	margin-right: 20px;
+}
 .p8{
 	padding: 8px;
+}
+.pr20{
+	padding-right: 20px;
 }
 .fz16{
 	font-size:16px;

@@ -41,7 +41,7 @@
                 <Icon type="ios-navigate"></Icon>
                 首页
             </MenuItem>
-            <MenuItem name="3">
+            <MenuItem name="discover">
                 <Icon type="ios-analytics"></Icon>
                 发现
             </MenuItem>

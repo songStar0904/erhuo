@@ -2,11 +2,11 @@
   <Card :padding="8" dis-hover>
         <Row>
           <Col span="12">热搜：
-            <Button type="text" v-for="item in hot">{{item.search_name}}</Button>
+            <Button type="text" v-for="item in hot" @click="toSearch(item.search_name)">{{item.search_name}}</Button>
           </Col>
           <Col span="12">
             <Input v-model="search">
-              <Button slot="append" icon="ios-search"></Button>
+              <Button slot="append" icon="ios-search" @click="toSearch(search)"></Button>
           </Input>
           </Col>
       </Row>
@@ -41,6 +41,14 @@
             this.hot = res.data;
           } else {
             this.$Message.error(res.msg);
+          }
+        })
+      },
+      toSearch (search) {
+        this.$router.push({
+          name: 'discover',
+          query: {
+            search
           }
         })
       }

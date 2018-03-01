@@ -1,7 +1,7 @@
 <style scoped>
 </style>
 <template>
-	<Content :style="{padding: '0 50px'}">
+	<Content style="padding: 0 50px">
 	    <carousel-box></carousel-box>
 	    <search-box :style="{margin: '20px 0'}"></search-box>
 	    <Row :gutter="15">
@@ -10,7 +10,7 @@
 	    	    <side-block title="最近注册" order="user_rtime" class="mb20"></side-block>
 	        </Col>
 	    	<Col span="18">
-	    		<goods-box></goods-box>
+	    		<goods-box :data="data"></goods-box>
 	    	</Col>
 	    </Row>	
 	</Content>
@@ -24,7 +24,26 @@ import {carouselBox, searchBox, sideBlock, goodsBox} from './home-components'
             sideBlock,
             goodsBox
     	},
+    	data () {
+    		return {
+    			data: []
+    		}
+    	},
+    	mounted () {
+    		this.getData();
+    	},
         methods: {
+        	getData () {
+				this.$fetch.goods.get({
+					num: 8
+				}).then(res => {
+					if (res.code === 200) {
+						this.data = res.data;
+					} else {
+						this.$Message.error(res.msg);
+					}
+				})
+			}
         }
     };
 </script>

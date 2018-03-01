@@ -75,8 +75,12 @@ const routers = [{
         component: (resolve) => require(['../views/user/fans.vue'], resolve)
     }]
 },  {
-    path: '/publish',
+    path: '/publish/:search',
     name: 'publish',
     component: (resolve) => require(['../views/publish/index.vue'], resolve)
+},  {
+    path: '/discover',
+    name: 'discover',
+    component: (resolve) => require(['../views/discover/index.vue'], resolve)
 }];
 export default routers;

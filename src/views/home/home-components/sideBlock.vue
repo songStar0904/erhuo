@@ -22,7 +22,8 @@ import util from '../../../libs/util.js';
 		methods: {
 			getData () {
 				this.$fetch.user.get({
-					order: this.order
+					order: this.order,
+					num: 8
 				}).then(res => {
 					if (res.code === 200) {
 						res.data.forEach(item => {
