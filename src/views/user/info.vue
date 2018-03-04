@@ -37,9 +37,13 @@
         <FormItem label="学校：">
             <span>{{userForm.user_sid}}</span>
         </FormItem>
-        <FormItem label="上次登录时间：">
+        <FormItem label="二龄：">
+            <span>{{userForm.user_rtime}}</span>
+        </FormItem>
+        <FormItem label="上次登录：">
             <span>{{userForm.user_ltime}}</span>
         </FormItem>
+
         <FormItem label="登录密码：">
             <Button type="text" size="small" @click="showEditPassword">修改密码</Button>
         </FormItem>
