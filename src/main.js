@@ -23,19 +23,21 @@ const router = new VueRouter(RouterConfig);
 
 router.beforeEach((to, from, next) => {
     iView.LoadingBar.start();
-    if (!store.state.user.islogin && to.path === '/user') {
-      store.dispatch('is_login').then((res) => {
-          let islogin = res
-          if (!islogin && to.path === '/user') {
-            next({ path: '/home' })
-          } else {
-            next()
-      }
-    })
-    } else {
-        next();
-    }
     util.title(to.meta.title);
+    const curRouterObj = util.getRouterObjByName([...Routers], to.name);
+    if (curRouterObj && curRouterObj.access !== undefined) { // 需要判断权限的路由
+        store.dispatch('is_login').then((res) => {
+            let islogin = res
+            if (!islogin) {
+              store.commit('logout');
+              next({ path: '/home' });
+            } else {
+              next()
+            }
+        })
+    } else { // 没有配置权限的路由, 直接通过
+        util.toDefaultPage([...Routers], to.name, router, next);
+    }  
 });
 
 router.afterEach(() => {

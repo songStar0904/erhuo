@@ -60,6 +60,7 @@ import layout from './user-components/layout.vue';
                         	if (res.code === 200) {
                         		this.$Message.info(res.msg);
                                 this.$store.commit('setUser', util.formatUserData(res.data));
+                                this.$store.commit('setIslogin', 1);
                                 this.$router.push({
                                     name: 'home'
                                 });

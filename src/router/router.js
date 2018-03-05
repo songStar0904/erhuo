@@ -23,22 +23,27 @@ const routers = [{
 }, {
     path: '/user',
     name: 'user',
+    access: 1,
     component: (resolve) => require(['../views/user/index.vue'], resolve),
     children: [{
         path: '/user/fmsg',
         name: 'fmsg',
+        access: 1,
         component: (resolve) => require(['../views/user/fmsg.vue'], resolve)
     }, {
         path: '/user/info',
         name: 'info',
+        access: 1,
         component: (resolve) => require(['../views/user/info.vue'], resolve)
     }, {
         path: '/user/sell',
         name: 'usell',
+        access: 1,
         component: (resolve) => require(['../views/user/sell.vue'], resolve),
     }, {
         path: '/user/fans',
         name: 'ufans',
+        access: 1,
         meta: {
             title: 'fans',
             type: 'fans'
@@ -47,6 +52,7 @@ const routers = [{
     }, {
         path: '/user/followers',
         name: 'ufollowers',
+        access: 1,
         meta: {
             title: 'followers',
             type: 'followers'
@@ -79,8 +85,9 @@ const routers = [{
         component: (resolve) => require(['../views/user/fans.vue'], resolve)
     }]
 },  {
-    path: '/publish/:search',
+    path: '/publish',
     name: 'publish',
+    access: 1,
     component: (resolve) => require(['../views/publish/index.vue'], resolve)
 },  {
     path: '/discover',

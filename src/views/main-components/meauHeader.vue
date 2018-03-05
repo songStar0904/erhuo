@@ -34,7 +34,7 @@
 }
 </style>
 <template>
-    <Menu mode="horizontal" theme="light" active-name="home" @on-select="changeMenu">
+    <Menu mode="horizontal" theme="light" :active-name="active" @on-select="changeMenu">
         <div class="layout-logo">二 货</div>
         <div class="layout-nav">
             <MenuItem name="home">
@@ -76,6 +76,7 @@
     </Menu>
 </template>
 <script>
+import { mapState } from 'vuex'
 	export default {
 		methods: {
 			changeMenu (name) {
@@ -91,7 +92,7 @@
                 this.$fetch.user.loginOut()
                 .then(res => {
                     if (res.code === 200) {
-                        this.$store.commit('setUser', null);
+                        this.$store.commit('logout', this);
                         this.$router.push({
                             name: 'home'
                         });
@@ -103,12 +104,17 @@
 		},
         computed: {
             isLogin () {
-                return this.$store.state.user.isLogin;
+                if (this.$store.state.user.isLogin) {
+                    return this.$store.state.user.isLogin;
+                }
             },
             user_icon () {
                 if (this.$store.state.user.info.user_icon) {
                     return this.$store.state.user.info.user_icon;
                 }
+            },
+            active () {
+                return this.$route.name ? this.$route.name : 'home';
             }
         }
 	}
