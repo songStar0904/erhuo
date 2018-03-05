@@ -28,6 +28,9 @@
 				return this.$route.query.search
 			}
 		},
+		mounted () {
+			this.getData();
+		},
 		watch: {
 			$route () {
 				this.getData();

@@ -23,8 +23,19 @@ const router = new VueRouter(RouterConfig);
 
 router.beforeEach((to, from, next) => {
     iView.LoadingBar.start();
+    if (!store.state.user.islogin && to.path === '/user') {
+      store.dispatch('is_login').then((res) => {
+          let islogin = res
+          if (!islogin && to.path === '/user') {
+            next({ path: '/home' })
+          } else {
+            next()
+      }
+    })
+    } else {
+        next();
+    }
     util.title(to.meta.title);
-    next();
 });
 
 router.afterEach(() => {

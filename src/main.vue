@@ -26,6 +26,7 @@ import {meauHeader} from './views/main-components';
             init () {
                 this.$store.commit('getUser');
                 this.getClassify();
+                this.isLogin();
             },
             getClassify () {
                 this.$fetch.classify.get({
@@ -33,6 +34,16 @@ import {meauHeader} from './views/main-components';
                 }).then(res => {
                     if (res.code === 200) {
                         this.$store.commit('setClassify', res.data);
+                    } else {
+                        this.$Message.error(res.msg);
+                    }
+                })
+            },
+            isLogin () {
+                this.$fetch.user.isLogin()
+                .then(res => {
+                    if (res.code === 200) {
+                        this.$store.commit('setIslogin', res.data);
                     } else {
                         this.$Message.error(res.msg);
                     }

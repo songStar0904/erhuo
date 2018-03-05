@@ -2,7 +2,7 @@
 	<Card :dis-hover="true" :padding="0">
 		<Row type="flex" justify="space-between" class="code-row-bg">
 	        <Col span="16">
-	        	<Menu mode="horizontal" theme="light" active-name="0" @on-select="changeMeau">
+	        	<Menu mode="horizontal" theme="light" :active-name="0" @on-select="changeMeau">
 					<MenuItem :name="0">
 			        	全部
 			        </MenuItem>

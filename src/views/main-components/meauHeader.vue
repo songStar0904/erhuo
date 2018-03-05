@@ -103,7 +103,7 @@
 		},
         computed: {
             isLogin () {
-                return this.$store.getters.isLogin;
+                return this.$store.state.user.isLogin;
             },
             user_icon () {
                 if (this.$store.state.user.info.user_icon) {

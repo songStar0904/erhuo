@@ -1,7 +1,22 @@
 import Cookies from 'js-cookie';
+import api from '../../api';
 
 const user = {
     state: {info: null},
+    actions: {
+      is_login ({ commit }) {
+        return new Promise((resolve, reject) => {
+          api.apiObj.user.isLogin()
+              .then((res) => {
+                commit('setIslogin', res.data);
+                if (res.code === 200) {
+                  commit('setUser', res.data);
+                  resolve(res.data)
+                }
+              });
+        });
+      }
+    },
     mutations: {
         logout (state, vm) {
             Cookies.remove('user');
@@ -25,12 +40,15 @@ const user = {
         },
         getUser (state) {
             state.info = JSON.parse(localStorage.user_info);
+        },
+        setIslogin (state, data) {
+            state.isLogin = data;
+            if (!data) {
+                localStorage.setItem('user_info', null);
+            }
         }
     },
     getters: {
-        isLogin (state) {
-            return state.info ? true : false;
-        }
     }
 };
 

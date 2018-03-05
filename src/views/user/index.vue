@@ -87,13 +87,6 @@
 				})
 			}
 		},
-		created () {
-			if (!this.isLogin) {
-				this.$router.push({
-					name: 'home'
-				})
-			}
-		},
 		methods: {
 			btn_type (val) {
             	if (this.user_info && this.user_info[val]){
@@ -109,9 +102,6 @@
             }
 		},
 		computed: {
-            isLogin () {
-                return this.$store.getters.isLogin;
-            },
             user_info () {
                 if (this.$store.state.user.info) {
                     return this.$store.state.user.info;

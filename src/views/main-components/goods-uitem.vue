@@ -7,9 +7,6 @@
 		color: rgb(185,185,185);
         text-decoration: line-through;
 	}
-	.mt10{
-		margin-top: 10px;
-	}
 </style>
 <template>
 	<Card :dis-hover="true">
@@ -37,9 +34,10 @@
 		        <Col span="4">原价：</Col>
 		        <Col span="6" class="oprice">￥{{data.goods_oprice}} 元</Col>
 		    </Row>
-	        <div style="margin-top:15px;">
-	        	<Button icon="heart" type="warning" style="margin-right:30px; width:60px;"></Button>
-	            <Button icon="social-facebook" type="success" style="width:100px;">购买</Button>
+	        <div class="mt15">
+	        	<Button icon="heart" type="warning" class="mr30"></Button>
+	        	<Button icon="compose" type="success" class="w100" v-if="isOwn">编辑</Button>
+	            <Button icon="card" type="success" class="w100" v-else>购买</Button>
 	        </div>
         </Col>
     </Row>
@@ -47,7 +45,7 @@
 </template>
 <script>
 	export default {
-		props: ['data'],
+		props: ['data', 'isOwn'],
 		data () {
 			return {}
 		},

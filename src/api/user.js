@@ -9,9 +9,9 @@ export function login (params) {
   })
 }
 // islogin
-export function islogin (params) {
+export function isLogin (params) {
   return fetch({
-    url: 'user',
+    url: 'user/is_login',
     method: 'get',
     params
   })

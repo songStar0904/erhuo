@@ -57,7 +57,7 @@ const seeBtn = (vm, h, params) => {
                 }
             },
             type () {
-            	return this.$route.meta.title;
+            	return this.$route.meta.type;
             },
             user_id () {
             	if (this.$route.params.uid) {
