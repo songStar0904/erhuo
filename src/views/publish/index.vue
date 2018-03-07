@@ -43,10 +43,10 @@
             <Form ref="goods" :model="goods" :rules="ruleValidate" :label-width="80">
                 <FormItem label="二货图片" prop="name">
                      <div class="demo-upload-list" v-for="item in goods.goods_icon">
-                        <template v-if="item.status === 'finished'">
+                        <template v-if="1">
                             <img :src="item.url">
                             <div class="demo-upload-list-cover">
-                                <Icon type="ios-eye-outline" @click.native="handleView(item.name)"></Icon>
+                                <Icon type="ios-eye-outline" @click.native="handleView(item.url)"></Icon>
                                 <Icon type="ios-trash-outline" @click.native="handleRemove(item)"></Icon>
                             </div>
                         </template>
@@ -93,9 +93,9 @@
                 </FormItem>
                 <FormItem label="交易方式" prop="goods_type">
                     <RadioGroup v-model="goods.goods_type">
-                        <Radio label="1">线上交易</Radio>
-                        <Radio label="2">线下交易</Radio>
-                        <Radio label="0">线上/线下交易</Radio>
+                        <Radio :label="1">线上交易</Radio>
+                        <Radio :label="2">线下交易</Radio>
+                        <Radio :label="0">线上/线下交易</Radio>
                     </RadioGroup>
                 </FormItem>
                 <FormItem label="交易地址" prop="name" v-show="goods.goods_type!=1">
@@ -105,7 +105,8 @@
                     <Input v-model="goods.goods_summary" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="输入详情"></Input>
                 </FormItem>
                 <FormItem>
-                    <Button type="primary" @click="handleSubmit('goods')">确认发布</Button>
+                    <Button type="primary" @click="edit_goods('goods')" v-if="gid">确认修改</Button>
+                    <Button type="primary" @click="handleSubmit('goods')" v-else>确认发布</Button>
                 </FormItem>
             </Form>
         </Card>
@@ -134,7 +135,7 @@ import util from '../../libs/util.js';
                         { required: true, type: 'number', message: '请选择分类', trigger: 'blur' }
                     ],
                     goods_type: [
-                        { required: true, message: '请选择交易方式', trigger: 'change' }
+                        { required: true, type: 'number', message: '请选择交易方式', trigger: 'change' }
                     ],
                     goods_summary: [
                         { required: true, message: '请输入详情', trigger: 'blur' },
@@ -153,6 +154,9 @@ import util from '../../libs/util.js';
             },
             uid () {
                 return this.$store.state.user.info.user_id;
+            },
+            gid () {
+                return this.$route.params.gid;
             }
         },
         created () {
@@ -166,17 +170,22 @@ import util from '../../libs/util.js';
                     this.path = 'api.erhuo.com/goods/upload';
                 }
             },
+            getData () {
+                this.$fetch.goods.get_edit({
+                    goods_id: this.gid
+                }).then(res => {
+                    if (res.code === 200) {
+                        this.goods = res.data;
+                        this.defaultList = res.data.goods_icon;
+                    } else {
+                        this.$Message.error(res.msg);
+                    }
+                })
+            },
             handleSubmit (name) {
                 this.$refs[name].validate((valid) => {
                     if (valid) {
-                        // let icon = [];
-                        // this.goods.goods_icon.forEach((item, index) => {
-                        //     icon[index] = item.url;
-                        //     console.log(icon);
-                        // })
-                        // this.goods['goods_icon'] = icon;
                         this.goods.goods_uid = this.uid;
-                        console.log(this.goods['goods_icon'])
                         this.$fetch.goods.add(this.goods)
                         .then(res => {
                             if (res.code === 200) {
@@ -193,13 +202,39 @@ import util from '../../libs/util.js';
                     }
                 })
             },
+            edit_goods (name) {
+                this.$refs[name].validate((valid) => {
+                    if (valid) {
+                        this.$fetch.goods.edit(this.goods)
+                        .then(res => {
+                            if (res.code === 200) {
+                                this.$Message.success(res.msg);
+                            } else {
+                                this.$Message.error(res.msg);
+                            }
+                        })
+                    } else {
+                        this.$Message.error('请输入正确的表单内容!');
+                    }
+                })
+            },
             handleView (name) {
                 this.imgName = name;
                 this.visible = true;
             },
             handleRemove (file) {
-                const fileList = this.$refs.upload.fileList;
-                this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
+                console.log(file);
+                this.$fetch.goods.del_img({
+                    goods_id: this.goods.goods_id,
+                    url: file.url
+                }).then(res => {
+                    if (res.code === 200) {
+                        const fileList = this.$refs.upload.fileList;
+                        this.goods.goods_icon.splice(fileList.indexOf(file), 1);
+                    } else {
+                        this.$Message.error(res.msg);
+                    }
+                })
             },
             handleSuccess (res, file) {
                 if (res.code === 200) {
@@ -232,6 +267,9 @@ import util from '../../libs/util.js';
         },
         mounted () {
             this.goods.goods_icon = this.$refs.upload.fileList;
+            if (this.gid) {
+                this.getData();
+            }
         }
     }
 </script>

@@ -36,7 +36,10 @@
 		    </Row>
 	        <div class="mt15">
 	        	<Button icon="heart" type="warning" class="mr30"></Button>
-	        	<Button icon="compose" type="success" class="w100" v-if="isOwn">编辑</Button>
+	        	<router-link :to="{ name: 'gedit', params: { gid: data.goods_id }}" v-if="isOwn">
+	        		<Button icon="compose" type="success" class="w100">编辑</Button>
+	        	</router-link>
+	        	
 	            <Button icon="card" type="success" class="w100" v-else>购买</Button>
 	        </div>
         </Col>

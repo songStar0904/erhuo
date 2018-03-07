@@ -7,6 +7,28 @@ export function get (params) {
     params
   })
 }
+export function get_one (params) {
+  return fetch({
+    url: 'goods/get_one',
+    method: 'get',
+    params
+  })
+}
+export function get_edit (params) {
+  return fetch({
+    url: 'goods/get_edit',
+    method: 'get',
+    params
+  })
+}
+// 删除图片
+export function del_img (data) {
+  return fetch({
+    url: 'goods/del_img',
+    method: 'post',
+    data
+  })
+}
 // 修改商品
 export function edit (data) {
   return fetch({

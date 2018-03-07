@@ -90,6 +90,11 @@ const routers = [{
     access: 1,
     component: (resolve) => require(['../views/publish/index.vue'], resolve)
 },  {
+    path: '/gedit/:gid',
+    name: 'gedit',
+    access: 1,
+    component: (resolve) => require(['../views/publish/index.vue'], resolve)
+},  {
     path: '/discover',
     name: 'discover',
     component: (resolve) => require(['../views/discover/index.vue'], resolve)
