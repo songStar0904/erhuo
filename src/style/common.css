@@ -1,7 +1,12 @@
 a{
 	color: #495060!important;
 }
-
+.text-info{
+	color: #5cadff;
+}
+.text-error{
+	color: #ed3f14;
+}
 .text-success{
 	color: #19be6b;
 }
@@ -13,6 +18,9 @@ a{
 }
 .text-disabled{
 	color: #bbbec4;
+}
+.bd-disabled{
+	background: #bbbec4 !important;
 }
 .fl{
 	float: left;
@@ -42,6 +50,9 @@ a{
 }
 .mb20{
 	margin-bottom: 20px;
+}
+.mb30{
+	margin-bottom: 30px;
 }
 .mb8{
 	margin-bottom: 8px;

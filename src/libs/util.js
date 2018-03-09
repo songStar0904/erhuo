@@ -64,7 +64,7 @@ util.formatDate = function(timestamp) {
     let h = date.getHours() + ':';
     let m = date.getMinutes() + ':';
     let s = date.getSeconds();
-    return Y+M+D;
+    return Y+M+D+h+m+s;
 }
 util.formatDateByNow = function (timestamp) {
     // 补全为13位
@@ -138,12 +138,28 @@ util.formatPhone =function (val) {
         return val;
     }
 }
+// 格式化交易方式
+util.formatType = function (val) {
+    switch (val) {
+        case 0:
+        return '线上/线下交易';
+        case 1: 
+        return '线上交易';
+        case 2:
+        return '线下交易';
+    }
+}
 util.formatUserData = function(data) {
     data.user_sid = this.formatSchool(data.user_sid);
     data.user_sex = this.formatSex(data.user_sex);
     data.user_ltime = this.formatDateByNow(data.user_ltime);
     data.user_rtime = this.formatDateByNow(data.user_rtime);
     data.user_phone = this.formatPhone(data.user_phone);
+    return data;
+}
+util.formatGoodsData = function (data) {
+    data.goods_time = this.formatDate(data.goods_time);
+    data.goods_type = this.formatType(data.goods_type);
     return data;
 }
 util.getSchool = function () {

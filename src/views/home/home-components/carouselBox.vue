@@ -1,5 +1,4 @@
 <style scoped>
-
 .ivu-carousel-item img{
 		height: 100%;
 	}

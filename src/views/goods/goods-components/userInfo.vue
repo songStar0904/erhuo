@@ -1,3 +1,0 @@
-<template>
-	<Card></Card>
-</template>
