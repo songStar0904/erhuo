@@ -159,6 +159,13 @@ import util from '../../libs/util.js';
                 return this.$route.params.gid;
             }
         },
+        watch: {
+            gid (val) {
+                if (!val) {
+                    this.goods = {}
+                }
+            }
+        },
         created () {
             this.setPath();
         },

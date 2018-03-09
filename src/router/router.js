@@ -38,6 +38,9 @@ const routers = [{
     }, {
         path: '/user/sell',
         name: 'usell',
+        meta: {
+            title: 'sell'
+        },
         access: 1,
         component: (resolve) => require(['../views/user/sell.vue'], resolve),
     }, {
@@ -66,6 +69,9 @@ const routers = [{
     children: [{
         path: '/person/:uid/sell',
         name: 'sell',
+        meta: {
+            title: 'sell'
+        },
         component: (resolve) => require(['../views/user/sell.vue'], resolve)
     }, {
         path: '/person/:uid/fans',
@@ -84,19 +90,23 @@ const routers = [{
         name: 'followers',
         component: (resolve) => require(['../views/user/fans.vue'], resolve)
     }]
-},  {
+}, {
     path: '/publish',
     name: 'publish',
     access: 1,
     component: (resolve) => require(['../views/publish/index.vue'], resolve)
-},  {
+}, {
     path: '/gedit/:gid',
     name: 'gedit',
     access: 1,
     component: (resolve) => require(['../views/publish/index.vue'], resolve)
-},  {
+}, {
     path: '/discover',
     name: 'discover',
     component: (resolve) => require(['../views/discover/index.vue'], resolve)
+}, {
+    path: '/goods/:gid',
+    name: 'goods',
+    component: (resolve) => require(['../views/goods/index.vue'], resolve)
 }];
 export default routers;

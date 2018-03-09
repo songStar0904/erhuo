@@ -3,7 +3,7 @@
 		<p slot="title">{{title}}</p>
 		<Row v-for="item in data" style="margin: 5px 0">
 			<Col span="4"><Avatar :src="item.user_icon" /></Col>
-			<Col span="18" style="line-height: 32px;" class="btn"><span  @click="toPerson(item.user_id)">{{item.user_name}} ( {{item[order]}} )</span></Col>
+			<Col span="18" style="line-height: 32px;" class="btn overflow"><span  @click="toPerson(item.user_id)">{{item.user_name}} ( {{item[order]}} )</span></Col>
 		</Row>
 	</Card>
 </template>

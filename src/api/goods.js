@@ -53,3 +53,19 @@ export function del (data) {
     data
   })
 }
+
+// 获得收藏
+export function get_followers (params) {
+  return fetch({
+    url: 'goods/get_follower',
+    method: 'get',
+    params
+  })
+}
+export function follow (data) {
+  return fetch({
+    url: 'goods/follow',
+    method: 'post',
+    data
+  })
+}

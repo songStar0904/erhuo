@@ -102,7 +102,6 @@ const seeBtn = (vm, h, params) => {
 			get_followers () {
 				this.loading = true;
 				this.$fetch.user.get_followers({
-					uid: this.uid,
 					user_id: this.user_id,
 					type: this.type,
 					page: this.page
@@ -117,9 +116,7 @@ const seeBtn = (vm, h, params) => {
 				})
 			},
 			follow (val) {
-				console.log(val);
 				this.$fetch.user.follow({
-					user_id: this.user_id,
 					type: this.type,
 					followers_id: val.row.user_id
 				}).then(res => {

@@ -73,18 +73,7 @@
 					icon: 'android-happy',
 					title: '关注'
 				}],
-				mactive: '',
-				isShow: false
-			}
-		},
-		watch:{
-			$route (val) {
-				this.isShow = false;
-				this.meau.forEach((item) => {
-					if (val.name === item.name) {
-						this.isShow = true;
-					}
-				})
+				mactive: ''
 			}
 		},
 		methods: {
@@ -109,6 +98,13 @@
             },
             active () {
             	return this.$route.name;
+            },
+            isShow () {
+            	return this.meau.some((item) => {
+					if (this.$route.name === item.name) {
+						return true;
+					}
+				});
             }
         }
 	}
