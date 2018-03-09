@@ -5,7 +5,7 @@
 </style>
 <template>
     <Carousel autoplay v-model="value" :height="400" loop>
-        <CarouselItem v-for="(item ,index) in data">
+        <CarouselItem v-for="(item ,index) in data" :key="index">
             <img :src="item.img" alt="" style="width:100%; height:100%">
         </CarouselItem>
     </Carousel>

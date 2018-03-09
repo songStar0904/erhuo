@@ -88,7 +88,7 @@
                 </FormItem>
                 <FormItem label="二货分类" prop="goods_cid">
                     <Select v-model="goods.goods_cid" placeholder="选择二货分类">
-                        <Option v-for="item in classify" :value="item.gclassify_id">{{item.gclassify_name}}</Option>
+                        <Option v-for="(item, index) in classify" :key="index" :value="item.gclassify_id">{{item.gclassify_name}}</Option>
                     </Select>
                 </FormItem>
                 <FormItem label="交易方式" prop="goods_type">

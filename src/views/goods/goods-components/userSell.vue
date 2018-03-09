@@ -18,7 +18,7 @@
             <Icon type="ios-loop-strong"></Icon>
         </span>
         <Row :gutter="15">
-        	<Col span="12" v-for="item in randomData" class="mt10">
+        	<Col span="12" v-for="(item, index) in randomData" class="mt10" :key="index">
 	        	<router-link :to="{ name: 'goods', params: { gid: item.goods_id }}">
 	        		<img class="goods_icon" :src="item.goods_icon[0].url" alt="">
 	        	</router-link>

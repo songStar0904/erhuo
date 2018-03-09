@@ -1,35 +1,35 @@
 <template>
-	<Card :padding="8" dis-hover>
+  <Card :padding="8" dis-hover>
         <Row>
-	        <Col span="12">热搜：
-	          <Button type="text" v-for="item in hot">{{item.name}}</Button>
-	        </Col>
-	        <Col span="12">
-	        	<Input v-model="search">
-			        <Button slot="append" icon="ios-search"></Button>
-			    </Input>
-	        </Col>
-	    </Row>
+          <Col span="12">热搜：
+            <Button type="text" v-for="(item, index) in hot" :key="index" @click="toSearch(item.search_name)">{{item.search_name}}</Button>
+          </Col>
+          <Col span="12">
+            <Input v-model="search">
+              <Button slot="append" icon="ios-search" @click="toSearch(search)"></Button>
+          </Input>
+          </Col>
+      </Row>
     </Card>
 </template>
 <script>
   export default{
-  	data () {
-  		return {
-  			hot: [{
-  				name: '英'
-  			}, {
-  				name: '四级'
-  			}, {
-  				name: 'javascript'
-  			}],
-  			search: ''
-  		}
-  	},
+    data () {
+      return {
+        hot: [{
+          search_name: '英语'
+        }, {
+          search_name: '四级'
+        }, {
+          search_name: 'javascript'
+        }],
+        search: ''
+      }
+    },
     mounted () {
       this.init();
     },
-    motheds: {
+    methods: {
       init () {
         this.get_hot();
       },
@@ -41,6 +41,14 @@
             this.hot = res.data;
           } else {
             this.$Message.error(res.msg);
+          }
+        })
+      },
+      toSearch (search) {
+        this.$router.push({
+          name: 'discover',
+          query: {
+            search
           }
         })
       }

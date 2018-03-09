@@ -6,7 +6,7 @@
 					<MenuItem :name="0">
 			        	全部
 			        </MenuItem>
-			        <MenuItem :name="item.gclassify_id" v-for="item in classify">
+			        <MenuItem :name="item.gclassify_id" v-for="(item, index) in classify" :key="index">
 			        	{{item.gclassify_name}}
 			        </MenuItem>
 			    </Menu>

@@ -16,7 +16,8 @@
 	</Content>
 </template>
 <script>
-import {carouselBox, searchBox, sideBlock, goodsBox} from './home-components'
+import {carouselBox, sideBlock, goodsBox} from './home-components';
+import {searchBox} from '../main-components';
     export default {
     	components: {
     		carouselBox,

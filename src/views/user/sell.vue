@@ -3,7 +3,7 @@
 		<Row type="flex" justify="end">
 			<Page :total="total" show-total show-elevator size="small" @on-change="changePage" :current="page" :page-size="num"></Page>
 		</Row>
-		<goods-uitem :data="item" :isOwn="isOwn" v-for="item in data" :user_id="user_id" style="margin: 20px 0"></goods-uitem>
+		<goods-uitem :data="item" :isOwn="isOwn" v-for="(item, index) in data" :key="index" :user_id="user_id" style="margin: 20px 0"></goods-uitem>
 		<div v-if="data.length==0" style="text-align:center">
 			<p style="margin:50px 0;">您没有发布任何二货哦~</p>
 			<Button type="success" @click="publish">现在发布</Button>

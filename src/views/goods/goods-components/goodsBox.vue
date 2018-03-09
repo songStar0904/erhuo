@@ -19,7 +19,7 @@
 		<Row :gutter="20">
 			<Col :span="12">
 				<Carousel v-model="value" :height="400" loop>
-			        <CarouselItem v-for="(item ,index) in data.goods_icon">
+			        <CarouselItem v-for="(item ,index) in data.goods_icon" :key="index">
 			            <img :src="item.url" alt="" style="width:100%; height:100%">
 			        </CarouselItem>
 			    </Carousel>
