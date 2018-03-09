@@ -179,5 +179,13 @@ util.cloneObj = function(obj){
     }
     return newobj;
 };
+// 改变对象key值
+util.setData = function (k, data) {
+    let newData = {};
+    for (let key in data) {
+        newData[`${k}_${key}`] = data[key];
+    }
+    return newData;
+}
 
 export default util;

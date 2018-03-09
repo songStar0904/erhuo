@@ -12,10 +12,7 @@
 			{{user_info.user_sign}}
 		</div>
 		<div slot="leftBottom">
-			<Row :gutter="16">
-		        <Col span="12"><Button :type="user_info.user_rship.is_fans ? 'warning' : 'success'" @click="follow" long>{{user_info.user_rship.is_fans ? '取消关注': '关注TA'}}</Button></Col>
-		        <Col span="12"><Button type="success" long>私信TA</Button></Col>
-		    </Row>
+			<fol-send :info="user_info"></fol-send>
 		</div>
 		<user-meau slot="rightMeau" :meau="meau" style="margin-bottom:20px;"></user-meau>
 	</layout>
@@ -24,10 +21,12 @@
 import util from '../../libs/util.js';
 import layout from '../layout/layout.vue';
 import userMeau from '../user/user-components/userMeau.vue';
+import {folSend} from '../main-components';
 	export default{
 		components: {
 			layout,
-			userMeau
+			userMeau,
+			folSend
 		},
 		data () {
 			return {
@@ -93,20 +92,7 @@ import userMeau from '../user/user-components/userMeau.vue';
             	this.$router.push({
                     name
                 });
-            },
-            follow () {
-				this.$fetch.user.follow({
-					user_id: this.uid,
-					type: this.type,
-					followers_id: this.user_id
-				}).then(res => {
-					if (res.code === 200) {
-						this.user_info.user_rship.is_fans = res.data;
-					} else {
-						this.$Message.error(res.msg);
-					}
-				})
-			}
+            }
 		},
 		computed: {
 			uid () {
