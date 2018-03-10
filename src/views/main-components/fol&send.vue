@@ -1,12 +1,12 @@
 <template>
 	<Row :gutter="16">
-        <Col span="12"><Button :type="is_fans ? 'warning' : 'success'" @click="follow" long>{{is_fans ? '取消关注': '关注 TA'}}</Button></Col>
-        <Col span="12"><Button type="success" long>私信 TA</Button></Col>
+        <Col span="12"><Button :type="is_fans ? 'warning' : 'success'" @click="follow" :size="size" long>{{is_fans ? '取消关注': '关注 TA'}}</Button></Col>
+        <Col span="12"><Button type="success" :size="size" long>私信 TA</Button></Col>
     </Row>
 </template>
 <script>
 	export default {
-		props: ['info'],
+		props: ['info', 'size'],
 		data () {
 			return {}
 		},

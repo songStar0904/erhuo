@@ -1,7 +1,7 @@
 <style scoped>
 .goods_icon{
 	width: 100%;
-	height: 125px;
+	height: 100px;
 }
 </style>
 <template>

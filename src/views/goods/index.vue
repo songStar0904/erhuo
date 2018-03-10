@@ -1,13 +1,13 @@
 <template>
 	<div class="box">
 		<Row :gutter="50">
-			<Col span="16">
+			<Col span="17">
 				<goods-box :data="data"></goods-box>
 			</Col>
-			<Col span="8">
+			<Col span="7">
 				<user-info :info="info">
 					<div slot="userInfo">
-						<fol-send :info="info"></fol-send>
+						<fol-send :info="info"  size="small"></fol-send>
 					</div>
 				</user-info>
 				<dash-board :view="data.goods_view" :fans_num="data.fans_num" :msg_num="10" class="mb30"></dash-board>

@@ -5,8 +5,8 @@
 </style>
 <template>
 	<div class="box">
-		<Row :gutter="50">
-	        <Col span="8">
+		<Row :gutter="40">
+	        <Col span="7">
 	        <user-info :info="info">
 	        	<div slot="userInfo">
 	        		<slot name="leftInfo"></slot>
@@ -20,7 +20,7 @@
 			</Card>
 			
 	        </Col>
-	        <Col span="16">
+	        <Col span="17">
 	            <Card :padding="30">
 	            	<slot name="rightMeau"></slot>
 			        <router-view></router-view>

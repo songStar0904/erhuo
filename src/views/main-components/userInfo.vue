@@ -1,5 +1,5 @@
 <template>
-	<Card :dis-hover="true" style="padding:20px; background:#fff; text-align: center; margin-bottom:30px;">
+	<Card :dis-hover="true" style="padding:15px; text-align: center; margin-bottom:30px;">
     	<Upload
                 ref="upload"
                 :show-upload-list="false"
