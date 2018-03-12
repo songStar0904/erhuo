@@ -18,6 +18,7 @@
             <Icon type="ios-loop-strong"></Icon>
         </span>
         <Row :gutter="15">
+        	<Spin fix v-if="loading"></Spin>
         	<Col span="12" v-for="(item, index) in randomData" class="mt10" :key="index">
 	        	<router-link :to="{ name: 'goods', params: { gid: item.goods_id }}">
 	        		<img class="goods_icon" :src="item.goods_icon[0].url" alt="">
@@ -32,7 +33,8 @@
 		data () {
 			return {
 				data: [],
-				randomData: []
+				randomData: [],
+				loading: false
 			}
 		},
 		mounted () {
@@ -52,7 +54,9 @@
 				})
 			},
 			changeData () {
+				let _this = this;
 				function getArrayItems(arr, num) {
+					_this.loading = true;
                     const temp_array = [];
                     for (let index in arr) {
                         temp_array.push(arr[index]);
@@ -67,6 +71,9 @@
                             break;
                         }
                     }
+                    setTimeout(function () {
+						_this.loading = false;
+					}, 0);
                     return return_array;
                 }
                 this.randomData = getArrayItems(this.data, 4);

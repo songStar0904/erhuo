@@ -3,6 +3,9 @@
 		color: rgb(185,185,185);
         text-decoration: line-through;
 	}
+	.pl0{
+		padding-left: 0!important;
+	}
 	.nprice{
 		font-size: 20px;
 		color: #ed3f14;
@@ -18,16 +21,16 @@
 		</span>
 		<Row :gutter="20">
 			<Col :span="12">
-				<Carousel v-model="value" :height="400" loop>
+				<Carousel v-model="value" :height="350" loop>
 			        <CarouselItem v-for="(item ,index) in data.goods_icon" :key="index">
-			            <img :src="item.url" alt="" style="width:100%; height:100%">
+			            <img :src="item.url" alt="" style="width:289.88px; height:100%">
 			        </CarouselItem>
 			    </Carousel>
 			</Col>
 			<Col :span="12">
 			    <h2>{{data.goods_name}}</h2>
 				<Row class="mt10">
-			        <Col span="8">
+			        <Col span="8" class="pl0">
 			            <p>分类</p>
 			        </Col>
 			        <Col span="16">
@@ -35,7 +38,7 @@
 			        </Col>
 			    </Row>
 			    <Row class="mt10">
-			        <Col span="8">
+			        <Col span="8" class="pl0">
 			            <p>现价</p>
 			        </Col>
 			        <Col span="16">
@@ -43,7 +46,7 @@
 			        </Col>
 			    </Row>
 			    <Row class="mt10">
-			        <Col span="8">
+			        <Col span="8" class="pl0">
 			            <p>原价</p>
 			        </Col>
 			        <Col span="16">
@@ -51,7 +54,7 @@
 			        </Col>
 			    </Row>
 			    <Row class="mt10">
-			        <Col span="8">
+			        <Col span="8" class="pl0">
 			            <p>交易地址</p>
 			        </Col>
 			        <Col span="16">
@@ -59,7 +62,7 @@
 			        </Col>
 			    </Row>
 			    <Row class="mt10">
-			        <Col span="8">
+			        <Col span="8" class="pl0">
 			            <p>交易方式</p>
 			        </Col>
 			        <Col span="16">
@@ -67,7 +70,7 @@
 			        </Col>
 			    </Row>
 			    <Row class="mt10">
-			        <Col span="8">
+			        <Col span="8" class="pl0">
 			            <Button icon="heart" :type="data.is_fans ? 'warning' : 'ghost'" class="mr30" @click="follow(data.goods_id)">{{data.is_fans ? '已' : ''}}收藏</Button>
 			        </Col>
 			        <Col span="16">
@@ -76,14 +79,39 @@
 			    </Row>
 			</Col>
 		</Row>
+		<Menu mode="horizontal" :active-name="active" @on-select="changeMeau">
+		        <MenuItem name="detail">
+		            <Icon type="ios-paper"></Icon>
+		            商品详情
+		        </MenuItem>
+		        <MenuItem name="lmsg">
+		            <Icon type="chatbox-working"></Icon>
+		            留言({{data.goods_lmsg.length}})
+		        </MenuItem>
+		    </Menu>
+		<div class="detailBox mt10" v-show="active === 'detail'">
+			{{data.goods_summary}}
+	    </div>
+	    <div class="lmsgBox mt10" v-show="active === 'lmsg'">
+	    	<div v-if="data.goods_lmsg.length <= 0">
+	    		还没有留言哦
+	    	</div>
+	    	<comment-box v-else :data="data.goods_lmsg">
+	    	</comment-box>
+	    </div>
 	</Card>
 </template>
 <script>
+    import {commentBox} from '../../main-components';
 	export default {
+		components: {
+			commentBox
+		},
 		props: ['data'],
 		data () {
 			return {
-				value: 0
+				value: 0,
+				active: 'detail'
 			}
 		},
 		methods: {
@@ -98,6 +126,9 @@
 						this.$Message.error(res.msg);
 					}
 				})
+			},
+			changeMeau (val) {
+				this.active = val;
 			}
 		}
 	}

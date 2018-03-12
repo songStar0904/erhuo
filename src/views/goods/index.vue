@@ -7,6 +7,7 @@
 			<Col span="7">
 				<user-info :info="info">
 					<div slot="userInfo">
+						<p style="color: #999;" class="mb10"><span>{{info.user_sid}}</span> | <span>{{info.user_sex}}</span></p>
 						<fol-send :info="info"  size="small"></fol-send>
 					</div>
 				</user-info>
@@ -32,7 +33,11 @@
 		},
 		data () {
 			return {
-				data: {},
+				data: {
+					user: {
+						id: 1
+					}
+				},
 				info: {}
 			}
 		},
@@ -46,7 +51,7 @@
 				}).then(res => {
 					if (res.code === 200) {
 						this.data = util.formatGoodsData(res.data);
-						this.info = util.setData('user', this.data.user);
+						this.info = util.formatUserData(util.setData('user', this.data.user));
 					} else {
 						this.$Message.error(res.msg);
 					}

@@ -3,9 +3,9 @@
 <template>
 	<layout :info="user_info">
 		<div slot="leftInfo" style="font-size:14px;">
-			<p>{{user_info.user_sex | formatSex}}</p>
-        	<p>{{user_info.user_sid | formatSchool}}</p>
-        	<p>{{user_info.user_ltime | formatDate}}</p>
+			<p>{{user_info.user_sex}}</p>
+        	<p>{{user_info.user_sid}}</p>
+        	<p>{{user_info.user_ltime}}</p>
         	<span class="text-success btn">关注 ({{user_info.user_rship.fans_num}})</span>  &nbsp; <span class="text-success btn">粉丝 ({{user_info.user_rship.followers_num}})</span>
 		</div>
 		<div slot="leftMeau">
@@ -56,23 +56,6 @@ import {folSend} from '../main-components';
 				this.get_user();
 			}
 		},
-		filters: {
-	        formatSex (val) {
-	            if (val === 'male') {
-	                return '男生';
-	            } else {
-	                return '女生';
-	            }
-	        },
-	        formatSchool (val) {
-	        	if (val) {
-	        		return util.formatSchool(val);
-	        	}
-	        },
-	        formatDate (val) {
-	            return util.formatDate(val);
-	        }
-	    },
 		created () {
 			this.get_user();
 		},

@@ -88,7 +88,6 @@ util.formatDateByNow = function (timestamp) {
     if (diffValue < 0) {
         return '不久前';
     }
-
     // 计算差异时间的量级
     var monthC = diffValue / month;
     var weekC = diffValue / (7 * day);
@@ -150,11 +149,21 @@ util.formatType = function (val) {
     }
 }
 util.formatUserData = function(data) {
-    data.user_sid = this.formatSchool(data.user_sid);
-    data.user_sex = this.formatSex(data.user_sex);
-    data.user_ltime = this.formatDateByNow(data.user_ltime);
-    data.user_rtime = this.formatDateByNow(data.user_rtime);
-    data.user_phone = this.formatPhone(data.user_phone);
+    if (data.user_sid) {
+        data.user_sid = this.formatSchool(data.user_sid);
+    }
+    if (data.user_sex) {
+        data.user_sex = this.formatSex(data.user_sex);
+    }
+    if (data.user_ltime) {
+        data.user_ltime = this.formatDateByNow(data.user_ltime);
+    }
+    if (data.user_rtime) {
+        data.user_rtime = this.formatDateByNow(data.user_rtime);
+    }
+    if (data.user_phone) {
+        data.user_phone = this.formatPhone(data.user_phone);
+    }
     return data;
 }
 util.formatGoodsData = function (data) {
