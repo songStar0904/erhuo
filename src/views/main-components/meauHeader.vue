@@ -55,6 +55,7 @@
             </MenuItem>
         </div>
         <div class="layout-login" v-if="isLogin">
+            <message-tip v-model="count" class="fl"></message-tip>
             <Submenu name="3">
                 <template slot="title">
                     <img :src="user_icon" alt="" class="user_icon">
@@ -76,8 +77,21 @@
     </Menu>
 </template>
 <script>
-import { mapState } from 'vuex'
+import { mapState } from 'vuex';
+import messageTip from './messageTip.vue';
 	export default {
+        components: {
+            messageTip
+        },
+        data () {
+            return {
+            }
+        },
+        mounted () {
+            if (this.isLogin) {
+                this.getMsg();
+            }
+        },
 		methods: {
 			changeMenu (name) {
                 if (name == 'loginOut') {
@@ -100,9 +114,22 @@ import { mapState } from 'vuex'
                         this.$Message.error(res.msg);
                     }
                 })
+            },
+            getMsg () {
+                this.$fetch.msg.get({
+                    type: 'goods',
+                    status: 0
+                }).then(res => {
+                    if (res.code === 200) {
+                        this.$store.commit('setMsgCount', res.total);
+                    }
+                })
             }
 		},
         computed: {
+            count () {
+                return this.$store.state.app.msgCount;
+            },
             isLogin () {
                 if (this.$store.state.user.isLogin) {
                     return this.$store.state.user.isLogin;

@@ -1,7 +1,4 @@
 <style lang="less" scoped>
-.user_name{
-	font-size: 18px;
-}
 </style>
 <template>
 	<div class="box">
@@ -15,10 +12,7 @@
 			<Card :dis-hover="true">
 	        	<slot name="leftMeau"></slot>
 			</Card>
-			<Card :dis-hover="true" style="margin-top: 30px;">
-	        	<slot name="leftBottom"></slot>
-			</Card>
-			
+			<slot name="leftBottom"></slot>	
 	        </Col>
 	        <Col span="17">
 	            <Card :padding="30">

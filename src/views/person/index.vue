@@ -13,20 +13,22 @@
 			<span v-else>这个人很懒，啥都没有要说。</span>
 		</div>
 		<div slot="leftBottom">
-			<fol-send :info="user_info" size="default"></fol-send>
+			<Card :dis-hover="true" style="margin-top: 30px;">
+				<fol-send :info="user_info" size="default"></fol-send>
+			</Card>
 		</div>
-		<user-meau slot="rightMeau" :meau="meau" style="margin-bottom:20px;"></user-meau>
+		<my-meau slot="rightMeau" :meau="meau" style="margin-bottom:20px;"></my-meau>
 	</layout>
 </template>
 <script>
 import util from '../../libs/util.js';
 import layout from '../layout/layout.vue';
-import userMeau from '../user/user-components/userMeau.vue';
+import {myMeau} from '../components';
 import {folSend} from '../main-components';
 	export default{
 		components: {
 			layout,
-			userMeau,
+			myMeau,
 			folSend
 		},
 		data () {

@@ -78,11 +78,17 @@ a{
 .mtb10{
 	margin: 10px 0;
 }
+.mtb20{
+	margin: 20px 0;
+}
 .p8{
 	padding: 8px;
 }
 .pr20{
 	padding-right: 20px;
+}
+.ptb5{
+	padding: 5px 0;
 }
 .fz16{
 	font-size:16px;

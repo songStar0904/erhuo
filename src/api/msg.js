@@ -7,3 +7,11 @@ export function send (data) {
     data
   })
 }
+
+export function get (params) {
+  return fetch({
+    url: 'message/get',
+    method: 'post',
+    params
+  })
+}

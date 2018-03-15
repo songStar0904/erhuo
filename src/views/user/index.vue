@@ -7,7 +7,7 @@
 			<p style="color: #999;"><span>{{user_info.user_sid}}</span> | <span>{{user_info.user_sex}}</span></p>
 			<Button type="success" icon="card" style="width:150px; margin-top:10px;">发布二货</Button>
 		</div>
-		<Menu :theme="'light'" :active-name="active" @on-select="changeMeau" slot="leftMeau" style="width: 283px;">
+		<Menu :theme="'light'" :active-name="active" @on-select="changeMeau" slot="leftMeau" style="width: 246px;">
 		        <MenuGroup title="我的二货">
 		            <MenuItem name="usell">
 		                <Icon type="bag"></Icon>
@@ -47,16 +47,16 @@
 		            </MenuItem>
 		        </MenuGroup>
 		    </Menu>
-		    <user-meau slot="rightMeau" :meau="meau" v-show="isShow" style="margin-bottom:20px;"></user-meau>
+		    <my-meau slot="rightMeau" :meau="meau" v-show="isShow" style="margin-bottom:20px;"></my-meau>
 	</layout>
 </template>
 <script>
     import layout from '../layout/layout.vue';
-    import userMeau from './user-components/userMeau.vue';
+    import {myMeau} from '../components';
 	export default{
 		components: {
 			layout,
-			userMeau
+			myMeau
 		},
 		data () {
 			return {
