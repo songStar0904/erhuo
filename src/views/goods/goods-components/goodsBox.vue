@@ -93,10 +93,7 @@
 			{{data.goods_summary}}
 	    </div>
 	    <div class="lmsgBox mt10" v-show="active === 'lmsg'">
-	    	<div v-if="data.goods_lmsg.length <= 0">
-	    		还没有留言哦
-	    	</div>
-	    	<comment-box v-else :data="data.goods_lmsg">
+	    	<comment-box :data="data.goods_lmsg" :id="data.goods_id" :rid="data.user.id" type="goods">
 	    	</comment-box>
 	    </div>
 	</Card>
