@@ -30,7 +30,7 @@ router.beforeEach((to, from, next) => {
             let islogin = res
             if (!islogin) {
               store.commit('logout');
-              next({ path: '/home' });
+              next({ name: 'home' });
             } else {
               next()
             }

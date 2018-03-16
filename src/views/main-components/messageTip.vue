@@ -5,7 +5,7 @@
     }
 </style>
 <template>
-    <router-link :to="{ name: 'comment' query: {status: 0}}" class="message-con">
+    <router-link :to="{ name: 'comment', query: {status: 0}}" class="message-con">
         <Tooltip :content="value > 0 ? '有' + value + '条未读消息' : '无未读消息'" placement="bottom">
             <Badge :count="value" dot>
                 <Icon type="ios-bell" :size="22"></Icon>

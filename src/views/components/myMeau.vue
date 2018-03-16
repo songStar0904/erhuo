@@ -8,17 +8,10 @@
 </template>
 <script>
 	export default{
-		props: ['meau'],
+		props: ['meau', 'active'],
 		methods: {
 			changeMeau (name) {
-            	this.$router.push({
-                    name
-                });
-            }
-		},
-		computed: {
-			active () {
-            	return this.$route.name;
+            	this.$emit('changeMeau', name);
             }
 		}
 	}

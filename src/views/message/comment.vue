@@ -1,6 +1,10 @@
 <template>
 	<div>
-		<comment-item v-for="(item, index) in data" :key="index" :comment="item"></comment-item>
+		<Spin fix size="large" v-if="loading"></Spin>
+		<comment-item v-for="(item, index) in data" :key="index" :comment="item" v-if="data.length>0"></comment-item>
+		<div v-else>
+			暂时还没有消息
+		</div>
 	</div>
 </template>
 <script>
@@ -12,7 +16,12 @@
 		data () {
 			return {
 				data: [],
-				status: this.$route
+				loading: false
+			}
+		},
+		watch: {
+			$route () {
+				this.getData()
 			}
 		},
 		mounted () {
@@ -20,10 +29,12 @@
 		},
 		methods: {
 			getData () {
+				this.loading = true;
 				this.$fetch.msg.get({
-					status: this.status,
+					status: this.$route.query.status,
 					type: 'goods'
 				}).then(res => {
+					this.loading = false;
 					if (res.code === 200) {
 						this.data = res.data
 					} else {

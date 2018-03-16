@@ -47,7 +47,7 @@
 		            </MenuItem>
 		        </MenuGroup>
 		    </Menu>
-		    <my-meau slot="rightMeau" :meau="meau" v-show="isShow" style="margin-bottom:20px;"></my-meau>
+		    <my-meau slot="rightMeau" :meau="meau" v-show="isShow" style="margin-bottom:20px;" @changeMeau="changeMeau" :active="active"></my-meau>
 	</layout>
 </template>
 <script>
@@ -72,8 +72,7 @@
 					name: 'ufollowers',
 					icon: 'android-happy',
 					title: '关注'
-				}],
-				mactive: ''
+				}]
 			}
 		},
 		methods: {

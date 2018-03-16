@@ -20,7 +20,7 @@
                 私信
             </MenuItem>
 		</Menu>
-		<my-meau slot="rightMeau" :meau="meau" style="margin-bottom:20px;"></my-meau>
+		<my-meau slot="rightMeau" :meau="meau" style="margin-bottom:20px;" @changeMeau="changeMyMeau" :active="active1"></my-meau>
 	</layout>
 </template>
 <script>
@@ -34,34 +34,31 @@
 		data () {
 			return {
 				meau: [{
-					name: 'comment',
-					query: {
-						status: 0
-					},
+					name: '0',
 					icon: 'bag',
 					title: '未读'
 				}, {
-					name: 'comment',
-					query: {
-						status: 1
-					},
+					name: '1',
 					icon: 'happy-outline',
 					title: '已读'
 				}, {
-					name: 'comment',
-					query: {
-						status: 2
-					},
+					name: '2',
 					icon: 'android-happy',
 					title: '已回复'
-				}],
-				mactive: ''
+				}]
 			}
 		},
 		methods: {
             changeMeau (name) {
             	this.$router.push({
                     name
+                });
+            },
+            changeMyMeau (name) {
+            	this.$router.push({
+                    query: {
+                    	status: name
+                    }
                 });
             }
 		},
@@ -73,6 +70,9 @@
             },
             active () {
             	return this.$route.name;
+            },
+            active1 () {
+            	return this.$route.query.status;
             }
         }
 	}

@@ -88,8 +88,12 @@ import messageTip from './messageTip.vue';
             }
         },
         mounted () {
-            if (this.isLogin) {
-                this.getMsg();
+        },
+        watch: {
+            isLogin (val) {
+                if (val) {
+                    this.getMsg();
+                }
             }
         },
 		methods: {

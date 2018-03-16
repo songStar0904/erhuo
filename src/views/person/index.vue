@@ -17,7 +17,7 @@
 				<fol-send :info="user_info" size="default"></fol-send>
 			</Card>
 		</div>
-		<my-meau slot="rightMeau" :meau="meau" style="margin-bottom:20px;"></my-meau>
+		<my-meau slot="rightMeau" :meau="meau" style="margin-bottom:20px;" @changeMeau="changeMeau" :active="active"></my-meau>
 	</layout>
 </template>
 <script>
@@ -50,7 +50,8 @@ import {folSend} from '../main-components';
 					name: 'followers',
 					icon: 'android-happy',
 					title: '关注'
-				}]
+				}],
+				active: this.$route.name
 			}
 		},
 		watch: {
@@ -68,7 +69,7 @@ import {folSend} from '../main-components';
 					user_id: this.user_id
 				}).then(res => {
 					if (res.code === 200) {
-						this.user_info = res.data;
+						this.user_info = util.formatUserData(res.data);
 					} else {
 						this.$Message.error(res.msg)
 					}

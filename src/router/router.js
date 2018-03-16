@@ -6,6 +6,9 @@ const routers = [{
     },
     component: (resolve) => require(['../views/home/home.vue'], resolve)
 }, {
+      path: '*',
+      redirect: '/'
+}, {
     path: '/regist',
     name: 'regist',
     component: (resolve) => require(['../views/user/regist.vue'], resolve)
@@ -123,7 +126,3 @@ const routers = [{
     }]
 }];
 export default routers;
-//  {
-//       path: '*',
-//       // redirect: '/'
-// }, 
