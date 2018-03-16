@@ -15,3 +15,19 @@ export function get (params) {
     params
   })
 }
+// 修改状态
+export function change_status (params) {
+  return fetch({
+    url: 'message/change_status',
+    method: 'post',
+    params
+  })
+}
+// 删除消息
+export function del_msg (params) {
+  return fetch({
+    url: 'message/delete',
+    method: 'post',
+    params
+  })
+}

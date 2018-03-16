@@ -121,7 +121,6 @@ const routers = [{
     }, {
         path: '/message/comment',
         name: 'comment',
-        access: 1,
         component: (resolve) => require(['../views/message/comment.vue'], resolve)
     }]
 }];

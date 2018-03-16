@@ -8,9 +8,6 @@
 	}
 	.more{
 		display: inline-block;
-	    width: 30px;
-	    height: 30px;
-	    line-height: 30px;
 	    text-align: center;
 	    font-size: 20px;
 	    color: #999;
@@ -25,8 +22,16 @@
 				</user-name>
 			</Col>
 			<Col span="22">
-			    <Icon type="ios-more" class="more fr"></Icon>
-			    <!-- <Icon type="android-more-vertical" ></Icon> -->
+				<Dropdown trigger="click" class="more fr" @on-click="onClick">
+			        <a href="javascript:void(0)">
+			            <Icon type="ios-more"></Icon>
+			        </a>
+			        <DropdownMenu slot="list">
+			            <DropdownItem v-if="status === '1'" name="0">设为未读</DropdownItem>
+			            <DropdownItem v-if="status === '0'" name="1">设为已读</DropdownItem>
+			            <DropdownItem name="3">删除消息</DropdownItem>
+			        </DropdownMenu>
+			    </Dropdown>
 				<user-name :uid="comment.suser.id">
 					<span slot="user">{{comment.suser.name}}</span>
 				</user-name>
@@ -47,10 +52,49 @@
 			userName,
 			goodsName
 		},
-		props: ['comment'],
+		props: ['comment', 'index'],
+		computed: {
+			status () {
+				return this.$route.query.status;
+			}
+		},
 		filters: {
 			formatDate (val) {
 				return util.formatDateByNow(val);
+			}
+		},
+		methods: {
+			onClick (status) {
+				if (status === '3') {
+					this.del_msg();
+				} else {
+					this.change_status(status);
+				}
+			},
+			del_msg () {
+				this.$fetch.msg.del_msg({
+					type: 'goods',
+					lmsg_id: this.comment.lmsg_id
+				}).then(res => {
+					if (res.code === 200) {
+						this.$emit('splice_msg', this.index);
+					} else {
+						this.$Message.error(res.msg);
+					}
+				})
+			},
+			change_status (status) {
+				this.$fetch.msg.change_status({
+					type: 'goods',
+					lmsg_id: this.comment.lmsg_id,
+					status
+				}).then(res => {
+					if (res.code === 200) {
+						this.$emit('splice_msg', this.index);
+					} else {
+						this.$Message.error(res.msg);
+					}
+				})
 			}
 		}
 	}

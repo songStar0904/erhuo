@@ -72,7 +72,10 @@
             	return this.$route.name;
             },
             active1 () {
-            	return this.$route.query.status;
+            	if (!this.$route.query.status) {
+            		this.$route.query.status = '0'
+            	}
+            	return String(this.$route.query.status);
             }
         }
 	}

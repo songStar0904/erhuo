@@ -1,8 +1,8 @@
 <template>
 	<div>
 		<Spin fix size="large" v-if="loading"></Spin>
-		<comment-item v-for="(item, index) in data" :key="index" :comment="item" v-if="data.length>0"></comment-item>
-		<div v-else>
+		<comment-item v-for="(item, index) in data" :key="index" :index="index" :comment="item" @splice_msg="splice_msg" v-if="data.length>0"></comment-item>
+		<div v-if="data.length === 0">
 			暂时还没有消息
 		</div>
 	</div>
@@ -41,6 +41,9 @@
 						this.$Message.error(res.msg)
 					}
 				})
+			},
+			splice_msg (index) {
+				this.data.splice(index, 1);
 			}
 		}
 	}
