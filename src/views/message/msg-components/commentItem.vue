@@ -77,6 +77,10 @@
 					lmsg_id: this.comment.lmsg_id
 				}).then(res => {
 					if (res.code === 200) {
+						// 未读页面删除 未读数-1
+						if (this.status === '0') {
+							this.$store.commit('changeMsgCount', -1);
+						}
 						this.$emit('splice_msg', this.index);
 					} else {
 						this.$Message.error(res.msg);
@@ -90,6 +94,8 @@
 					status
 				}).then(res => {
 					if (res.code === 200) {
+						let count = status == 0 ? 1 : -1;
+						this.$store.commit('changeMsgCount', count);
 						this.$emit('splice_msg', this.index);
 					} else {
 						this.$Message.error(res.msg);

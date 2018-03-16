@@ -7,6 +7,9 @@ const user = {
         },
         setMsgCount (state, data) {
         	state.msgCount = data;
+        },
+        changeMsgCount (state, data) {
+            state.msgCount = state.msgCount + data;
         }
     },
     getters: {
