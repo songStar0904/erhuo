@@ -93,13 +93,22 @@
                 </FormItem>
                 <FormItem label="交易方式" prop="goods_type">
                     <RadioGroup v-model="goods.goods_type">
-                        <Radio :label="1">线上交易</Radio>
-                        <Radio :label="2">线下交易</Radio>
-                        <Radio :label="0">线上/线下交易</Radio>
+                        <Radio :label="1">送货上门</Radio>
+                        <Radio :label="2">自提</Radio>
+                        <Radio :label="0">送货上门/自提</Radio>
                     </RadioGroup>
                 </FormItem>
                 <FormItem label="交易地址" prop="name" v-show="goods.goods_type!=1">
                     <Input v-model="goods.goods_address" placeholder="交易地址"></Input>
+                </FormItem>
+                <FormItem label="联系方式" prop="phone">
+                    <Input v-model="goods.phone" placeholder="手机号码"></Input>
+                </FormItem>
+                <FormItem label="QQ" prop="qq">
+                    <Input v-model="goods.qq" placeholder="QQ号码"></Input>
+                </FormItem>
+                <FormItem label="微信" prop="wechat">
+                    <Input v-model="goods.wechat" placeholder="微信号"></Input>
                 </FormItem>
                 <FormItem label="详情" prop="goods_summary">
                     <Input v-model="goods.goods_summary" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="输入详情"></Input>
@@ -118,14 +127,17 @@ import util from '../../libs/util.js';
         data () {
             return {
                 goods: {
-                    goods_name: '小谈表情',
+                    goods_name: '',
                     goods_cid: null,
-                    goods_summary: '小谈表情小谈表情',
+                    goods_summary: '',
                     goods_type: '0',
                     goods_nprice: 1,
                     goods_oprice: 1,
-                    goods_address: '小谈表情小谈表情',
-                    goods_icon: []
+                    goods_address: '',
+                    goods_icon: [],
+                    phone: this.phone,
+                    qq: null,
+                    wechat: ''
                 },
                 ruleValidate: {
                     goods_name: [
@@ -154,6 +166,9 @@ import util from '../../libs/util.js';
             },
             uid () {
                 return this.$store.state.user.info.user_id;
+            },
+            phone () {
+                return this.$store.state.user.info.user_phone;
             },
             gid () {
                 return this.$route.params.gid;

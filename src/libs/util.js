@@ -141,11 +141,11 @@ util.formatPhone =function (val) {
 util.formatType = function (val) {
     switch (val) {
         case 0:
-        return '线上/线下交易';
+        return '送货上门/自提';
         case 1: 
-        return '线上交易';
+        return '送货上门';
         case 2:
-        return '线下交易';
+        return '自提';
     }
 }
 util.formatUserData = function(data) {

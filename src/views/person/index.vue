@@ -14,7 +14,7 @@
 		</div>
 		<div slot="leftBottom">
 			<Card :dis-hover="true" style="margin-top: 30px;">
-				<fol-send :info="user_info" size="default"></fol-send>
+				<fol-send :is_fans="user_info.is_fans" :uid="user_info.user_id" size="default" @updateFans="updateFans"></fol-send>
 			</Card>
 		</div>
 		<my-meau slot="rightMeau" :meau="meau" style="margin-bottom:20px;" @changeMeau="changeMeau" :active="active"></my-meau>
@@ -79,7 +79,10 @@ import {folSend} from '../main-components';
             	this.$router.push({
                     name
                 });
-            }
+            },
+            updateFans (val) {
+				this.user_info.is_fans = val;
+			}
 		},
 		computed: {
 			uid () {

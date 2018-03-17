@@ -23,7 +23,7 @@
 			<Col :span="12">
 				<Carousel v-model="value" :height="350" loop>
 			        <CarouselItem v-for="(item ,index) in data.goods_icon" :key="index">
-			            <img :src="item.url" alt="" style="width:289.88px; height:100%">
+			            <img :src="item.url" alt="" style="width:339px; height:100%">
 			        </CarouselItem>
 			    </Carousel>
 			</Col>
@@ -67,6 +67,30 @@
 			        </Col>
 			        <Col span="16">
 			            <p>{{data.goods_type}}</p>
+			        </Col>
+			    </Row>
+			    <Row class="mt10" v-if="data.phone">
+			        <Col span="8" class="pl0">
+			            <p>联系方式</p>
+			        </Col>
+			        <Col span="16">
+			            <p>{{data.phone}}</p>
+			        </Col>
+			    </Row>
+			    <Row class="mt10" v-if="data.qq">
+			        <Col span="8" class="pl0">
+			            <p>QQ</p>
+			        </Col>
+			        <Col span="16">
+			            <p>{{data.qq}}</p>
+			        </Col>
+			    </Row>
+			    <Row class="mt10" v-if="data.wechat">
+			        <Col span="8" class="pl0">
+			            <p>微信</p>
+			        </Col>
+			        <Col span="16">
+			            <p>{{data.wechat}}</p>
 			        </Col>
 			    </Row>
 			    <Row class="mt10">
@@ -119,6 +143,7 @@
 				}).then(res => {
 					if (res.code === 200) {
 						this.data.is_fans = res.data;
+						this.$emit('updateFansNum', res.data);
 					} else {
 						this.$Message.error(res.msg);
 					}
