@@ -10,7 +10,7 @@
 			<router-link :to="{ name: 'sell', params: { uid }}">
 	            <Icon type="android-playstore"></Icon>
 	            TA 的出售
-	            <Badge :count="20" class-name="bd-disabled"></Badge>
+	            <Badge :count="total" class-name="bd-disabled"></Badge>
 	        </router-link>
         </p>
         <span slot="extra" @click="changeData" class="btn">
@@ -34,7 +34,8 @@
 			return {
 				data: [],
 				randomData: [],
-				loading: false
+				loading: false,
+				total: 0
 			}
 		},
 		mounted () {
@@ -43,10 +44,12 @@
 		methods: {
 			getData () {
 				this.$fetch.goods.get({
-					uid: this.uid
+					uid: this.uid,
+					num: 8
 				}).then(res => {
 					if (res.code === 200) {
 						this.data = res.data;
+						this.total = res.total;
 						this.changeData();
 					} else {
 						this.$Message.error(res.msg);

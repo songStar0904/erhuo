@@ -107,7 +107,7 @@
 					</div>
 				</div>
 			</div>
-			<reply-box :placeholder="`回复 ${comment.suser.name}: `" :type="'goods'" :id="id" :lid="comment.lmsg_id" :rid="comment.suser.id" v-show="reply">
+			<reply-box :placeholder="`回复 ${comment.suser.name}: `" :type="'goods'" :id="id" :lid="comment.lmsg_id" :rid="comment.suser.id" v-show="reply" @updateMsg="updateMsg">
 				<p slot="icon"></p>
 				<Button type="text" slot="cancel" @click="reply = false">取消</Button>
 			</reply-box>	
@@ -133,6 +133,11 @@ import replyBox from './replyBox.vue';
 		filters: {
 			formatDate (val) {
 				return util.formatDateByNow(val);
+			}
+		},
+		methods: {
+			updateMsg () {
+				this.$emit('updateMsg');
 			}
 		}
 	}

@@ -21,7 +21,7 @@
 				<div class="text-disabled fz12 mb8">
 					<span class="mr10"><Icon type="eye"></Icon> {{data.goods_view}}</span>
 					<span class="mr10"><Icon type="fireball"></Icon> {{data.fans_num}}</span>
-					<span class="mr10"><Icon type="chatbox-working"></Icon> {{data.goods_view}}</span>
+					<span class="mr10"><Icon type="chatbox-working"></Icon> {{data.msg_num}}</span>
 				</div>
 				<div style="border-top:1px solid #e9eaec; padding-top:8px;" class="clearfix">
 				        <router-link :to="{ name: 'sell', params: { uid: data.user.id }}" span="16" class="btn fl"><Avatar :src="data.user.icon" size="small" /> <span >{{data.user.name}}</span></router-link>

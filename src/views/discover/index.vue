@@ -17,7 +17,8 @@
 		data () {
 			return {
 				data: [],
-				page: 1
+				page: 1,
+				num: 8
 			}
 		},
 		computed: {
@@ -40,6 +41,7 @@
 			getData () {
 				this.$fetch.goods.get({
 					page: this.page,
+					num: this.num,
 					cid: this.cid,
 					search: this.search
 				}).then(res => {

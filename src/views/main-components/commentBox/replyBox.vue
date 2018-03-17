@@ -48,6 +48,7 @@
 						if (res.code === 200) {
 							this.$Message.success(res.msg);
 							this.value = '';
+							this.$emit('updateMsg');
 						} else {
 							this.$Message.error(res.msg);
 						}

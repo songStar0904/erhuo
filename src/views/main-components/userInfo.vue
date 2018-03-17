@@ -17,14 +17,18 @@
                 </Tooltip>
             </Upload>
     	<Avatar :src="info.user_icon" class="large_icon" v-else/>
-    	<router-link :to="{ name: 'sell', params: { uid: info.user_id }}"><h3 class="text-success btn user_name">{{info.user_name}}</h3></router-link>
+    	<user-name :uid="info.user_id"><h3 slot="user" class="text-success user_name">{{info.user_name}}</h3></user-name>
     	<slot name="userInfo">slot出错啦</slot>
 	</Card>
 </template>
 <script>
-import util from '../../libs/util.js'
+import util from '../../libs/util.js';
+import {userName} from '../components';
 	export default {
 		props: ['info'],
+        components: {
+            userName
+        },
 		computed: {
 			path () {
                 if (util.env == 'dev') {

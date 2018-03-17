@@ -11,7 +11,14 @@ export function send (data) {
 export function get (params) {
   return fetch({
     url: 'message/get',
-    method: 'post',
+    method: 'get',
+    params
+  })
+}
+export function get_by_id (params) {
+  return fetch({
+    url: 'message/get_by_id',
+    method: 'get',
     params
   })
 }
