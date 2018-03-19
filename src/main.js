@@ -30,7 +30,9 @@ router.beforeEach((to, from, next) => {
             let islogin = res
             if (!islogin) {
               store.commit('logout');
-              next({ name: 'home' });
+              iView.Message.error('此页面需先登录');
+              next({ name: from.name });
+              iView.LoadingBar.finish();
             } else {
               next()
             }

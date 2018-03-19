@@ -6,6 +6,7 @@
 	    <search-box :style="{margin: '20px 0'}"></search-box>
 	    <Row :gutter="15">
 	    	<Col span="5">
+	    	    <side-block title="人气用户" order="user_pop" class="mb20"></side-block>
 	    	    <side-block title="最近登录" order="user_ltime" class="mb20"></side-block>
 	    	    <side-block title="最近注册" order="user_rtime" class="mb20"></side-block>
 	        </Col>
