@@ -39,7 +39,17 @@ const routers = [{
         path: '/user/sell',
         name: 'usell',
         meta: {
-            title: 'sell'
+            title: 'sell',
+            type: 'sell'
+        },
+        access: 1,
+        component: (resolve) => require(['../views/user/sell.vue'], resolve),
+    }, {
+        path: '/user/collection',
+        name: 'ucollection',
+        meta: {
+            title: 'collection',
+            type: 'collection'
         },
         access: 1,
         component: (resolve) => require(['../views/user/sell.vue'], resolve),
@@ -70,9 +80,18 @@ const routers = [{
         path: '/person/:uid/sell',
         name: 'sell',
         meta: {
-            title: 'sell'
+            title: 'sell',
+            type: 'sell'
         },
         component: (resolve) => require(['../views/user/sell.vue'], resolve)
+    }, {
+        path: '/person/:uid/collection',
+        name: 'collection',
+        meta: {
+            title: 'collection',
+            type: 'collection'
+        },
+        component: (resolve) => require(['../views/user/sell.vue'], resolve),
     }, {
         path: '/person/:uid/fans',
         name: 'fans',

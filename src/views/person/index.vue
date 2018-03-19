@@ -43,6 +43,10 @@ import {folSend} from '../main-components';
 					icon: 'bag',
 					title: '出售'
 				}, {
+					name: 'collection',
+					icon: 'bag',
+					title: '收藏'
+				}, {
 					name: 'fans',
 					icon: 'happy-outline',
 					title: '粉丝'

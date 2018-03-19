@@ -13,7 +13,7 @@
 		                <Icon type="bag"></Icon>
 		                我发布的
 		            </MenuItem>
-		            <MenuItem name="2">
+		            <MenuItem name="ucollection">
 		                <Icon type="ios-heart"></Icon>
 		                我想要的
 		            </MenuItem>
@@ -64,6 +64,10 @@
 					name: 'usell',
 					icon: 'bag',
 					title: '出售'
+				}, {
+					name: 'ucollection',
+					icon: 'bag',
+					title: '收藏'
 				}, {
 					name: 'ufans',
 					icon: 'happy-outline',

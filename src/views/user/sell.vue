@@ -44,16 +44,43 @@
 			},
 			isOwn () {
 				return this.user_id === this.uid ? true : false;
+			},
+			type () {
+				return this.$route.meta.type;
+			}
+		},
+		watch: {
+			type () {
+				this.init();
 			}
 		},
 		mounted () {
-			this.getGoods();
+			this.init();
 		},
 		methods: {
+			init () {
+				if (this.type === 'sell') {
+					this.getGoods();
+				} else {
+					this.get_followers();
+				}
+			},
 			getGoods () {
 				this.$fetch.goods.get({
 					uid: this.uid,
-					search: this.search,
+					page: this.page
+				}).then(res => {
+					if (res.code === 200) {
+						this.data = res.data;
+						this.total = res.total;
+					} else {
+						this.$Message.error(res.msg);
+					}
+				})
+			},
+			get_followers () {
+				this.$fetch.goods.get_followers({
+					user_id: this.uid,
 					page: this.page
 				}).then(res => {
 					if (res.code === 200) {
@@ -71,7 +98,7 @@
 			},
 			changePage (val) {
 				this.page = val;
-				this.getGoods();
+				this.init();
 			}
 		}
 	}

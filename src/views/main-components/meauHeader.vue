@@ -38,20 +38,20 @@
         <div class="layout-logo">二 货</div>
         <div class="layout-nav">
             <MenuItem name="home">
-                <Icon type="ios-navigate"></Icon>
+                <Icon type="social-windows"></Icon>
                 首页
             </MenuItem>
             <MenuItem name="discover">
-                <Icon type="ios-analytics"></Icon>
+                <Icon type="planet"></Icon>
                 发现
             </MenuItem>
             <MenuItem name="publish">
-                <Icon type="ios-keypad"></Icon>
+                <Icon type="android-upload"></Icon>
                 发布
             </MenuItem>
             <MenuItem name="3">
-                <Icon type="ios-analytics"></Icon>
-                Item 3
+                <Icon type="ios-navigate"></Icon>
+                求购
             </MenuItem>
         </div>
         <div class="layout-login" v-if="isLogin">
@@ -61,7 +61,7 @@
                     <img :src="user_icon" alt="" class="user_icon">
                 </template>
                     <MenuItem name="info">个人中心</MenuItem>
-                    <MenuItem name="3-2">活跃分析</MenuItem>
+                    <MenuItem name="sell">我的二货</MenuItem>
                     <MenuItem name="loginOut">退出登录</MenuItem>
             </Submenu>
         </div>
