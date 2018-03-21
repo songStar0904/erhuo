@@ -2,7 +2,7 @@
 	<div>
 		<div v-if="data.length==0" style="text-align:center">
 			<p style="margin:50px 0;">您没有发布任何二货哦~</p>
-			<Button type="success" @click="publish" v-if="user_id === uid">现在发布</Button>
+			<Button type="success" @click="publish" v-if="user_id === uid && type === 'sell'">现在发布</Button>
 		</div>
 		<div v-else>
 			<Row type="flex" justify="end">

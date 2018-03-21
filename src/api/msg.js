@@ -38,3 +38,10 @@ export function del_msg (params) {
     params
   })
 }
+export function get_notice (params) {
+  return fetch({
+    url: 'message/get_notice',
+    method: 'get',
+    params
+  })
+}

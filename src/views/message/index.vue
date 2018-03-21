@@ -7,7 +7,7 @@
 			<Button type="success" icon="card" style="width:150px; margin-top:10px;">发布二货</Button>
 		</div>
 		<Menu :theme="'light'" :active-name="active" @on-select="changeMeau" slot="leftMeau" style="width: 246px;">
-            <MenuItem name="msg">
+            <MenuItem name="notice">
                 <Icon type="speakerphone"></Icon>
                 通知
             </MenuItem>
@@ -20,7 +20,7 @@
                 私信
             </MenuItem>
 		</Menu>
-		<my-meau slot="rightMeau" :meau="meau" style="margin-bottom:20px;" @changeMeau="changeMyMeau" :active="active1"></my-meau>
+		<my-meau v-show="isShow" slot="rightMeau" :meau="meau"  @changeMeau="changeMyMeau" :active="active1"></my-meau>
 	</layout>
 </template>
 <script>
@@ -76,6 +76,9 @@
             		this.$route.query.status = '0'
             	}
             	return String(this.$route.query.status);
+            },
+            isShow () {
+                return this.active === 'comment' ? true : false;
             }
         }
 	}

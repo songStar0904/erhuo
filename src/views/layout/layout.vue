@@ -1,4 +1,8 @@
-<style lang="less" scoped>
+<style scoped>
+.rightMeau{
+	position: relative;
+    top: -20px;
+}
 </style>
 <template>
 	<div class="box">
@@ -16,7 +20,9 @@
 	        </Col>
 	        <Col span="17">
 	            <Card :padding="30">
-	            	<slot name="rightMeau"></slot>
+	            	<div class="rightMeau">
+	                    <slot name="rightMeau"></slot>
+	                </div>
 			        <router-view></router-view>
 			    </Card>
 	        </Col>

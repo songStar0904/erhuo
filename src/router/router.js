@@ -133,10 +133,10 @@ const routers = [{
     access: 1,
     component: (resolve) => require(['../views/message/index.vue'], resolve),
     children: [{
-        path: '/message/msg',
-        name: 'msg',
+        path: '/message/notice',
+        name: 'notice',
         access: 1,
-        component: (resolve) => require(['../views/message/msg.vue'], resolve)
+        component: (resolve) => require(['../views/message/notice.vue'], resolve)
     }, {
         path: '/message/comment',
         name: 'comment',

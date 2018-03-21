@@ -1,6 +1,9 @@
 a{
 	color: #495060!important;
 }
+.notice-content a{
+    color: #19be6b !important;
+}
 .text-info{
 	color: #5cadff;
 }
@@ -75,6 +78,9 @@ a{
 .mr30{
 	margin-right: 30px;
 }
+.ml10{
+	margin-left: 10px;
+}
 .mtb10{
 	margin: 10px 0;
 }
@@ -83,6 +89,9 @@ a{
 }
 .p8{
 	padding: 8px;
+}
+.pl8{
+	padding-left: 8px;
 }
 .pr20{
 	padding-right: 20px;
@@ -108,3 +117,4 @@ a{
 	text-overflow:ellipsis;
 	white-space: nowrap;
 }
+
