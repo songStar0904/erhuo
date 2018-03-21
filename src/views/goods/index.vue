@@ -5,14 +5,14 @@
 				<goods-box :data="data" @updateFansNum="updateFansNum"></goods-box>
 			</Col>
 			<Col span="7">
-				<user-info :info="info">
+				<user-info :info="info" v-if="show">
 					<div slot="userInfo">
 						<p style="color: #999;" class="mb10"><span>{{info.user_sid}}</span> | <span>{{info.user_sex}}</span></p>
 						<fol-send :is_fans="info.user_is_fans" :uid="info.user_id" size="small" @updateFans="updateFans"></fol-send>
 					</div>
 				</user-info>
 				<dash-board :view="data.goods_view" :fans_num="data.fans_num" :msg_num="10" class="mb30"></dash-board>
-				<user-sell :uid="data.user.id"></user-sell>
+				<user-sell :uid="info.user_id" v-if="show"></user-sell>
 			</Col>
 		</Row>
 	</div>
@@ -34,11 +34,9 @@
 		data () {
 			return {
 				data: {
-					user: {
-						id: 1
-					}
 				},
-				info: {}
+				info: {},
+				show: false
 			}
 		},
 		mounted () {
@@ -52,6 +50,7 @@
 					if (res.code === 200) {
 						this.data = util.formatGoodsData(res.data);
 						this.info = util.formatUserData(util.setData('user', this.data.user));
+						this.show = true;
 					} else {
 						this.$Message.error(res.msg);
 					}

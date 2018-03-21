@@ -1,7 +1,7 @@
 <style scoped>
 .rightMeau{
 	position: relative;
-    top: -20px;
+    top: -30px;
 }
 </style>
 <template>

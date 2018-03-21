@@ -56,7 +56,7 @@ import layout from './user-components/layout.vue';
                 	user_sex: '',
                 	user_psd: '',
                 	code: '',
-                	user_sid: [],
+                	user_sid: [12, '448'],
                 },
                 timer: null,
                 schoolData: [],
@@ -66,7 +66,7 @@ import layout from './user-components/layout.vue';
 	            canGetIdentifyCode: false, // 是否可点获取验证码
                 ruleInline: {
                 	user_name: [
-                        { required: true, message: '输入用户名', trigger: 'blur' }
+                        { required: true, message: '输入手机号码/邮箱', trigger: 'blur' }
                     ],
                     user_psd: [{ validator: validatePassCheck, trigger: 'blur'}],
                     code: [{ required: true, min: 6, max: 6, message: '请输入6位验证码', trigger: 'blur'}],

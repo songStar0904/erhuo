@@ -9,6 +9,9 @@ import './theme/index.less';
 // 引入api
 import api from './api'
 Vue.use(api)
+// 无限滚动
+import infiniteScroll from 'vue-infinite-scroll'
+Vue.use(infiniteScroll)
 
 Vue.use(VueRouter);
 Vue.use(iView);

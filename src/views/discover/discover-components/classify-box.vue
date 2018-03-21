@@ -1,7 +1,7 @@
 <template>
 	<Card :dis-hover="true" :padding="0">
 		<Row type="flex" justify="space-between" class="code-row-bg">
-	        <Col span="16">
+	        <Col span="18">
 	        	<Menu mode="horizontal" theme="light" :active-name="0" @on-select="changeMeau">
 					<MenuItem :name="0">
 			        	全部
@@ -11,8 +11,8 @@
 			        </MenuItem>
 			    </Menu>
 	        </Col>
-	        <Col span="8" class="pr20">
-	        	<Input v-model="search" style="margin-top: 14px;" >
+	        <Col span="6" class="pr20">
+	        	<Input v-model="search" style="margin-top: 14px;">
 		          <Button slot="append" icon="ios-search" @click="click_search"></Button>
 		        </Input>
 	        </Col>

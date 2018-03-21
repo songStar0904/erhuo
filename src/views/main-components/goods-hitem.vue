@@ -3,7 +3,6 @@
 	width: 100%;
 	height: 168px;
 }
-
 </style>
 <template>
 	<router-link :to="{ name: 'goods', params: { gid: data.goods_id }}">
