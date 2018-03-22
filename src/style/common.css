@@ -1,7 +1,7 @@
 a{
 	color: #495060!important;
 }
-.notice-content a{
+.notice-content a, .ivu-notice-notice a{
     color: #19be6b !important;
 }
 .text-info{

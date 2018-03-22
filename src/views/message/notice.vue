@@ -36,8 +36,7 @@
 		methods: {
 			getData () {
 				this.loading = true;
-				this.$fetch.msg.get_notice()
-				.then(res => {
+				this.$fetch.msg.get_notice().then(res => {
 					this.loading = false;
 					if (res.code === 200) {
 						this.data = res.data;

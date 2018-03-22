@@ -135,7 +135,7 @@ import util from '../../libs/util.js';
                     goods_oprice: 1,
                     goods_address: '',
                     goods_icon: [],
-                    phone: this.phone,
+                    phone: '',
                     qq: null,
                     wechat: ''
                 },
@@ -168,6 +168,7 @@ import util from '../../libs/util.js';
                 return this.$store.state.user.info.user_id;
             },
             phone () {
+                this.goods.phone = this.$store.state.user.info.user_phone;
                 return this.$store.state.user.info.user_phone;
             },
             gid () {
@@ -181,7 +182,7 @@ import util from '../../libs/util.js';
                 }
             }
         },
-        created () {
+        mounted () {
             this.setPath();
         },
         methods: {

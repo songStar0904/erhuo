@@ -93,6 +93,7 @@ import messageTip from './messageTip.vue';
             isLogin (val) {
                 if (val) {
                     this.getMsg();
+                    this.getnotice();
                 }
             }
         },
@@ -126,6 +127,26 @@ import messageTip from './messageTip.vue';
                 }).then(res => {
                     if (res.code === 200) {
                         this.$store.commit('setMsgCount', res.total);
+                    }
+                })
+            },
+            getnotice () {
+                this.$fetch.msg.get_notice({
+                    last_time: true
+                }).then(res => {
+                    if (res.code === 200) {
+                        let data = res.data;
+                        data.forEach((item, index) => {
+                            setTimeout(() => {
+                                this.$Notice.info({
+                                    title: item.notice_title,
+                                    desc: item.notice_content,
+                                    duration: 5
+                                });
+                            }, 400 * index);
+                        })
+                    } else {
+                        this.$Message.error(res.msg);
                     }
                 })
             }

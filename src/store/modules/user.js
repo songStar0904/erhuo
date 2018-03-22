@@ -22,8 +22,15 @@ const user = {
             state.info = null;
             state.isLogin = 0;
         },
+        setEditUser (state, data) {
+            for (let key in data) {
+                if (state.info[key]) {
+                    state.info[key] = data[key];
+                }
+            }
+            localStorage.setItem('user_info', JSON.stringify(state.info));
+        },
         setUser (state, data){
-            console.log(data);
             localStorage.setItem('user_info', JSON.stringify(data));
             state.info = data;
         },

@@ -161,9 +161,6 @@ util.formatUserData = function(data) {
     if (data.user_rtime) {
         data.user_rtime = this.formatDateByNow(data.user_rtime);
     }
-    if (data.user_phone) {
-        data.user_phone = this.formatPhone(data.user_phone);
-    }
     return data;
 }
 util.formatGoodsData = function (data) {

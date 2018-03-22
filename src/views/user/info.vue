@@ -13,7 +13,7 @@
         </FormItem>
         <FormItem label="手机：">
             <Row v-if="userForm.user_phone">
-                <Col span="12">{{ userForm.user_phone}}</Col>
+                <Col span="12">{{ userForm.user_phone | formatPhone}}</Col>
                 <Col span="12"><Button type="text">修改</Button></Col>
             </Row>
             <Row v-else>
@@ -141,6 +141,11 @@ export default {
             gettingIdentifyCodeBtnContent: '获取验证码' // “获取验证码”按钮的文字
         };
     },
+    filters: {
+        formatPhone (val) {
+            return util.formatPhone(val);
+        }
+    },
     methods: {
         showEditPassword () {
             this.editPasswordModal = true;
@@ -204,12 +209,15 @@ export default {
         },
         saveInfoAjax () {
             this.save_loading = true;
-            this.$fetch.user.edit(this.userForm)
-            .then(res => {
+            this.$fetch.user.edit({
+                user_id: this.userForm.user_id,
+                user_name: this.userForm.user_name,
+                user_sign:this.userForm.user_sign
+            }).then(res => {
                 this.save_loading = false;
                 if (res.code === 200) {
                     this.$Message.success('保存成功');
-                    this.$store.commit('setUser', res.data);
+                    this.$store.commit('setEditUser', res.data);
                 } else {
                     this.$Message.error(res.msg); 
                 }
