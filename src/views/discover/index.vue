@@ -3,6 +3,7 @@
 		<classify-box class="mb20"></classify-box>
 		<goods-box :data="data"></goods-box>
 		<no-goods v-show="data.length<=0"></no-goods>
+		<Spin size="large" fix v-if="loading"></Spin>
 	</div>
 </template>
 <script>
@@ -18,7 +19,8 @@
 			return {
 				data: [],
 				page: 1,
-				num: 8
+				num: 8,
+				loading: false
 			}
 		},
 		computed: {
@@ -39,12 +41,14 @@
 		},
 		methods: {
 			getData () {
+				this.loading = true;
 				this.$fetch.goods.get({
 					page: this.page,
 					num: this.num,
 					cid: this.cid,
 					search: this.search
 				}).then(res => {
+					this.loading = false;
 					if (res.code === 200) {
 						this.data = res.data;
 					} else {

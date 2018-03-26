@@ -34,6 +34,9 @@
 				.btn:nth-child(3):hover{
 					color: #ed3f14;
 				}
+				.btn.is_praise{
+					color: #ed3f14;
+				}
 			}
 			.child{
 				    margin-top: 16px;
@@ -84,7 +87,7 @@
 				<span class="info fr">
 					<span class="btn" v-show="report"><Icon type="alert-circled" ></Icon> 举报</span>
 					<span class="btn" @click="reply = true"><Icon type="chatbox-working"></Icon></span>
-					<span class="btn"><Icon type="thumbsup"></Icon> {{comment.lmsg_star}}</span>
+					<span class="btn" :class="{is_praise:comment.is_praise}" @click="praise(comment.lmsg_id)"><Icon type="thumbsup"></Icon> {{comment.praise_num}}</span>
 				</span>
 			</p>
 			<div class="child" v-if="comment.children">
@@ -138,6 +141,20 @@ import replyBox from './replyBox.vue';
 		methods: {
 			updateMsg () {
 				this.$emit('updateMsg');
+			},
+			praise (mid) {
+				this.$fetch.msg.praise({
+					type: 0,
+					mid
+				}).then(res => {
+					if (res.code === 200) {
+						let count = this.comment.is_praise ? -1 : 1;
+						this.comment.praise_num += count;
+						this.comment.is_praise = !this.comment.is_praise;
+					} else {
+						this.$Message.error(res.msg);
+					}
+				})
 			}
 		}
 	}
