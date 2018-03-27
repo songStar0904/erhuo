@@ -14,43 +14,34 @@
 	}
 </style>
 <template>
-	<Card :dis-hover="true" class="mtb20">
-		<Row>
-			<Col span="2" class="ptb5">
-				<user-name :uid="comment.suser.id">
-					<Avatar size="large" slot="user" :src="comment.suser.icon" />
-				</user-name>
-			</Col>
-			<Col span="22">
-				<Dropdown trigger="click" class="more fr" @on-click="onClick">
-			        <a href="javascript:void(0)">
-			            <Icon type="ios-more"></Icon>
-			        </a>
-			        <DropdownMenu slot="list">
-			            <DropdownItem v-if="status === '1'" name="0">设为未读</DropdownItem>
-			            <DropdownItem v-if="status === '0'" name="1">设为已读</DropdownItem>
-			            <DropdownItem name="3">删除消息</DropdownItem>
-			        </DropdownMenu>
-			    </Dropdown>
-				<user-name :uid="comment.suser.id">
-					<span slot="user">{{comment.suser.name}}</span>
-				</user-name>
-				<span> - {{comment.lmsg_time | formatDate}}</span>
-				<p class="ptb5">回复@{{comment.ruser.name}}: {{comment.lmsg_content}}</p>
-				<p class="text">
-				    <goods-name :gid="comment.goods.id" :name="comment.goods.name"></goods-name>  评论中@了你
-				</p>
-			</Col>
-		</Row>
-	</Card>
+	<my-card :info="comment.suser" :time="comment.lmsg_time">
+		<div slot="more">
+			<Dropdown trigger="click" class="more fr" @on-click="onClick">
+		        <a href="javascript:void(0)">
+		            <Icon type="ios-more"></Icon>
+		        </a>
+		        <DropdownMenu slot="list">
+		            <DropdownItem v-if="status === '1'" name="0">设为未读</DropdownItem>
+		            <DropdownItem v-if="status === '0'" name="1">设为已读</DropdownItem>
+		            <DropdownItem name="3">删除消息</DropdownItem>
+		        </DropdownMenu>
+		    </Dropdown>
+		</div>
+		<div slot="content">
+			<p class="ptb5">回复@{{comment.ruser.name}}: {{comment.lmsg_content}}</p>
+			<p class="text">
+			    <goods-name :gid="comment.goods.id" :name="comment.goods.name"></goods-name>  评论中@了你
+			</p>
+		</div>
+	</my-card>
 </template>
 <script>
     import util from '../../../libs/util.js';
-    import {userName, goodsName} from '../../components';
+    import {goodsName, myCard} from '../../components';
 	export default{
 		components: {
-			userName,
-			goodsName
+			goodsName,
+			myCard
 		},
 		props: ['comment', 'index'],
 		computed: {

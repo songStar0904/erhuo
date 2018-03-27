@@ -182,7 +182,7 @@ import util from '../../libs/util.js';
                 }
             }
         },
-        mounted () {
+        created () {
             this.setPath();
         },
         methods: {

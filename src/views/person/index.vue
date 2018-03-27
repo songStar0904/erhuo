@@ -6,7 +6,7 @@
 			<p>{{user_info.user_sex}}</p>
         	<p>{{user_info.user_sid}}</p>
         	<p>{{user_info.user_ltime}}</p>
-        	<span class="text-success btn">关注 ({{user_info.user_rship.fans_num}})</span>  &nbsp; <span class="text-success btn">粉丝 ({{user_info.user_rship.followers_num}})</span>
+        	<span class="text-success btn">关注 ({{user_info.ship.fans_num}})</span>  &nbsp; <span class="text-success btn">粉丝 ({{user_info.ship.followers_num}})</span>
 		</div>
 		<div slot="leftMeau">
 			<span v-if="user_info.user_sign.length>0">{{user_info.user_sign}}</span>
@@ -34,7 +34,7 @@ import {folSend} from '../main-components';
 		data () {
 			return {
 				user_info: {
-					user_rship: {
+					ship: {
 						followers_num: 0
 					}
 				},

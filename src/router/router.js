@@ -142,5 +142,9 @@ const routers = [{
         name: 'comment',
         component: (resolve) => require(['../views/message/comment.vue'], resolve)
     }]
-}];
+}, {
+    path: '/dynamic',
+    name: 'dynamic',
+    component: (resolve) => require(['../views/dynamic/index.vue'], resolve)
+}, ];
 export default routers;

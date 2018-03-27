@@ -37,7 +37,7 @@
 		methods: {
 			updateMsg () {
 				this.$fetch.msg.get_by_id({
-					type: 'goods',
+					type: this.type,
 					gid: this.id
 				}).then(res => {
 					if (res.code === 200) {

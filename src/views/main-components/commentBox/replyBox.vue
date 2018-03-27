@@ -18,6 +18,7 @@
 </template>
 <script>
 	export default{
+		// id 留言id rid 回复者id
 		props: ['placeholder', 'lid', 'id', 'rid'],
 		data () {
 			return {

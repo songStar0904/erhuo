@@ -49,9 +49,9 @@
                 <Icon type="android-upload"></Icon>
                 发布
             </MenuItem>
-            <MenuItem name="3">
+            <MenuItem name="dynamic">
                 <Icon type="ios-navigate"></Icon>
-                求购
+                动态
             </MenuItem>
         </div>
         <div class="layout-login" v-if="isLogin">
