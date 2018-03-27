@@ -8,7 +8,7 @@
 			<Row type="flex" justify="end">
 				<Page :total="total" show-total show-elevator size="small" @on-change="changePage" :current="page" :page-size="num"></Page>
 			</Row>
-			<goods-uitem :data="item" :isOwn="isOwn" v-for="(item, index) in data" :key="index" :user_id="user_id" style="margin: 20px 0"></goods-uitem>
+			<goods-uitem :data="item" :isOwn="isOwn" v-for="(item, index) in data" :key="index" style="margin: 20px 0"></goods-uitem>
 			<Row type="flex" justify="end">
 				<Page :total="total" show-total show-elevator size="small" @on-change="changePage" :current="page" :page-size="num"></Page>
 			</Row>

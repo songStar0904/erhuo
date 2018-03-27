@@ -19,7 +19,7 @@
 	            <h3 class="goods_name text-success">{{data.goods_name}}</h3>
 	        </router-link>
             <Row class="mt10">
-		        <Col span="4">
+		        <Col span="5">
 		            <p>分类：</p>
 		        </Col>
 		        <Col span="6">
@@ -27,13 +27,13 @@
 		        </Col>
 		    </Row>
             <Row class="mt10">
-		        <Col span="4">
+		        <Col span="5">
 		            <p>现价：</p>
 		        </Col>
 		        <Col span="6">
 		            <p>￥{{data.goods_nprice}} 元</p>
 		        </Col>
-		        <Col span="4">原价：</Col>
+		        <Col span="5">原价：</Col>
 		        <Col span="6" class="oprice">￥{{data.goods_oprice}} 元</Col>
 		    </Row>
 	        <div class="mt15">
@@ -50,15 +50,14 @@
 </template>
 <script>
 	export default {
-		props: ['data', 'isOwn', 'user_id'],
+		props: ['data', 'isOwn'],
 		data () {
 			return {}
 		},
 		methods: {
 			follow (goods_id) {
 				this.$fetch.goods.follow({
-					followers_id: goods_id,
-					user_id: this.user_id
+					followers_id: goods_id
 				}).then(res => {
 					if (res.code === 200) {
 						this.data.is_fans = res.data;

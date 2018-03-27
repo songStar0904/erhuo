@@ -26,6 +26,9 @@
 		</div>
 		<div slot="content">
 			<p class="ptb5">{{dynamic.dynamic_content}}</p>
+			<div v-if="dynamic.dynamic_type === 2">
+				<goods-uitem :data="dynamic.goods" :isOwn="uid === dynamic.goods.user.id"></goods-uitem>
+			</div>
 			<div class="btn-box text-sub">
 				<div class="btn">
 					<Icon type="ios-undo-outline" size="16" class="mr5"></Icon><span v-if="dynamic.dynamic_share > 0">{{dynamic.dynamic_share}}</span><span else>分享</span>
@@ -46,11 +49,13 @@
 <script>
     import {myCard} from '../../components/'
     import commentBox from '../../main-components/commentBox';
+    import goodsUitem from '../../main-components/goods-uitem.vue';
 	export default {
 		props: ['dynamic'],
 		components: {
 			myCard,
-			commentBox
+			commentBox,
+			goodsUitem
 		},
 		data () {
 			return {

@@ -9,7 +9,7 @@
         	<span class="text-success btn">关注 ({{user_info.ship.fans_num}})</span>  &nbsp; <span class="text-success btn">粉丝 ({{user_info.ship.followers_num}})</span>
 		</div>
 		<div slot="leftMeau">
-			<span v-if="user_info.user_sign.length>0">{{user_info.user_sign}}</span>
+			<span v-if="user_info.user_sign">{{user_info.user_sign}}</span>
 			<span v-else>这个人很懒，啥都没有要说。</span>
 		</div>
 		<div slot="leftBottom">
