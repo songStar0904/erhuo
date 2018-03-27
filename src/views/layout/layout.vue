@@ -8,7 +8,7 @@
 	<div class="box">
 		<Row :gutter="40">
 	        <Col span="7">
-	        <user-info :info="info">
+	        <user-info :info="info" v-if="info">
 	        	<div slot="userInfo">
 	        		<slot name="leftInfo"></slot>
 	        	</div>

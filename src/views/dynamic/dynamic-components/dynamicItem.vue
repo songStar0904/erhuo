@@ -20,7 +20,7 @@
 		        </a>
 		        <DropdownMenu slot="list">
 		            <DropdownItem name="0">举报</DropdownItem>
-		            <DropdownItem name="2">删除</DropdownItem>
+		            <DropdownItem name="2" v-if="uid === dynamic.dynamic_id">删除</DropdownItem>
 		        </DropdownMenu>
 		    </Dropdown>
 		</div>
@@ -31,7 +31,7 @@
 					<Icon type="ios-undo-outline" size="16" class="mr5"></Icon><span v-if="dynamic.dynamic_share > 0">{{dynamic.dynamic_share}}</span><span else>分享</span>
 				</div>
 				<div class="btn" @click="openComment" :class="{'text-success': isOpen}">
-					<Icon type="ios-chatbubble-outline"size="16" class="mr5"></Icon><span v-if="dynamic.dynamic_share > 0">{{dynamic.dynamic_share}}</span><span else>评论</span>
+					<Icon type="ios-chatbubble-outline"size="16" class="mr5"></Icon><span v-show="dynamic.comment_num > 0">{{dynamic.comment_num}}</span><span v-show="dynamic.comment_num === 0">评论</span>
 				</div>
 				<div class="btn" @click="praise" :class="{'text-error': dynamic.is_praise}">
 					<Icon type="thumbsup"size="16" class="mr5"></Icon>
@@ -93,6 +93,13 @@
 					}
 				})
 			}
+		},
+		computed: {
+			uid () {
+                if (this.$store.state.user.info) {
+                    return this.$store.state.user.info.user_id;
+                }
+            }
 		}
 	}
 </script>

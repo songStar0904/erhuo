@@ -120,6 +120,14 @@ a{
 	text-overflow:ellipsis;
 	white-space: nowrap;
 }
+.user-face{
+	float: left;
+	display: inline-block;
+}
+.con{
+	position: relative;
+	margin-left: 50px;
+}
 
 .bounce-enter-active {
   animation: bounce-in .5s;

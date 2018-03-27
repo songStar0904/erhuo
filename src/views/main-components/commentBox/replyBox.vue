@@ -1,25 +1,26 @@
 <template>
-	<Row v-if="uid" :gutter="20" class="mtb10">
-		<Col span="3" style="text-align:center">
+	<div v-if="uid" class="mtb10 clearfix">
+		<div class="user-face">
 		    <slot name="icon"></slot>
-	    </Col>
-		<Col span="18">
-		    <Input v-model="value" :placeholder="placeholder"></Input>
-		</Col>
-		<Col span="3">
-		    <Button type="success" @click="reply">回复</Button>
-	    </Col>
-	    <Col span="3">
-	        <slot name="cancel"></slot>
-	    </Col>
-		 
-	</Row>
+	    </div>
+		<div class="con">
+		    <input-box :content="value" @submit="reply" :placeholder="placeholder" :rows="2">
+		    	<span slot="cancel">
+		    		<slot name="cancel"></slot>
+		    	</span>
+		    </input-box>
+		</div>
+	</div>
 	<div v-else>登录之后，才能评论</div>
 </template>
 <script>
+    import {inputBox} from '../../components/';
 	export default{
 		// id 留言id rid 回复者id
-		props: ['placeholder', 'lid', 'id', 'rid'],
+		props: ['placeholder', 'lid', 'id', 'rid', 'type'],
+		components: {
+			inputBox
+		},
 		data () {
 			return {
 				value: ''
@@ -33,7 +34,8 @@
 			}
 		},
 		methods: {
-			reply () {
+			reply (val) {
+				this.value = val;
 				if (this.value.length > 255) {
 					this.$Message.warning('回复内容不能超过255字符');
 				} else if (this.value.length <= 0) {
@@ -41,7 +43,7 @@
 				} else {
 					this.$fetch.msg.send({
 						content: this.value,
-						type: 'goods',
+						type: this.type,
 						id: this.id,
 						lid: this.lid,
 						rid: this.rid

@@ -1,17 +1,19 @@
 <style scoped>
 .reply{
-	margin: 30px;
+	margin: 10px 0;
+	padding: 10px;
+	border-bottom: 1px solid #e9eaec;
 }
 </style>
 <template>
 	<div>
 		<reply-box placeholder="说点什么" :type="type" :id="id" :lid="0" :rid="rid" class="reply" @updateMsg="updateMsg">
 			<user-name :uid="user.user_id" slot="icon" class="icon" v-if="user">
-				<Avatar slot="user" :src="user.user_icon" />
+				<Avatar slot="user" size="large" :src="user.user_icon" />
 			</user-name>
 		</reply-box>
 		<div v-if="data.length > 0">
-			<comment-item v-for="(item, index) in data" :key="index" :id="id" :comment="item" @updateMsg="updateMsg"></comment-item>
+			<comment-item v-for="(item, index) in data" :key="index" :id="id" :comment="item" :type="type" @updateMsg="updateMsg"></comment-item>
 		</div>
 		<div v-else>还没有留言哦</div>
     </div>

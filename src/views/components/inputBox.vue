@@ -1,15 +1,19 @@
 <template>
 	<div>
-		<Input type="textarea" :rows="4" placeholder="有什么想和大家分享的？" v-model="value" :maxlength="max"></Input>
+		<Input type="textarea" :rows="rows" :placeholder="placeholder" v-model="value" :maxlength="max"></Input>
 		<div class="mt10 clearfix">
-			<span class="fr"><span :class="{'text-error': hint <= 0}" class="mr20 text-sub">{{hint}}</span> <Button type="primary" style="width:100px;" @click="submit">发 布</Button></span>
+			<span class="fr">
+				<span :class="{'text-error': hint <= 0}" class="mr20 text-sub">{{hint}}</span>
+				<Button type="primary" style="width:100px;" @click="submit">发 布</Button>
+				<slot name="cancel" class="ml20"></slot>
+		</span>
 		</div>
 		
 	</div>
 </template>
 <script>
 	export default {
-		props: ['content'],
+		props: ['content', 'rows', 'placeholder'],
 		data () {
 			return {
 				max: 233,
@@ -30,7 +34,11 @@
 		},
 		methods: {
 			submit () {
-				this.$emit('submit', this.value);
+				if (this.value === '') {
+					this.$Message.error('内容不能为空');
+				} else {
+					this.$emit('submit', this.value);
+				}
 			}
 		}
 	}
