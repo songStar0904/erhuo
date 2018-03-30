@@ -167,10 +167,6 @@ import util from '../../libs/util.js';
             uid () {
                 return this.$store.state.user.info.user_id;
             },
-            phone () {
-                this.goods.phone = this.$store.state.user.info.user_phone;
-                return this.$store.state.user.info.user_phone;
-            },
             gid () {
                 return this.$route.params.gid;
             }
@@ -183,6 +179,7 @@ import util from '../../libs/util.js';
             }
         },
         created () {
+            this.goods.phone = this.$store.state.user.info.user_phone;
             this.setPath();
         },
         methods: {

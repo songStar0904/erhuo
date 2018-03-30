@@ -9,8 +9,10 @@
 		<Card :dis-hover="true" :padding="0" class="mb20">
 			<img :src="data.goods_icon[0].url" alt="" class="goods_icon">
 			<div class="p8">
-				<div>
-					<span class="btn fz16">{{data.goods_name}}</span>
+				<div class="overflow">
+					<!-- <Tooltip placement="top" :content="`${data.goods_name} - ${data.gclassify.name}`"> -->
+						<span class="btn fz16">{{data.goods_name}}</span>
+					<!-- </Tooltip> -->
 					<span class="text-sub fz12">{{data.gclassify.name}}</span>
 				</div>
 				<div style="margin: 0px 0 8px;">

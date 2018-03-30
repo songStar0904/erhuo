@@ -20,7 +20,7 @@
 		        </a>
 		        <DropdownMenu slot="list">
 		            <DropdownItem name="0">举报</DropdownItem>
-		            <DropdownItem name="2" v-if="uid === dynamic.dynamic_id">删除</DropdownItem>
+		            <DropdownItem name="2" v-if="uid === dynamic.user.id">删除</DropdownItem>
 		        </DropdownMenu>
 		    </Dropdown>
 		</div>
