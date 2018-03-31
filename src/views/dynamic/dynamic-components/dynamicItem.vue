@@ -12,42 +12,45 @@
 	}
 </style>
 <template>
-	<my-card :info="dynamic.user" :time="dynamic.dynamic_time">
-		<div slot="more">
-			<Dropdown trigger="click" class="more fr" @on-click="onClick">
-		        <a href="javascript:void(0)">
-		            <Icon type="ios-more" style="font-size:20px;"></Icon>
-		        </a>
-		        <DropdownMenu slot="list">
-		            <DropdownItem name="0">举报</DropdownItem>
-		            <DropdownItem name="2" v-if="uid === dynamic.user.id">删除</DropdownItem>
-		        </DropdownMenu>
-		    </Dropdown>
-		</div>
-		<div slot="content">
-			<p class="ptb5">{{dynamic.dynamic_content}}</p>
-			<div v-if="dynamic.dynamic_type === 2">
-				<goods-uitem :data="dynamic.goods" :isOwn="uid === dynamic.goods.user.id"></goods-uitem>
+	<div>
+		<my-card :info="dynamic.user" :time="dynamic.dynamic_time">
+			<div slot="more">
+				<Dropdown trigger="click" class="more fr" @on-click="onClick">
+			        <a href="javascript:void(0)">
+			            <Icon type="ios-more" style="font-size:20px;"></Icon>
+			        </a>
+			        <DropdownMenu slot="list">
+			            <DropdownItem name="0">举报</DropdownItem>
+			            <DropdownItem name="2" v-if="uid === dynamic.user.id">删除</DropdownItem>
+			        </DropdownMenu>
+			    </Dropdown>
 			</div>
-			<div class="btn-box text-sub">
-				<div class="btn">
-					<Icon type="ios-undo-outline" size="16" class="mr5"></Icon><span v-if="dynamic.dynamic_share > 0">{{dynamic.dynamic_share}}</span><span else>分享</span>
+			<div slot="content">
+				<p class="ptb5">{{dynamic.dynamic_content}}</p>
+				<div v-if="dynamic.dynamic_type === 2">
+					<goods-uitem :data="dynamic.goods" :isOwn="uid === dynamic.goods.user.id"></goods-uitem>
 				</div>
-				<div class="btn" @click="openComment" :class="{'text-success': isOpen}">
-					<Icon type="ios-chatbubble-outline"size="16" class="mr5"></Icon><span v-show="dynamic.comment_num > 0">{{dynamic.comment_num}}</span><span v-show="dynamic.comment_num === 0">评论</span>
+				<div class="btn-box text-sub">
+					<div class="btn">
+						<Icon type="ios-undo-outline" size="16" class="mr5"></Icon><span v-if="dynamic.dynamic_share > 0">{{dynamic.dynamic_share}}</span><span else>分享</span>
+					</div>
+					<div class="btn" @click="openComment" :class="{'text-success': isOpen}">
+						<Icon type="ios-chatbubble-outline"size="16" class="mr5"></Icon><span v-show="dynamic.comment_num > 0">{{dynamic.comment_num}}</span><span v-show="dynamic.comment_num === 0">评论</span>
+					</div>
+					<div class="btn" @click="praise" :class="{'text-error': dynamic.is_praise}">
+						<Icon type="thumbsup"size="16" class="mr5"></Icon>
+						<span v-show="dynamic.praise_num > 0">{{dynamic.praise_num}}</span>
+						<span v-show="dynamic.praise_num === 0">赞</span>
+					</div>
 				</div>
-				<div class="btn" @click="praise" :class="{'text-error': dynamic.is_praise}">
-					<Icon type="thumbsup"size="16" class="mr5"></Icon>
-					<span v-show="dynamic.praise_num > 0">{{dynamic.praise_num}}</span>
-					<span v-show="dynamic.praise_num === 0">赞</span>
-				</div>
+				<comment-box v-show="isOpen" :id="dynamic.dynamic_id" :lid="0" :rid="dynamic.user.id" type="dynamic" :data="this.comment"></comment-box>
 			</div>
-			<comment-box v-show="isOpen" :id="dynamic.dynamic_id" :lid="0" :rid="dynamic.user.id" type="dynamic" :data="this.comment"></comment-box>
-		</div>
-	</my-card>
+		</my-card>
+		<report-modal :type="3" :id="dynamic.dynamic_id" ref="report"></report-modal>
+	</div>
 </template>
 <script>
-    import {myCard} from '../../components/'
+    import {myCard, reportModal} from '../../components/'
     import commentBox from '../../main-components/commentBox';
     import goodsUitem from '../../main-components/goods-uitem.vue';
 	export default {
@@ -55,7 +58,8 @@
 		components: {
 			myCard,
 			commentBox,
-			goodsUitem
+			goodsUitem,
+			reportModal
 		},
 		data () {
 			return {
@@ -64,7 +68,11 @@
 			}
 		},
 		methods: {
-			onClick () {},
+			onClick (val) {
+				if (val == 0) {
+					this.$refs.report.openModal();
+				}
+			},
 			praise () {
 				this.$fetch.msg.praise({
 					type: 1,

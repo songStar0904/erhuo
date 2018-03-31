@@ -1,6 +1,6 @@
 <template>
 	<Modal v-model="modal" width="500">
-        <p slot="header" style="text-align:center; color: #222;">
+        <p slot="header" style="text-align:center;">
             <Icon type="information-circled"></Icon>
             <span>请选择举报理由</span>
         </p>
