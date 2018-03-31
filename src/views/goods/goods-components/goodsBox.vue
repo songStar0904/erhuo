@@ -17,7 +17,7 @@
 <template>
 	<Card :dis-hover="true">
 		<span slot="title" class="text-sub">
-			{{data.goods_time}} <span class="fr report btn"><Icon type="alert-circled"></Icon> 举报</span>
+			{{data.goods_time}} <span class="fr report btn" @click="openModal"><Icon type="alert-circled"></Icon> 举报</span>
 		</span>
 		<Row :gutter="20">
 			<Col :span="12">
@@ -120,13 +120,16 @@
 	    	<comment-box :data="data.goods_lmsg" :id="data.goods_id" :rid="data.user.id" type="goods">
 	    	</comment-box>
 	    </div>
+	    <report-modal :type="1" :id="data.goods_id" ref="report"></report-modal>
 	</Card>
 </template>
 <script>
     import {commentBox} from '../../main-components';
+    import {reportModal} from '../../components';
 	export default {
 		components: {
-			commentBox
+			commentBox,
+			reportModal
 		},
 		props: ['data'],
 		data () {
@@ -151,6 +154,9 @@
 			},
 			changeMeau (val) {
 				this.active = val;
+			},
+			openModal () {
+				this.$refs.report.openModal();
 			}
 		}
 	}

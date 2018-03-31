@@ -54,6 +54,9 @@ a{
 .mb10{
 	margin-bottom: 10px;
 }
+.mb15{
+	margin-bottom: 15px;
+}
 .mb20{
 	margin-bottom: 20px;
 }
@@ -62,6 +65,9 @@ a{
 }
 .mb8{
 	margin-bottom: 8px;
+}
+.mtb15{
+	margin: 15px 0;
 }
 .mt10{
 	margin-top: 10px;

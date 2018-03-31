@@ -80,7 +80,7 @@
 			<p class="text">{{comment.lmsg_content}}</p>
 			<p class="clearfix">
 				<span class="info fr">
-					<span class="btn" v-show="report"><Icon type="alert-circled" ></Icon> 举报</span>
+					<span class="btn" v-show="report" @click="openReport"><Icon type="alert-circled" ></Icon> 举报</span>
 					<span class="btn" @click="reply = true"><Icon type="chatbox-working"></Icon></span>
 					<span class="btn" :class="{is_praise:comment.is_praise}" @click="praise(comment.lmsg_id)"><Icon type="thumbsup"></Icon> {{comment.praise_num}}</span>
 				</span>
@@ -110,16 +110,18 @@
 				<Button type="text" slot="cancel" @click="reply = false">取消</Button>
 			</reply-box>	
 		</div>
+		<report-modal :type="2" :id="comment.lmsg_id" ref="report"></report-modal>
 	</div>
 </template>
 <script>
 import util from '../../../libs/util.js';
-import {userName} from '../../components';
+import {userName, reportModal} from '../../components';
 import replyBox from './replyBox.vue';
 	export default{
 		components: {
 			userName,
-			replyBox
+			replyBox,
+			reportModal
 		},
 		props: ['comment', 'id'],
 		data () {
@@ -150,6 +152,9 @@ import replyBox from './replyBox.vue';
 						this.$Message.error(res.msg);
 					}
 				})
+			},
+			openReport () {
+				this.$refs.report.openModal();
 			}
 		}
 	}

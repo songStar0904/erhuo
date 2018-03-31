@@ -3,6 +3,7 @@ import goodsName from './goodsName.vue'
 import myMeau from './myMeau.vue'
 import inputBox from './inputBox.vue'
 import myCard from './myCard.vue'
+import reportModal from './reportModal.vue'
 
 
 export {
@@ -10,5 +11,6 @@ export {
 	goodsName,
 	myMeau,
 	inputBox,
-	myCard
+	myCard,
+	reportModal
 }

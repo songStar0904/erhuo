@@ -7,3 +7,11 @@ export function get_hot (params) {
     params
   })
 }
+// 举报
+export function report (data) {
+  return fetch({
+    url: 'report/add',
+    method: 'post',
+    data
+  })
+}
