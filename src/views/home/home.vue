@@ -77,7 +77,6 @@ import {searchBox} from '../main-components';
 					this.page ++;
 				    this.getData();
 				}
-				
 			}
         }
     };

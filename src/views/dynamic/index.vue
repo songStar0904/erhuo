@@ -6,9 +6,20 @@
 	        	<span class="text-success btn">关注 ({{user_info.ship.fans_num}})</span>  &nbsp; <span class="text-success btn">粉丝 ({{user_info.ship.followers_num}})</span>
 		</div>
 		<div slot="leftMeau" style="text-align:center;" else>发表动态,请先登录</div>
-		<div slot="rightMeau" style="padding-top:30px;">
+		<div slot="rightMeau" style="padding-top:30px;" v-infinite-scroll="loadMore" :infinite-scroll-disabled="busy" :infinite-scroll-distance="100">
 			<input-box @submit="submit" :content="content" class="mb20" :rows="4" :placeholder="'有什么想和大家分享的？'"></input-box>
 			<dynamic-item :dynamic="item" v-for="(item, index) in data" :key="index"></dynamic-item>
+			<div v-if="noMore">
+    			<Spin>
+	                <div>没有更多了</div>
+	            </Spin>
+    		</div>
+    		<div v-else>
+    			<Spin>
+	                <Icon type="load-c" size=18 class="demo-spin-icon-load"></Icon>
+	                <div>Loading</div>
+	            </Spin>
+    		</div>
 		</div>
 	</layout>
 </template>
@@ -25,7 +36,10 @@
 		data () {
 			return {
 				content: '',
-				data: []
+				data: [],
+				page: 1,
+				noMore: false,
+				busy: false
 			}
 		},
 		mounted () {
@@ -33,15 +47,28 @@
 		},
 		methods: {
 			getData () {
+				this.busy = true;
 				this.$fetch.dynamic.get({
-					type: 0
+					type: 0,
+					page: this.page
 				}).then(res => {
+					this.busy = false;
 					if (res.code === 200) {
-						this.data = res.data;
+						if (res.data.length > 0) {
+							this.data.push(...res.data);
+						} else {
+							this.noMore = true;
+						}
 					} else {
 						this.$Message.error(res.msg);
 					}
 				})
+			},
+			loadMore () {
+				if (!this.noMore) {
+					this.page ++;
+				    this.getData();
+				}
 			},
 			submit (val) {
 				this.content = val;
