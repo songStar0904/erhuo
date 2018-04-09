@@ -1,11 +1,13 @@
 <style scoped>
+.content{
+	height: 100%;
+}
 .demo-spin-icon-load{
         animation: ani-demo-spin 1s linear infinite;
     }
 </style>
 <template>
-	
-	<Content style="padding: 0 50px" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="100">
+	<Content class="content" style="padding: 0 50px"  v-infinite-scroll="loadMore" :infinite-scroll-disabled="busy" :infinite-scroll-distance="10">
 	    <carousel-box></carousel-box>
 	    <search-box :style="{margin: '20px 0'}"></search-box>
 	    <Row :gutter="15">
@@ -17,18 +19,18 @@
 	    	<Col span="19">
 		    		<goods-box :data="data" ></goods-box>
 		    		<div v-if="noMore">
-		    			<Spin>
+		    			<Spin size="large">
 			                <div>没有更多了</div>
 			            </Spin>
 		    		</div>
 		    		<div v-else>
-		    			<Spin>
+		    			<Spin size="large">
 			                <Icon type="load-c" size=18 class="demo-spin-icon-load"></Icon>
 			                <div>Loading</div>
 			            </Spin>
 		    		</div>
 	    	</Col>
-	    </Row>	
+	    </Row>
 	</Content>
 	
 </template>
@@ -55,9 +57,10 @@ import {searchBox} from '../main-components';
     	},
         methods: {
         	getData () {
+        		console.log('asd');
         		this.busy = true;
 				this.$fetch.goods.get({
-					num: 8,
+					num: 12,
 					page: this.page
 				}).then(res => {
 					this.busy = false;

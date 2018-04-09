@@ -3,10 +3,16 @@
 	width: 100%;
 	height: 168px;
 }
+.tag{
+	position: absolute;
+	top: 139px;
+	left: 5px;
+}
 </style>
 <template>
-	<router-link :to="{ name: 'goods', params: { gid: data.goods_id }}">
+	<router-link :to="{ name: 'goods', params: { gid: data.goods_id }}" target="_blank">
 		<Card :dis-hover="true" :padding="0" class="mb20">
+			<Tag color="red" v-if="data.goods_spread === 1" class="tag">精品</Tag>
 			<img :src="data.goods_icon[0].url" alt="" class="goods_icon">
 			<div class="p8">
 				<div class="overflow">

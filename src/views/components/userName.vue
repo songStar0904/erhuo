@@ -4,7 +4,7 @@
 	}
 </style>
 <template>
-	<router-link class="user_name" :to="{ name: 'sell', params: { uid }}">
+	<router-link class="user_name" :to="{ name: 'sell', params: { uid }}" target="_blank">
 		<slot name="user"></slot>
 	</router-link>
 </template>

@@ -1,7 +1,7 @@
 <style scoped>
 </style>
 <template>
-	<router-link :to="{ name: 'goods', params: { gid }}">
+	<router-link :to="{ name: 'goods', params: { gid }}" target="_blank">
 		<span class="text-success">{{name}}</span>
 	</router-link>
 </template>

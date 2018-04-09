@@ -33,13 +33,12 @@
 		},
 		data () {
 			return {
-				data: {
-				},
+				data: null,
 				info: {},
 				show: false
 			}
 		},
-		mounted () {
+		created () {
 			this.getData();
 		},
 		methods: {
