@@ -4,6 +4,7 @@ import myMeau from './myMeau.vue'
 import inputBox from './inputBox.vue'
 import myCard from './myCard.vue'
 import reportModal from './reportModal.vue'
+import delModal from './delModal.vue'
 
 
 export {
@@ -12,5 +13,6 @@ export {
 	myMeau,
 	inputBox,
 	myCard,
-	reportModal
+	reportModal,
+	delModal
 }

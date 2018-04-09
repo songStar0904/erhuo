@@ -5,7 +5,9 @@
 	<layout :info="user_info">
 		<div slot="leftInfo">
 			<p style="color: #999;"><span>{{user_info.user_sid}}</span> | <span>{{user_info.user_sex}}</span></p>
-			<Button type="success" icon="card" style="width:150px; margin-top:10px;">发布二货</Button>
+			<router-link :to="{ name: 'publish'}" target="_blank">
+			    <Button type="success" icon="card" style="width:150px; margin-top:10px;">发布二货</Button>
+			</router-link>
 		</div>
 		<Menu :theme="'light'" :active-name="active" @on-select="changeMeau" slot="leftMeau" style="width: 246px;">
 		        <MenuGroup title="我的二货">

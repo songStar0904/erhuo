@@ -21,7 +21,7 @@
 			        </a>
 			        <DropdownMenu slot="list">
 			            <DropdownItem name="0">举报</DropdownItem>
-			            <DropdownItem name="2" v-if="uid === dynamic.user.id">删除</DropdownItem>
+			            <DropdownItem name="1" v-if="uid === dynamic.user.id">删除</DropdownItem>
 			        </DropdownMenu>
 			    </Dropdown>
 			</div>
@@ -47,19 +47,21 @@
 			</div>
 		</my-card>
 		<report-modal :type="3" :id="dynamic.dynamic_id" ref="report"></report-modal>
+		<del-modal :type="3" :id="dynamic.dynamic_id" ref="del" @delDynamic="delDynamic"></del-modal>
 	</div>
 </template>
 <script>
-    import {myCard, reportModal} from '../../components/'
+    import {myCard, reportModal, delModal} from '../../components/'
     import commentBox from '../../main-components/commentBox';
     import goodsUitem from '../../main-components/goods-uitem.vue';
 	export default {
-		props: ['dynamic'],
+		props: ['dynamic', 'index'],
 		components: {
 			myCard,
 			commentBox,
 			goodsUitem,
-			reportModal
+			reportModal,
+			delModal
 		},
 		data () {
 			return {
@@ -71,6 +73,8 @@
 			onClick (val) {
 				if (val == 0) {
 					this.$refs.report.openModal();
+				} else if (val == 1) {
+					this.$refs.del.openModal();
 				}
 			},
 			praise () {
@@ -105,6 +109,9 @@
 						this.$Message.error(res.msg);
 					}
 				})
+			},
+			delDynamic () {
+				this.$emit('delItem', this.index);
 			}
 		},
 		computed: {

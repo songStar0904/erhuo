@@ -61,7 +61,7 @@
                     <img :src="user_icon" alt="" class="user_icon">
                 </template>
                     <MenuItem name="info">个人中心</MenuItem>
-                    <MenuItem name="sell">我的二货</MenuItem>
+                    <MenuItem name="usell">我的二货</MenuItem>
                     <MenuItem name="loginOut">退出登录</MenuItem>
             </Submenu>
         </div>

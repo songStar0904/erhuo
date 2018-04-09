@@ -27,7 +27,7 @@ export function add (data) {
 export function del (data) {
   return fetch({
     url: 'dynamic/delete',
-    method: 'delete',
+    method: 'post',
     data
   })
 }
