@@ -23,7 +23,7 @@
 	            	<div class="rightMeau">
 	                    <slot name="rightMeau"></slot>
 	                </div>
-			        <router-view></router-view>
+			        <router-view style="marigin-top: -20px;"></router-view>
 			    </Card>
 	        </Col>
 	    </Row>

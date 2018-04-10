@@ -1,15 +1,4 @@
 <style scoped>
-.slide-fade-enter-to{
-	opacity: 1;
-	transform: translateY(0px);
-}
-.slide-fade-enter-active {
-  transition: all .3s ease;
-}
-.slide-fade-enter{
-  transform: translateY(30px);
-  opacity: 0;
-}
 </style>
 <template>
 	<Row :gutter="15"><!-- :xs="{ span: 10, offset: 1 }":md="{ span: 6, offset: 2 }" :lg="{ span: 4, offset: 2 }" -->

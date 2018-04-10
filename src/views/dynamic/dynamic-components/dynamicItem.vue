@@ -32,15 +32,15 @@
 				</div>
 				<div class="btn-box text-sub">
 					<div class="btn">
-						<Icon type="ios-undo-outline" size="16" class="mr5"></Icon><span v-if="dynamic.dynamic_share > 0">{{dynamic.dynamic_share}}</span><span else>分享</span>
+						<Icon type="ios-undo-outline" size="16" class="mr5"></Icon><span v-if="dynamic.dynamic_share > 0">{{dynamic.dynamic_share}}</span><span v-else>分享</span>
 					</div>
 					<div class="btn" @click="openComment" :class="{'text-success': isOpen}">
-						<Icon type="ios-chatbubble-outline"size="16" class="mr5"></Icon><span v-show="dynamic.comment_num > 0">{{dynamic.comment_num}}</span><span v-show="dynamic.comment_num === 0">评论</span>
+						<Icon type="ios-chatbubble-outline"size="16" class="mr5"></Icon><span v-if="dynamic.comment_num > 0">{{dynamic.comment_num}}</span><span v-else="dynamic.comment_num === 0">评论</span>
 					</div>
 					<div class="btn" @click="praise" :class="{'text-error': dynamic.is_praise}">
 						<Icon type="thumbsup"size="16" class="mr5"></Icon>
-						<span v-show="dynamic.praise_num > 0">{{dynamic.praise_num}}</span>
-						<span v-show="dynamic.praise_num === 0">赞</span>
+						<span v-if="dynamic.praise_num > 0">{{dynamic.praise_num}}</span>
+						<span v-else>赞</span>
 					</div>
 				</div>
 				<comment-box v-show="isOpen" :id="dynamic.dynamic_id" :lid="0" :rid="dynamic.user.id" type="dynamic" :data="this.comment"></comment-box>

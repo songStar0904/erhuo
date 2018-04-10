@@ -2,7 +2,7 @@ const routers = [{
     path: '/',
     name: 'home',
     meta: {
-        title: ''
+        title: '二货 - 首页'
     },
     component: (resolve) => require(['../views/home/home.vue'], resolve)
 }, {
@@ -11,10 +11,12 @@ const routers = [{
 }, {
     path: '/regist',
     name: 'regist',
+    title: '二货 - 注册',
     component: (resolve) => require(['../views/user/regist.vue'], resolve)
 }, {
     path: '/login',
     name: 'login',
+    title: '二货 - 登录',
     component: (resolve) => require(['../views/user/login.vue'], resolve)
 }, {
     path: '/forget',
@@ -145,6 +147,7 @@ const routers = [{
 }, {
     path: '/dynamic',
     name: 'dynamic',
+    title: '二货 - 动态',
     component: (resolve) => require(['../views/dynamic/index.vue'], resolve)
 }, ];
 export default routers;

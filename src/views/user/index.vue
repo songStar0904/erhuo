@@ -31,17 +31,9 @@
 		            </MenuItem>
 		        </MenuGroup>
 		        <MenuGroup title="个人中心">
-		            <MenuItem name="3">
-		                <Icon type="android-textsms"></Icon>
-		                我的留言
-		            </MenuItem>
 		            <MenuItem name="info">
 		                <Icon type="android-person"></Icon>
 		                个人信息
-		            </MenuItem>
-		            <MenuItem name="4">
-		                <Icon type="ribbon-b"></Icon>
-		                实名认证
 		            </MenuItem>
 		            <MenuItem name="fmsg">
 		                <Icon type="ios-help-outline"></Icon>

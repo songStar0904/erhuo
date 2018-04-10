@@ -6,9 +6,11 @@
 	        	<span class="text-success btn">关注 ({{user_info.ship.fans_num}})</span>  &nbsp; <span class="text-success btn">粉丝 ({{user_info.ship.followers_num}})</span>
 		</div>
 		<div slot="leftMeau" style="text-align:center;" v-else>发表动态,请先登录</div>
-		<div slot="rightMeau" style="padding-top:30px;" v-infinite-scroll="loadMore" :infinite-scroll-disabled="busy" :infinite-scroll-distance="10">
+		<div slot="rightMeau" style="padding-top:30px; height: 100%;" v-infinite-scroll="loadMore" :infinite-scroll-disabled="busy" :infinite-scroll-distance="10">
 			<input-box @submit="submit" :content="content" class="mb20" :rows="4" :placeholder="'有什么想和大家分享的？'"></input-box>
-			<dynamic-item :dynamic="item" v-for="(item, index) in data" :key="index" :index="index" @delItem="delItem"></dynamic-item>
+			<transition-group name="slide-fade">
+			    <dynamic-item :dynamic="item" v-for="(item, index) in data" :key="index" :index="index" @delItem="delItem"></dynamic-item>
+			</transition-group>
 			<div v-if="noMore">
     			<Spin>
 	                <div>没有更多了</div>
@@ -48,6 +50,7 @@
 		},
 		methods: {
 			getData () {
+				console.log(this.page);
 				this.busy = true;
 				this.$fetch.dynamic.get({
 					type: 0,
@@ -81,7 +84,7 @@
 					if (res.code === 200) {
 						this.content = '';
 						this.$Message.success(res.msg);
-						this.getData();
+						this.data.unshift(res.data);
 					} else {
 						this.$Message.error(res.msg)
 					}
