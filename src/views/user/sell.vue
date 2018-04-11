@@ -1,14 +1,14 @@
 <template>
 	<div>
 		<div v-if="data.length==0" style="text-align:center">
-			<p style="margin:50px 0;">您没有发布任何二货哦~</p>
+			<p style="margin:50px 0;">没有找到任何二货哦~</p>
 			<Button type="success" @click="publish" v-if="user_id === uid && type === 'sell'">现在发布</Button>
 		</div>
 		<div v-else>
 			<Row type="flex" justify="end">
 				<Page :total="total" show-total show-elevator size="small" @on-change="changePage" :current="page" :page-size="num"></Page>
 			</Row>
-			<goods-uitem :data="item" :isOwn="isOwn" v-for="(item, index) in data" :key="index" style="margin: 20px 0"></goods-uitem>
+			<goods-uitem :data="item" :isOwn="isOwn" v-for="(item, index) in data" :key="index" style="margin: 20px 0" @del_goods="getGoods"></goods-uitem>
 			<Row type="flex" justify="end">
 				<Page :total="total" show-total show-elevator size="small" @on-change="changePage" :current="page" :page-size="num"></Page>
 			</Row>

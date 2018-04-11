@@ -8,6 +8,20 @@
 		<div slot="leftMeau" style="text-align:center;" v-else>发表动态,请先登录</div>
 		<div slot="rightMeau" style="padding-top:30px; height: 100%;" v-infinite-scroll="loadMore" :infinite-scroll-disabled="busy" :infinite-scroll-distance="10">
 			<input-box @submit="submit" :content="content" class="mb20" :rows="4" :placeholder="'有什么想和大家分享的？'"></input-box>
+			<Menu mode="horizontal" :active-name="type" @on-select="changeMeau">
+		        <MenuItem :name="0">
+		            全部
+		        </MenuItem>
+		        <MenuItem :name="1">
+		            文字
+		        </MenuItem>
+		        <MenuItem :name="2">
+		            二货
+		        </MenuItem>
+		        <MenuItem :name="3">
+		            关注
+		        </MenuItem>
+		    </Menu>
 			<transition-group name="slide-fade">
 			    <dynamic-item :dynamic="item" v-for="(item, index) in data" :key="index" :index="index" @delItem="delItem"></dynamic-item>
 			</transition-group>
@@ -41,6 +55,7 @@
 				data: [],
 				page: 1,
 				num: 5,
+				type: 0,
 				noMore: false,
 				busy: false
 			}
@@ -53,7 +68,7 @@
 				console.log(this.page);
 				this.busy = true;
 				this.$fetch.dynamic.get({
-					type: 0,
+					type: this.type,
 					num: this.num,
 					page: this.page
 				}).then(res => {
@@ -79,7 +94,7 @@
 				this.content = val;
 				this.$fetch.dynamic.add({
 					content: this.content,
-					type: 0
+					type: 1
 				}).then(res => {
 					if (res.code === 200) {
 						this.content = '';
@@ -92,6 +107,9 @@
 			},
 			delItem (index) {
 				this.data.splice(index, 1);
+			},
+			changeMeau (val) {
+				this.type = val;
 			}
 		},
 		computed: {
@@ -100,6 +118,14 @@
                     return this.$store.state.user.info;
                 }
             }
+		},
+		watch: {
+			type () {
+				this.noMore = false;
+				this.page = 1;
+				this.data = [];
+				this.getData();
+			}
 		}
 	}
 </script>

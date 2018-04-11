@@ -53,3 +53,10 @@ export function praise (data) {
     data
   })
 }
+export function get_fmsg (params) {
+  return fetch({
+    url: 'message/get_fmsg',
+    method: 'get',
+    params
+  })
+}

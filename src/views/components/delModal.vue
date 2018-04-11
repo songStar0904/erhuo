@@ -27,18 +27,29 @@
 		mounted () {
 			if (this.type === 3) {
 				this.title = '删除动态';
-				this.content = '确定要删除此动态吗？'
+				this.content = '确定要删除此动态吗？';
+			} else if (this.type === 1){
+				this.title = '删除二货';
+				this.content = '确定要删除此二货吗？';
 			}
 		},
 		methods: {
 			openModal () {
 				this.modal = true;
 			},
+			closeModal () {
+				this.modal = false;
+			},
 			del () {
 				if (this.type === 3) {
 					// 删除动态
 					this.del_dynamic();
+				} else if (this.type === 1) {
+					this.del_goods();
 				}
+			},
+			del_goods () {
+				this.$emit('delGoods');
 			},
 			del_dynamic () {
 				this.$fetch.dynamic.del({

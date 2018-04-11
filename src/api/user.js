@@ -126,3 +126,11 @@ export function getMsg (params) {
     params
   })
 }
+// 下架二货
+export function sold_goods (data) {
+  return fetch({
+    url: 'user/sold_goods',
+    method: 'post',
+    data
+  })
+}

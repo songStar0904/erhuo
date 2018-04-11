@@ -1,5 +1,5 @@
 <style scoped>
-	.goods_name{
+	.goods_info{
 		padding-bottom: 8px; 
 		border-bottom: 1px dotted #dddee1;
 	}
@@ -15,9 +15,21 @@
             <img :src="data.goods_icon[0].url" :alt="data.goods_name" style="width:145px; height:145px;">
         </Col>
         <Col span="16">
-	        <router-link :to="{ name: 'goods', params: { gid: data.goods_id }}" target="_blank">
-	            <h3 class="goods_name text-success">{{data.goods_name}}</h3>
-	        </router-link>
+            <div class="clearfix goods_info">
+		        <router-link :to="{ name: 'goods', params: { gid: data.goods_id }}" target="_blank" class="fl">
+		            <h3 class="goods_name text-success">{{data.goods_name}}</h3>
+		        </router-link>
+		        <!-- 更多下拉框 -->
+		        <Dropdown trigger="click" class="more fr" @on-click="onClick" v-if="data.user.id == uid">
+			        <a href="javascript:void(0)">
+			            <Icon type="ios-more" style="font-size:20px;"></Icon>
+			        </a>
+			        <DropdownMenu slot="list">
+			            <DropdownItem :name="0">删除</DropdownItem>
+			            <DropdownItem :name="1">下架</DropdownItem>
+			        </DropdownMenu>
+			    </Dropdown>
+		    </div>
             <Row class="mt10">
 		        <Col span="5">
 		            <p>分类：</p>
@@ -45,10 +57,15 @@
 	        </div>
         </Col>
     </Row>
+    <del-modal :type="1" :id="data.goods_id" ref="del" @delGoods="del_goods"></del-modal>
 	</Card>
 </template>
 <script>
+    import {delModal} from '../components'
 	export default {
+		components: {
+			delModal
+		},
 		props: ['data', 'isOwn'],
 		data () {
 			return {}
@@ -64,7 +81,45 @@
 						this.$Message.error(res.msg);
 					}
 				})
+			},
+			onClick (val) {
+				if (val === 0) {
+					this.$refs.del.openModal();
+				} else if (val === 1) {
+					this.sold_goods();
+				}
+			},
+			del_goods () {
+				this.$fetch.goods.del({
+					goods_id: this.data.goods_id
+				}).then(res => {
+					if (res.code === 200) {
+						this.$refs.del.closeModal();
+						this.$Message.success(res.msg);
+						this.$emit('del_goods');
+					} else {
+						this.$Message.error(res.msg);
+					}
+				})
+			},
+			sold_goods () {
+				this.$fetch.user.sold_goods({
+					goods_id: this.data.goods_id
+				}).then(res => {
+					if (res.code === 200) {
+						this.$Message.success(res.msg);
+					} else {
+						this.$Message.error(res.msg);
+					}
+				})
 			}
+		},
+		computed: {
+			uid () {
+                if (this.$store.state.user.info) {
+                    return this.$store.state.user.info.user_id;
+                }
+            }
 		}
 	}
 </script>

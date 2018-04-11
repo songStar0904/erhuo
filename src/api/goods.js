@@ -49,7 +49,7 @@ export function add (data) {
 export function del (data) {
   return fetch({
     url: 'goods/delete',
-    method: 'delete',
+    method: 'post',
     data
   })
 }

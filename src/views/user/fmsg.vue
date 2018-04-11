@@ -2,16 +2,31 @@
 	<div style="overflow:hidden;">
 		<Input v-model="content" type="textarea" :rows="6" placeholder="欢迎提出任何疑问或建议"></Input>
 		<Button type="success" @click="add_fmsg" style="width:150px; margin-top:30px; float:right; ">提  交</Button>
+
 	</div>
 </template>
 <script>
 	export default {
 		data () {
 			return {
-				content: ''
+				content: '',
+				fmsg: []
 			}
 		},
+		mounted () {
+			this.get_fmsg();
+		},
 		methods: {
+			get_fmsg () {
+				this.$fetch.msg.get_fmsg()
+				.then(res => {
+					if (res.code === 200) {
+						this.fmsg = res.data;
+					} else {
+						this.$Message.error(res.msg);
+					}
+				})
+			},
 			add_fmsg () {
 				if (this.content !== '') {
 					this.$fetch.user.send_fmsg({
