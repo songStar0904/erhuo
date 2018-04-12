@@ -1,6 +1,9 @@
 a{
 	color: #495060!important;
 }
+.ivu-page-item-active:hover a, .ivu-page-item-active a{
+	color: #fff!important;
+}
 .notice-content a, .ivu-notice-notice a{
     color: #19be6b !important;
 }
@@ -71,6 +74,9 @@ a{
 }
 .mt10{
 	margin-top: 10px;
+}
+.mt20{
+	margin-top: 20px;
 }
 .mt15{
 	margin-top: 15px;

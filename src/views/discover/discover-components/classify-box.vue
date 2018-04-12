@@ -2,7 +2,7 @@
 	<Card :dis-hover="true" :padding="0">
 		<Row type="flex" justify="space-between" class="code-row-bg">
 	        <Col span="18">
-	        	<Menu mode="horizontal" theme="light" :active-name="0" @on-select="changeMeau">
+	        	<Menu mode="horizontal" theme="light" :active-name="cid" @on-select="changeMeau">
 					<MenuItem :name="0">
 			        	全部
 			        </MenuItem>
@@ -27,6 +27,16 @@
 				cid: 0
 			}
 		},
+		watch: {
+			classify (val) {
+				if (val) {
+					// 等获取到classify(导航渲染完成) 再赋值cid
+					setTimeout(()=> {
+						this.cid = Number(this.$route.query.cid) ? Number(this.$route.query.cid) : 0;
+					}, 0)
+				}
+			}
+		},
 		computed: {
 			classify () {
 				return this.$store.state.app.classify;
@@ -34,23 +44,11 @@
 		},
 		methods: {
 			click_search () {
-				this.$router.push({
-					name: 'discover',
-					query: {
-						search: this.search,
-						cid: this.cid
-					}
-				})
+				this.$emit('changeMeau', this.cid, this.search, 1);
 			},
 			changeMeau (name) {
 				this.cid = name;
-				this.$router.push({
-					name: 'discover',
-					query: {
-						search: this.search,
-						cid: this.cid
-					}
-				})
+				this.$emit('changeMeau', this.cid, this.search, 1);
 			}
 		}
 	}

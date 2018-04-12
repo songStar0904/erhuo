@@ -8,7 +8,7 @@
 		<div slot="leftMeau" style="text-align:center;" v-else>发表动态,请先登录</div>
 		<div slot="rightMeau" style="padding-top:30px; height: 100%;" v-infinite-scroll="loadMore" :infinite-scroll-disabled="busy" :infinite-scroll-distance="10">
 			<input-box @submit="submit" :content="content" class="mb20" :rows="4" :placeholder="'有什么想和大家分享的？'"></input-box>
-			<Menu mode="horizontal" :active-name="type" @on-select="changeMeau">
+			<Menu mode="horizontal" :active-name="type" @on-select="changeMeau" style="margin-bottom:20px;">
 		        <MenuItem :name="0">
 		            全部
 		        </MenuItem>
@@ -25,16 +25,18 @@
 			<transition-group name="slide-fade">
 			    <dynamic-item :dynamic="item" v-for="(item, index) in data" :key="index" :index="index" @delItem="delItem"></dynamic-item>
 			</transition-group>
-			<div v-if="noMore">
-    			<Spin>
-	                <div>没有更多了</div>
-	            </Spin>
-    		</div>
-    		<div v-else>
-    			<Spin>
-	                <Icon type="load-c" size=18 class="demo-spin-icon-load"></Icon>
-	                <div>Loading</div>
-	            </Spin>
+			<div class="mt30">
+				<div v-if="noMore">
+	    			<Spin>
+		                <div>已加载完成</div>
+		            </Spin>
+	    		</div>
+	    		<div v-else>
+	    			<Spin>
+		                <Icon type="load-c" size=18 class="demo-spin-icon-load"></Icon>
+		                <div>Loading</div>
+		            </Spin>
+	    		</div>
     		</div>
 		</div>
 	</layout>
