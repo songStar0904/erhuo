@@ -8,11 +8,17 @@
 	top: 139px;
 	left: 5px;
 }
+.goods_item:hover{
+	transform: translateY(-6px);
+}
 </style>
 <template>
 	<router-link :to="{ name: 'goods', params: { gid: data.goods_id }}" target="_blank">
-		<Card :dis-hover="true" :padding="0" class="mb20">
-			<Tag color="red" v-if="data.goods_spread === 1" class="tag">精品</Tag>
+		<Card :dis-hover="hover" :padding="0" class="mb20 goods_item">
+			<div class="tag">
+				<Tag color="red" v-if="data.goods_spread === 1">精品</Tag>
+				<Tag color="gray" v-if="data.goods_status === 3">已出</Tag>
+			</div>
 			<img :src="data.goods_icon[0].url" alt="" class="goods_icon">
 			<div class="p8">
 				<div class="overflow">
@@ -48,7 +54,9 @@ import util from '../../libs/util.js';
 			}
 		},
 		data () {
-			return {}
+			return {
+				hover: true
+			}
 		},
 		methods: {
 		}
