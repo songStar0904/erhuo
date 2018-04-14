@@ -45,14 +45,8 @@
     </router-link>
 </template>
 <script>
-import util from '../../libs/util.js';
 	export default {
 		props: ['data'],
-		filters: {
-			filterDate (val) {
-				return util.formatDateByNow(val);
-			}
-		},
 		data () {
 			return {
 				hover: true

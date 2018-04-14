@@ -141,11 +141,6 @@ export default {
             gettingIdentifyCodeBtnContent: '获取验证码' // “获取验证码”按钮的文字
         };
     },
-    filters: {
-        formatPhone (val) {
-            return util.formatPhone(val);
-        }
-    },
     methods: {
         showEditPassword () {
             this.editPasswordModal = true;

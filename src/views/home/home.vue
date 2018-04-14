@@ -55,9 +55,14 @@ import {searchBox} from '../main-components';
     	mounted () {
     		this.getData();
     	},
+    	watch: {
+    		busy (val) {
+    			console.log(val, this.page);
+    		}
+    	},
         methods: {
         	getData () {
-        		console.log('asd');
+        		console.log(this.page);
         		this.busy = true;
 				this.$fetch.goods.get({
 					num: 12,

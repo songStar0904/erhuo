@@ -8,7 +8,7 @@
 		<classify-box class="mb20" @changeMeau="changeMeau"></classify-box>
 		<Row type="flex" justify="space-between" class="mb20">
 			<Col span="12">
-			    <span class="btn mr20" :class="{'text-success': sort === 'new'}" @click="changeSort('new')">最新</span>
+			    <span class="btn mr20 ml10" :class="{'text-success': sort === 'new'}" @click="changeSort('new')">最新</span>
 			    <span class="btn" :class="{'text-success': sort === 'pop'}" @click="changeSort('pop')">最热</span>
 			</Col>
 			<div class="fr">
@@ -113,7 +113,6 @@
 			},
 			hasTag (tag) {
 				let tags = this.tag.join(',');
-				console.log(tags.indexOf(tag) === -1 ? 0 : 1)
 				return tags.indexOf(tag) === -1 ? 0 : 1;
 			},
 			changeRouter (cid, search, page, sort) {

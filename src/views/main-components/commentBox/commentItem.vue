@@ -114,7 +114,6 @@
 	</div>
 </template>
 <script>
-import util from '../../../libs/util.js';
 import {userName, reportModal} from '../../components';
 import replyBox from './replyBox.vue';
 	export default{
@@ -128,11 +127,6 @@ import replyBox from './replyBox.vue';
 			return {
 				report: false,
 				reply: false
-			}
-		},
-		filters: {
-			formatDate (val) {
-				return util.formatDateByNow(val);
 			}
 		},
 		methods: {

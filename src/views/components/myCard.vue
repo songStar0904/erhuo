@@ -19,16 +19,10 @@
 </template>
 <script>
     import userName from './userName.vue';
-    import util from '../../libs/util.js';
 	export default {
 		props: ['info', 'time'],
 		components: {
 			userName
-		},
-		filters: {
-			formatDate (val) {
-				return util.formatDateByNow(val);
-			}
 		}
 	}
 </script>

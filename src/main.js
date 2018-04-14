@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import Routers from './router/router';
 import store from './store';
 import util from './libs/util';
+import vfilter from './libs/filter.js';
 import App from './main.vue';
 import './theme/index.less';
 // 引入api
@@ -16,7 +17,10 @@ Vue.use(infiniteScroll)
 Vue.use(VueRouter);
 Vue.use(iView);
 
-
+// 全局filter
+for (let key in vfilter) {
+    Vue.filter(key, vfilter[key])
+}
 // 路由配置
 const RouterConfig = {
     mode: 'history',

@@ -37,7 +37,6 @@
 </template>
 <script>
     import util from '../../../libs/util.js';
-    import {goodsName, myCard} from '../../components';
 	export default{
 		components: {
 			goodsName,
@@ -47,11 +46,6 @@
 		computed: {
 			status () {
 				return this.$route.query.status;
-			}
-		},
-		filters: {
-			formatDate (val) {
-				return util.formatDateByNow(val);
 			}
 		},
 		methods: {

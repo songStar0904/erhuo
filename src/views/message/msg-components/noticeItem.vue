@@ -12,15 +12,9 @@
 </template>
 <script>
     import {userName} from '../../components';
-    import util from '../../../libs/util.js';
-	export default {
+   	export default {
 		components: {
 			userName
-		},
-		filters: {
-			formatDate (val) {
-				return util.formatDateByNow(val);
-			}
 		},
 		props: ['notice']
 	}
