@@ -8,11 +8,13 @@
 	<div class="box">
 		<Row :gutter="40">
 	        <Col span="7">
-	        <user-info :info="info" v-if="info">
-	        	<div slot="userInfo">
-	        		<slot name="leftInfo"></slot>
-	        	</div>
-	        </user-info>
+	        <Card :dis-hover="true" class="mb30">
+		        <user-info :info="info" v-if="info">
+		        	<div slot="userInfo">
+		        		<slot name="leftInfo"></slot>
+		        	</div>
+		        </user-info>
+		    </Card>
 			<Card :dis-hover="true">
 	        	<slot name="leftMeau"></slot>
 			</Card>
@@ -30,7 +32,7 @@
     </div>
 </template>
 <script>
-import {userInfo} from '../main-components';
+import {userInfo} from '../components';
 	export default {
         props: ['info'],
 		components: {

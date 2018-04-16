@@ -1,5 +1,5 @@
 <template>
-	<Card :dis-hover="true" style="padding:15px; text-align: center; margin-bottom:30px;">
+	<div style="text-align: center;">
     	<Upload
                 ref="upload"
                 :show-upload-list="false"
@@ -19,11 +19,11 @@
     	<Avatar :src="info.user_icon" class="large_icon" v-else/>
     	<user-name :uid="info.user_id"><h3 slot="user" class="text-success user_name">{{info.user_name}}</h3></user-name>
     	<slot name="userInfo">slot出错啦</slot>
-	</Card>
+	</div>
 </template>
 <script>
 import util from '../../libs/util.js';
-import {userName} from '../components';
+import userName from './userName.vue';
 	export default {
 		props: ['info'],
         components: {

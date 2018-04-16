@@ -13,7 +13,7 @@ Vue.use(api)
 // 无限滚动
 import infiniteScroll from 'vue-infinite-scroll'
 Vue.use(infiniteScroll)
-
+Vue.use(util)
 Vue.use(VueRouter);
 Vue.use(iView);
 

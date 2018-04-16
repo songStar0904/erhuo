@@ -11,7 +11,7 @@
 				<user-name :uid="info.id">
 					<span slot="user">{{info.name}}</span>
 				</user-name> - 
-				<span class="text-sub">{{time | formatDate}}</span>
+				<span class="text-sub">{{time | filterDate}}</span>
 				<slot name="content" class="mt10"></slot>
 			</Col>
 		</Row>

@@ -4,9 +4,9 @@
 	}
 </style>
 <template>
-	<Row :gutter="16">
-        <Col span="12" class="p10"><Button :type="is_fans ? 'warning' : 'success'" @click="follow" :size="size" long>{{is_fans ? '取消关注': '关注 TA'}}</Button></Col>
-        <Col span="12" class="p10"><Button type="success" :size="size" long>私信 TA</Button></Col>
+	<Row>
+        <Col span="12" class="p10"><Button :type="is_fans ? 'warning' : 'success'" @click="follow" :size="size">{{is_fans ? '取消关注': '关注 TA'}}</Button></Col>
+        <Col span="12" class="p10"><Button type="success" :size="size">私信 TA</Button></Col>
     </Row>
 </template>
 <script>

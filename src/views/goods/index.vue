@@ -5,12 +5,9 @@
 				<goods-box :data="data" @updateFansNum="updateFansNum"></goods-box>
 			</Col>
 			<Col span="7">
-				<user-info :info="info" v-if="show">
-					<div slot="userInfo">
-						<p style="color: #999;" class="mb10"><span>{{info.user_sid}}</span> | <span>{{info.user_sex}}</span></p>
-						<fol-send :is_fans="info.user_is_fans" :uid="info.user_id" size="small" @updateFans="updateFans"></fol-send>
-					</div>
-				</user-info>
+				<Card :dis-hover="true" class="mb30">
+					<user-card :info="info" :loading="false"></user-card>
+				</Card>
 				<dash-board :view="data.goods_view" :fans_num="data.fans_num" :msg_num="10" class="mb30"></dash-board>
 				<user-sell :uid="info.user_id" v-if="show"></user-sell>
 			</Col>
@@ -18,14 +15,14 @@
 	</div>
 </template>
 <script>
-    import {userInfo, folSend} from '../main-components';
+    import {userCard, folSend} from '../components';
     import goodsBox from './goods-components/goodsBox.vue';
     import dashBoard from './goods-components/dashBoard.vue';
     import userSell from './goods-components/userSell.vue';
     import util from '../../libs/util.js';
 	export default{
 		components: {
-			userInfo,
+			userCard,
 			folSend,
 			goodsBox,
 			dashBoard,

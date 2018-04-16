@@ -5,6 +5,9 @@ import inputBox from './inputBox.vue'
 import myCard from './myCard.vue'
 import reportModal from './reportModal.vue'
 import delModal from './delModal.vue'
+import userInfo from './userInfo.vue'
+import folSend from './folSend.vue'
+import userCard from './userCard.vue'
 
 
 export {
@@ -14,5 +17,8 @@ export {
 	inputBox,
 	myCard,
 	reportModal,
-	delModal
+	delModal,
+	userInfo,
+	folSend,
+	userCard
 }

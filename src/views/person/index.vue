@@ -24,7 +24,7 @@
 import util from '../../libs/util.js';
 import layout from '../layout/layout.vue';
 import {myMeau} from '../components';
-import {folSend} from '../main-components';
+import {folSend} from '../components';
 	export default{
 		components: {
 			layout,

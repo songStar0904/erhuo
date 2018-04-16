@@ -37,7 +37,11 @@
 					<span class="mr10"><Icon type="chatbox-working"></Icon> {{data.msg_num}}</span>
 				</div>
 				<div style="border-top:1px solid #e9eaec; padding-top:8px;" class="clearfix">
-				        <router-link :to="{ name: 'sell', params: { uid: data.user.id }}" span="16" class="btn fl"><Avatar :src="data.user.icon" size="small" /> <span >{{data.user.name}}</span></router-link>
+				        <user-name :uid="data.user.id" span="16" class="btn fl">
+				        	<div slot="user">
+				        		<Avatar :src="data.user.icon" size="small" /> <span >{{data.user.name}}</span>
+				        	</div>
+				        </user-name>
 				        <p class="fr">{{data.goods_time | filterDate}}</p>
 				</div>
 			</div>
@@ -45,7 +49,11 @@
     </router-link>
 </template>
 <script>
+import {userName} from '../components';
 	export default {
+		components: {
+			userName
+		},
 		props: ['data'],
 		data () {
 			return {
