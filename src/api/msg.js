@@ -60,3 +60,10 @@ export function get_fmsg (params) {
     params
   })
 }
+export function del_fmsg (data) {
+  return fetch({
+    url: 'message/del_fmsg',
+    method: 'post',
+    data
+  })
+}

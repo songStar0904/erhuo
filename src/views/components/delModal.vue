@@ -31,6 +31,9 @@
 			} else if (this.type === 1){
 				this.title = '删除二货';
 				this.content = '确定要删除此二货吗？';
+			} else if (this.type === 2) {
+				this.title = '删除反馈信息';
+				this.content = '确定要删除此反馈信息吗？';
 			}
 		},
 		methods: {
@@ -46,10 +49,25 @@
 					this.del_dynamic();
 				} else if (this.type === 1) {
 					this.del_goods();
+				} else if (this.type === 2) {
+					this.del_fmsg();
 				}
 			},
 			del_goods () {
 				this.$emit('delGoods');
+			},
+			del_fmsg () {
+				this.$fetch.msg.del_fmsg({
+					fmsg_id: this.id
+				}).then(res => {
+					if (res.code === 200) {
+						this.modal = false;
+						this.$emit('delFmsg')
+						this.$Message.info(res.msg);
+					} else {
+						this.$Message.error(res.msg);
+					}
+				})
 			},
 			del_dynamic () {
 				this.$fetch.dynamic.del({
