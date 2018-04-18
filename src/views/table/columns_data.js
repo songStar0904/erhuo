@@ -2,7 +2,6 @@ import util from '../../libs/util';
 export const followersColumns = [
     {
         title: '昵称',
-        align: 'center',
         render: (h, params) => {
             return h('div', [
                 h('Avatar', {

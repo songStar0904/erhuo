@@ -3,7 +3,7 @@ const vfilter = {
 	formatPhone (val) {
         return util.formatPhone(val);
     },
-    filterDate (val) {
+    formatDate (val) {
 		return util.formatDateByNow(val);
 	},
 	formatSid (val) {

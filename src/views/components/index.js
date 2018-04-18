@@ -5,6 +5,7 @@ import inputBox from './inputBox.vue'
 import myCard from './myCard.vue'
 import reportModal from './reportModal.vue'
 import delModal from './delModal.vue'
+import shareModal from './shareModal.vue'
 import userInfo from './userInfo.vue'
 import folSend from './folSend.vue'
 import userCard from './userCard.vue'
@@ -18,6 +19,7 @@ export {
 	myCard,
 	reportModal,
 	delModal,
+	shareModal,
 	userInfo,
 	folSend,
 	userCard

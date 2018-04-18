@@ -7,19 +7,23 @@
 	position: absolute;
 	top: 139px;
 	left: 5px;
+	z-index: 10;
 }
 .goods_item:hover{
-	transform: translateY(-6px);
+	/*transform: translateY(-6px);*/
+}
+.goods_item .goods_icon:hover{
+	opacity: 0.8;
 }
 </style>
 <template>
-	<router-link :to="{ name: 'goods', params: { gid: data.goods_id }}" target="_blank">
+	<router-link :to="{ name: 'goods', params: { gid: data.goods_id }}" target="_blank" >
 		<Card :dis-hover="hover" :padding="0" class="mb20 goods_item">
 			<div class="tag">
 				<Tag color="red" v-if="data.goods_spread === 1">精品</Tag>
 				<Tag color="gray" v-if="data.goods_status === 3">已出</Tag>
 			</div>
-			<img :src="data.goods_icon[0].url" alt="" class="goods_icon">
+			<img :src="data.goods_icon[0].url" :title="data.goods_name" class="goods_icon">
 			<div class="p8">
 				<div class="overflow">
 					<!-- <Tooltip placement="top" :content="`${data.goods_name} - ${data.gclassify.name}`"> -->
@@ -42,7 +46,7 @@
 				        		<Avatar :src="data.user.icon" size="small" /> <span >{{data.user.name}}</span>
 				        	</div>
 				        </user-name>
-				        <p class="fr">{{data.goods_time | filterDate}}</p>
+				        <p class="fr">{{data.goods_time | formatDate}}</p>
 				</div>
 			</div>
 		</Card>

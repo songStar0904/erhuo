@@ -1,55 +1,59 @@
 <template>
-	<layout :info="user_info">
-		<div slot="leftInfo" style="font-size:14px;" v-if="user_info">
-				<p>{{user_info.user_sex}}</p>
-	        	<p>{{user_info.user_sid}}</p>
-	        	<span class="text-success btn">关注 ({{user_info.ship.fans_num}})</span>  &nbsp; <span class="text-success btn">粉丝 ({{user_info.ship.followers_num}})</span>
-		</div>
-		<div slot="leftMeau" style="text-align:center;" v-else>发表动态,请先登录</div>
-		<div slot="rightMeau" style="padding-top:30px; height: 100%;" v-infinite-scroll="loadMore" :infinite-scroll-disabled="busy" :infinite-scroll-distance="10">
-			<input-box @submit="submit" :content="content" class="mb20" :rows="4" :placeholder="'有什么想和大家分享的？'"></input-box>
-			<Menu mode="horizontal" :active-name="type" @on-select="changeMeau" style="margin-bottom:20px;">
-		        <MenuItem :name="0">
-		            全部
-		        </MenuItem>
-		        <MenuItem :name="1">
-		            文字
-		        </MenuItem>
-		        <MenuItem :name="2">
-		            二货
-		        </MenuItem>
-		        <MenuItem :name="3">
-		            关注
-		        </MenuItem>
-		    </Menu>
-			<transition-group name="slide-fade">
-			    <dynamic-item :dynamic="item" v-for="(item, index) in data" :key="index" :index="index" @delItem="delItem"></dynamic-item>
-			</transition-group>
-			<div class="mt30">
-				<div v-if="noMore">
-	    			<Spin>
-		                <div>已加载完成</div>
-		            </Spin>
+	<div>
+		<layout :info="user_info">
+			<div slot="leftInfo" style="font-size:14px;" v-if="user_info">
+					<p>{{user_info.user_sex}}</p>
+		        	<p>{{user_info.user_sid}}</p>
+		        	<span class="text-success btn">关注 ({{user_info.ship.fans_num}})</span>  &nbsp; <span class="text-success btn">粉丝 ({{user_info.ship.followers_num}})</span>
+			</div>
+			<div slot="leftMeau" style="text-align:center;" v-else>发表动态,请先登录</div>
+			<div slot="rightMeau" style="padding-top:30px; height: 100%;" v-infinite-scroll="loadMore" :infinite-scroll-disabled="busy" :infinite-scroll-distance="10">
+				<input-box @submit="submit" :content="content" class="mb20" :rows="4" :placeholder="'有什么想和大家分享的？'"></input-box>
+				<Menu mode="horizontal" :active-name="type" @on-select="changeMeau" style="margin-bottom:20px;">
+			        <MenuItem :name="0">
+			            全部
+			        </MenuItem>
+			        <MenuItem :name="1">
+			            文字
+			        </MenuItem>
+			        <MenuItem :name="2">
+			            二货
+			        </MenuItem>
+			        <MenuItem :name="3">
+			            关注
+			        </MenuItem>
+			    </Menu>
+				<transition-group name="slide-fade">
+				    <dynamic-item :dynamic="item" v-for="(item, index) in data" :key="index" :index="index" @delItem="delItem" @share="share"></dynamic-item>
+				</transition-group>
+				<div class="mt30">
+					<div v-if="noMore">
+		    			<Spin>
+			                <div>已加载完成</div>
+			            </Spin>
+		    		</div>
+		    		<div v-else>
+		    			<Spin>
+			                <Icon type="load-c" size=18 class="demo-spin-icon-load"></Icon>
+			                <div>Loading</div>
+			            </Spin>
+		    		</div>
 	    		</div>
-	    		<div v-else>
-	    			<Spin>
-		                <Icon type="load-c" size=18 class="demo-spin-icon-load"></Icon>
-		                <div>Loading</div>
-		            </Spin>
-	    		</div>
-    		</div>
-		</div>
-	</layout>
+			</div>
+		</layout>
+		<share-modal :placeholder="shareContent" :type="1" :id="dynamic_id" ref="share" @shareDynamic="shareDynamic"></share-modal>
+	</div>
 </template>
 <script>
     import layout from '../layout/layout.vue';
-    import {inputBox} from '../components';
+    import {inputBox, shareModal} from '../components';
     import dynamicItem from './dynamic-components/dynamicItem.vue';
 	export default{
 		components: {
 			layout,
 			inputBox,
-			dynamicItem
+			dynamicItem,
+			shareModal
 		},
 		data () {
 			return {
@@ -59,7 +63,9 @@
 				num: 5,
 				type: 0,
 				noMore: false,
-				busy: false
+				busy: false,
+				shareContent:'',
+				dynamic_id: null
 			}
 		},
 		mounted () {
@@ -112,6 +118,18 @@
 			},
 			changeMeau (val) {
 				this.type = val;
+			},
+			share (index) {
+				let dynamic = this.data[index];
+				this.dynamic_id = dynamic.dynamic_id;
+				this.shareContent = `@${dynamic.user.name}: ${dynamic.dynamic_content}`;
+				console.log(this.$refs.share)
+				this.$refs.share.openModal();
+			},
+			shareDynamic () {
+				this.page = 1;
+				this.data = [];
+				this.getData();
 			}
 		},
 		computed: {

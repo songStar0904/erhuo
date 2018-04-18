@@ -31,3 +31,11 @@ export function del (data) {
     data
   })
 }
+// 分享
+export function share (data) {
+  return fetch({
+    url: 'dynamic/share',
+    method: 'post',
+    data
+  })
+}

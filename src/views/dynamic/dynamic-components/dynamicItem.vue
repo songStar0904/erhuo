@@ -27,11 +27,14 @@
 			</div>
 			<div slot="content">
 				<p class="ptb5">{{dynamic.dynamic_content}}</p>
-				<div v-if="dynamic.dynamic_type === 2">
+				<div v-if="dynamic.dynamic_type === 2 && dynamic.goods">
 					<goods-uitem :data="dynamic.goods" :isOwn="uid === dynamic.goods.user.id"></goods-uitem>
 				</div>
+				<div v-if="dynamic.dynamic_lid !== 0">
+					<dynamic-repost :dynamic="dynamic.children"></dynamic-repost>
+				</div>
 				<div class="btn-box text-sub">
-					<div class="btn">
+					<div class="btn" @click="share">
 						<Icon type="ios-undo-outline" size="16" class="mr5"></Icon><span v-if="dynamic.dynamic_share > 0">{{dynamic.dynamic_share}}</span><span v-else>分享</span>
 					</div>
 					<div class="btn" @click="openComment" :class="{'text-success': isOpen}">
@@ -54,6 +57,7 @@
     import {myCard, reportModal, delModal} from '../../components/'
     import commentBox from '../../main-components/commentBox';
     import goodsUitem from '../../main-components/goods-uitem.vue';
+    import dynamicRepost from './dynamicRepost.vue';
 	export default {
 		props: ['dynamic', 'index'],
 		components: {
@@ -61,12 +65,14 @@
 			commentBox,
 			goodsUitem,
 			reportModal,
-			delModal
+			delModal,
+			dynamicRepost
 		},
 		data () {
 			return {
 				isOpen: false,
-				comment: []
+				comment: [],
+				shareContent: ''
 			}
 		},
 		methods: {
@@ -91,6 +97,14 @@
 						this.$Message.error(res.msg);
 					}
 				})
+			},
+			share () {
+				if (this.uid) {
+					this.$emit('share', this.index);
+				} else {
+					this.$Message.error('请先登录');
+				}
+				
 			},
 			openComment () {
 				if (!this.isOpen) {

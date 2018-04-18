@@ -1,16 +1,19 @@
 <template>
-	<Card :dis-hover="true" >
+	<Card :dis-hover="true" class="side_block">
 		<p slot="title">{{title}}</p>
-		<Row v-for="(item, index) in data" :key="index" style="margin: 5px 0" class="overflow">
-			<Col span="18">
-			<user-name :uid="item.user_id">
-				<div slot="user">
-					<Avatar :src="item.user_icon" /> {{item.user_name}}
-				</div>
-			</user-name>
-			</Col>
-			<Col span="4" style="line-height: 32px;">( {{item[order]}} )</Col>
-		</Row>
+		<div class="content">
+			<Spin size="large" fix v-if="loading"></Spin>
+			<Row v-for="(item, index) in data" :key="index" style="margin: 5px 0" class="overflow">
+				<Col span="18">
+				<user-name :uid="item.user_id">
+					<div slot="user">
+						<Avatar :src="item.user_icon" /> {{item.user_name}}
+					</div>
+				</user-name>
+				</Col>
+				<Col span="4" style="line-height: 32px;">( {{item[order]}} )</Col>
+			</Row>
+		</div>	
 	</Card>
 </template>
 <script>
@@ -23,7 +26,9 @@ import {userName} from '../../components';
 		props: ['title', 'order'],
 		data () {
 			return {
-				data: []
+				data: [],
+				loading: true,
+				num: 8
 			}
 		},
 		mounted () {
@@ -31,10 +36,12 @@ import {userName} from '../../components';
 		},
 		methods: {
 			getData () {
+				this.loading = true;
 				this.$fetch.user.get({
 					order: this.order,
-					num: 8
+					num: this.num
 				}).then(res => {
+					this.loading = false;
 					if (res.code === 200) {
 						res.data.forEach(item => {
 							item = util.formatUserData(item);

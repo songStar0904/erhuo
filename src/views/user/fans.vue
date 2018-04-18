@@ -1,7 +1,6 @@
 <template>
 	<div>
-		<my-table :data="data" :columns="followersColumns" :loading="loading" @setPage="setPage" :total="total" pageSize="small"></my-table>
-		
+		<my-table :data="data" :columns="followersColumns" :loading="loading" @setPage="setPage" :total="total" :num="num" :page="page" pageSize="small"></my-table>
 	</div>
 </template>
 <script>
@@ -47,6 +46,7 @@ const seeBtn = (vm, h, params) => {
 			    followersColumns,
 			    loading: false,
 			    page: 1,
+			    num: 10,
 			    total: 0
 			}
 		},
@@ -76,6 +76,9 @@ const seeBtn = (vm, h, params) => {
 		watch: {
 			$route () {
 				this.get_followers();
+			},
+			page () {
+				this.get_followers();
 			}
 		},
 		methods: {
@@ -104,7 +107,8 @@ const seeBtn = (vm, h, params) => {
 				this.$fetch.user.get_followers({
 					user_id: this.user_id,
 					type: this.type,
-					page: this.page
+					page: this.page,
+					num: this.num
 				}).then(res => {
 					this.loading = false;
 					if (res.code === 200) {

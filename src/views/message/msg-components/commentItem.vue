@@ -37,6 +37,7 @@
 </template>
 <script>
     import util from '../../../libs/util.js';
+    import {goodsName, myCard} from '../../components';
 	export default{
 		components: {
 			goodsName,
