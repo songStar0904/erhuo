@@ -70,7 +70,7 @@ import {folSend} from '../components';
 			get_user () {
 				this.$fetch.user.get_one({
 					uid: this.uid,
-					user_id: this.user_id
+					user: this.user_id
 				}).then(res => {
 					if (res.code === 200) {
 						this.user_info = util.formatUserData(res.data);

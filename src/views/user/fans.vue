@@ -13,7 +13,8 @@ const followBtn = (vm, h, params) => {
                 size: 'small'
             },
             style: {
-                marginRight: '2px'
+                marginRight: '3px',
+                width: '64px'
             },
             on: {
                 click: () => {

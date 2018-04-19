@@ -47,7 +47,6 @@ export const followersColumns = [
     },
     {
         title: '操作',
-        width: 160,
         align: 'center',
         handle: ['follow', 'see']
     }

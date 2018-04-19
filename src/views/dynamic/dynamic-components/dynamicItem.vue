@@ -26,7 +26,17 @@
 			    </Dropdown>
 			</div>
 			<div slot="content">
-				<p class="ptb5">{{dynamic.dynamic_content}}</p>
+				<div class="ptb8">
+					<span v-if="dynamic.dynamic_lid === 0">
+						{{dynamic.dynamic_content}}
+					</span>
+					<span  v-for="(item, index) in replaceUser(dynamic.dynamic_content)" v-else>
+						<user-name :uid="item.user" v-if="item.user">
+							<span slot="user" class="text-success"> @{{item.user}}: </span>
+						</user-name>
+						{{item.content}}
+					</span>
+				</div>
 				<div v-if="dynamic.dynamic_type === 2 && dynamic.goods">
 					<goods-uitem :data="dynamic.goods" :isOwn="uid === dynamic.goods.user.id"></goods-uitem>
 				</div>
@@ -54,10 +64,11 @@
 	</div>
 </template>
 <script>
-    import {myCard, reportModal, delModal} from '../../components/'
+    import {myCard, reportModal, delModal, userName} from '../../components/'
     import commentBox from '../../main-components/commentBox';
     import goodsUitem from '../../main-components/goods-uitem.vue';
     import dynamicRepost from './dynamicRepost.vue';
+    import util from '../../../libs/util.js';
 	export default {
 		props: ['dynamic', 'index'],
 		components: {
@@ -66,7 +77,8 @@
 			goodsUitem,
 			reportModal,
 			delModal,
-			dynamicRepost
+			dynamicRepost,
+			userName
 		},
 		data () {
 			return {
@@ -126,6 +138,9 @@
 			},
 			delDynamic () {
 				this.$emit('delItem', this.index);
+			},
+			replaceUser (data) {
+				return util.replaceUser(data);
 			}
 		},
 		computed: {

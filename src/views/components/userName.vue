@@ -38,11 +38,12 @@
 				this.loading = true;
 				this.show = true;
 				this.$fetch.user.get_one({
-					user_id: this.uid
+					user: this.uid
 				}).then(res => {
 					this.loading = false;
 					if (res.code === 200) {
 						this.info = res.data;
+						this.uid = res.data.user_id;
 					}
 				})
 			}

@@ -5,12 +5,13 @@
 			<Button type="success" @click="add_fmsg" style="width:150px;">提  交</Button>
 		</Row>
 		<div>
-			<Tabs value="fmsg">
-		        <TabPane label="反馈记录" name="fmsg">
-		        	<Spin size="large" fix v-if="loading"></Spin>
-			        <fmsg-item v-for="(item, index) in fmsg" :item="item" :key="index" :index="index" @openDelModal="openDelModal"></fmsg-item>
-		        </TabPane>
-		    </Tabs>
+			<Menu mode="horizontal" active-name="fmsg">
+		        <MenuItem name="fmsg">
+		            反馈记录
+		        </MenuItem>
+		     </Menu>
+			<Spin size="large" fix v-if="loading"></Spin>
+			<fmsg-item v-for="(item, index) in fmsg" :item="item" :key="index" :index="index" @openDelModal="openDelModal"></fmsg-item>
 		</div>
 		<del-modal :type="2" :id="id" ref="del" @delFmsg="delFmsg"></del-modal>
 	</div>

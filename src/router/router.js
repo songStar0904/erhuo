@@ -23,25 +23,34 @@ const routers = [{
     name: 'forget',
     component: (resolve) => require(['../views/user/forget.vue'], resolve)
 }, {
-    path: '/user',
+    path: '/user/info',
     name: 'user',
     access: 1,
+    meta: {
+        title: '用户中心'
+    },
     component: (resolve) => require(['../views/user/index.vue'], resolve),
     children: [{
         path: '/user/fmsg',
         name: 'fmsg',
         access: 1,
+        meta: {
+            title: '意见反馈'
+        },
         component: (resolve) => require(['../views/user/fmsg.vue'], resolve)
     }, {
         path: '/user/info',
         name: 'info',
         access: 1,
+        meta: {
+            title: '个人设置'
+        },
         component: (resolve) => require(['../views/user/info.vue'], resolve)
     }, {
         path: '/user/sell',
         name: 'usell',
         meta: {
-            title: 'sell',
+            title: '发布的二货',
             type: 'sell'
         },
         access: 1,
@@ -50,7 +59,7 @@ const routers = [{
         path: '/user/collection',
         name: 'ucollection',
         meta: {
-            title: 'collection',
+            title: '收藏的二货',
             type: 'collection'
         },
         access: 1,
@@ -60,7 +69,7 @@ const routers = [{
         name: 'ufans',
         access: 1,
         meta: {
-            title: 'fans',
+            title: '我的粉丝',
             type: 'fans'
         },
         component: (resolve) => require(['../views/user/fans.vue'], resolve),
@@ -69,20 +78,23 @@ const routers = [{
         name: 'ufollowers',
         access: 1,
         meta: {
-            title: 'followers',
+            title: '我的关注',
             type: 'followers'
         },
         component: (resolve) => require(['../views/user/fans.vue'], resolve),
     }]
 }, {
-    path: '/person/:uid',
+    path: '/person/:uid/sell',
     name: 'person',
+    meta: {
+        title: '用户中心'
+    },
     component: (resolve) => require(['../views/person/index.vue'], resolve),
     children: [{
         path: '/person/:uid/sell',
         name: 'sell',
         meta: {
-            title: 'sell',
+            title: '发布的二货',
             type: 'sell'
         },
         component: (resolve) => require(['../views/user/sell.vue'], resolve)
@@ -90,7 +102,7 @@ const routers = [{
         path: '/person/:uid/collection',
         name: 'collection',
         meta: {
-            title: 'collection',
+            title: '收藏的二货',
             type: 'collection'
         },
         component: (resolve) => require(['../views/user/sell.vue'], resolve),
@@ -98,14 +110,14 @@ const routers = [{
         path: '/person/:uid/fans',
         name: 'fans',
         meta: {
-            title: 'fans',
+            title: 'TA 的粉丝',
             type: 'fans'
         },
         component: (resolve) => require(['../views/user/fans.vue'], resolve)
     }, {
         path: '/person/:uid/followers',
         meta: {
-            title: 'followers',
+            title: 'TA 的关注',
             type: 'followers'
         },
         name: 'followers',
@@ -147,7 +159,9 @@ const routers = [{
 }, {
     path: '/dynamic',
     name: 'dynamic',
-    title: '二货 - 动态',
+    meta: {
+        title: '动态'
+    },
     component: (resolve) => require(['../views/dynamic/index.vue'], resolve)
 }, ];
 export default routers;

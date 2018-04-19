@@ -41,7 +41,7 @@
 		            </MenuItem>
 		        </MenuGroup>
 		    </Menu>
-		    <my-meau slot="rightMeau" :meau="meau" v-show="isShow" style="margin-bottom:20px;" @changeMeau="changeMeau" :active="active"></my-meau>
+		    <my-meau slot="rightMeau" :meau="meau" v-show="0" style="margin-bottom:20px;" @changeMeau="changeMeau" :active="active"></my-meau>
 	</layout>
 </template>
 <script>

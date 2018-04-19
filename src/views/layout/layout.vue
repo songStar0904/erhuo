@@ -21,22 +21,33 @@
 			<slot name="leftBottom"></slot>	
 	        </Col>
 	        <Col span="17">
-	            <Card :padding="30">
+	        <Card :dis-hover="true" class="mb20">
+	        	    <breadcrumb-nav></breadcrumb-nav>
+	            </Card>	
+	            <Card :padding="30" :dis-hover="true">
 	            	<div class="rightMeau">
 	                    <slot name="rightMeau"></slot>
 	                </div>
-			        <router-view style="marigin-top: -20px;"></router-view>
+	                <transition name="slide-fade">
+				        <router-view style="marigin-top: -20px;"></router-view>
+				    </transition>
 			    </Card>
 	        </Col>
 	    </Row>
     </div>
 </template>
 <script>
-import {userInfo} from '../components';
+import {userInfo, breadcrumbNav} from '../components';
 	export default {
         props: ['info'],
 		components: {
-            userInfo
+            userInfo,
+            breadcrumbNav
+        },
+        computed: {
+        	title () {
+        		return this.$route.meta.title;
+        	}
         }
 	}
 </script>

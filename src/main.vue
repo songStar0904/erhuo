@@ -16,6 +16,7 @@
 </template>
 <script>
 import {meauHeader} from './views/main-components';
+import util from './libs/util.js';
     export default {
         components: {
             meauHeader
@@ -23,8 +24,15 @@ import {meauHeader} from './views/main-components';
         created () {
             this.init()
         },
+        watch: {
+            '$route' (to) {
+                util.setCurrentPath(this, this.$route.name);
+                localStorage.currentPageName = to.name;
+            }
+        },
         methods: {
             init () {
+                util.setCurrentPath(this, this.$route.name);
                 this.$store.commit('getUser');
                 this.getClassify();
                 this.isLogin();

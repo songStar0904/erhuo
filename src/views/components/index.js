@@ -9,7 +9,7 @@ import shareModal from './shareModal.vue'
 import userInfo from './userInfo.vue'
 import folSend from './folSend.vue'
 import userCard from './userCard.vue'
-
+import breadcrumbNav from './breadcrumbNav.vue'
 
 export {
 	userName,
@@ -22,5 +22,6 @@ export {
 	shareModal,
 	userInfo,
 	folSend,
-	userCard
+	userCard,
+	breadcrumbNav
 }

@@ -209,5 +209,57 @@ util.setData = function (k, data) {
     }
     return newData;
 }
+// 过虑用户名
+util.replaceUser = function (data) {
+    let result = [];
+    let content = data.split('@')[0];
+    result.push({
+        content
+    });
+    data.replace(/@([\u4e00-\u9fa5\d\w_]+):(.[\u4e00-\u9fa5\d\w\s_]+)/g, function ($0, $1, $2) {
+        result.push({
+            user: $1,
+            content: $2
+        })
+    });
+    // console.log(content, result)
+    return result;  
+}
+util.indexOf = function (arr, flag) {
+    if (typeof arr === 'string') {
+        arr = arr.split('');
+    }
+    let result = [];
+    arr.forEach((itemm, index) => {
+        if (item === flag) {
+            result.push(item);
+        }
+    })
+    return result;
+}
+// 设置当前路径
+util.setCurrentPath = function (vm, name) {
+    let title = '';
+    let currentPathArr = [];
+    console.log(vm.$route.path);
+    let currentPath = vm.$route.path;
+    let reg = /\/(\d+)/g;
+    let ids = [];
+    while(reg.exec(currentPath)){
+        ids.push(RegExp.$1);
+    }
+    vm.$route.matched.forEach((item) => {
+        let currentPathObj = {
+            path: item.path.replace(/\/\:(\w+)/g, ($1) => {
+                return '/' + ids[0];
+            }),
+            name: item.name,
+            title: item.meta.title ? item.meta.title : ''
+        }
+        currentPathArr.push(currentPathObj);
+    });
+    vm.$store.commit('setCurrentPath', currentPathArr);
 
+    return currentPathArr;
+};
 export default util;
