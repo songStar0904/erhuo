@@ -241,7 +241,7 @@ util.indexOf = function (arr, flag) {
 util.setCurrentPath = function (vm, name) {
     let title = '';
     let currentPathArr = [];
-    console.log(vm.$route.path);
+    // console.log(vm.$route.path);
     let currentPath = vm.$route.path;
     let reg = /\/(\d+)/g;
     let ids = [];

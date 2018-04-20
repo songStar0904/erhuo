@@ -1,5 +1,5 @@
 <template>
-	<div style="height:183px;">
+	<div style="height:195px;">
 		<user-info :info="info" v-if="!loading">
 			<div slot="userInfo">
 				<p style="color: #999;" class="mb10"><span>{{info.user_sid | formatSid}}</span> | <span>{{info.user_sex | formatSex}}</span></p>

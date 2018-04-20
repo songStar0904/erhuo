@@ -7,7 +7,7 @@
 		        	<span class="text-success btn">关注 ({{user_info.ship.fans_num}})</span>  &nbsp; <span class="text-success btn">粉丝 ({{user_info.ship.followers_num}})</span>
 			</div>
 			<div slot="leftMeau" style="text-align:center;" v-else>发表动态,请先登录</div>
-			<div slot="rightMeau" style="padding-top:30px; height: 100%;" v-infinite-scroll="loadMore" :infinite-scroll-disabled="busy" :infinite-scroll-distance="10">
+			<div slot="rightMeau" style="padding:30px; height: 100%;" v-infinite-scroll="loadMore" :infinite-scroll-disabled="busy" :infinite-scroll-distance="10">
 				<input-box @submit="submit" :content="content" class="mb20" :rows="4" :placeholder="'有什么想和大家分享的？'"></input-box>
 				<Menu mode="horizontal" :active-name="type" @on-select="changeMeau" style="margin-bottom:20px;">
 			        <MenuItem :name="0">

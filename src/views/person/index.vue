@@ -17,7 +17,7 @@
 				<fol-send :is_fans="user_info.is_fans" :uid="user_info.user_id" size="default" @updateFans="updateFans"></fol-send>
 			</Card>
 		</div>
-		<my-meau slot="rightMeau" :meau="meau" style="margin-bottom:20px;" @changeMeau="changeMeau" :active="active"></my-meau>
+		<my-meau slot="rightMeau" :meau="meau" @changeMeau="changeMeau" :active="active"></my-meau>
 	</layout>
 </template>
 <script>

@@ -211,7 +211,7 @@ import util from '../../libs/util.js';
                             if (res.code === 200) {
                                 this.$Message.success('发布成功');
                                 this.$router.push({
-                                    name: 'user'
+                                    name: 'usell'
                                 });
                             } else {
                                 this.$Message.error(res.msg);
