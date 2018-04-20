@@ -59,12 +59,10 @@
 				<comment-box v-show="isOpen" :id="dynamic.dynamic_id" :lid="0" :rid="dynamic.user.id" type="dynamic" :data="this.comment"></comment-box>
 			</div>
 		</my-card>
-		<report-modal :type="3" :id="dynamic.dynamic_id" ref="report"></report-modal>
-		<del-modal :type="3" :id="dynamic.dynamic_id" ref="del" @delDynamic="delDynamic"></del-modal>
 	</div>
 </template>
 <script>
-    import {myCard, reportModal, delModal, userName} from '../../components/'
+    import {myCard, userName} from '../../components/'
     import commentBox from '../../main-components/commentBox';
     import goodsUitem from '../../main-components/goods-uitem.vue';
     import dynamicRepost from './dynamicRepost.vue';
@@ -75,8 +73,6 @@
 			myCard,
 			commentBox,
 			goodsUitem,
-			reportModal,
-			delModal,
 			dynamicRepost,
 			userName
 		},
@@ -90,9 +86,9 @@
 		methods: {
 			onClick (val) {
 				if (val == 0) {
-					this.$refs.report.openModal();
+					this.$emit('openModal', 'report', this.dynamic.dynamic_id, this.index);
 				} else if (val == 1) {
-					this.$refs.del.openModal();
+					this.$emit('openModal', 'del', this.dynamic.dynamic_id, this.index);
 				}
 			},
 			praise () {
@@ -135,9 +131,6 @@
 						this.$Message.error(res.msg);
 					}
 				})
-			},
-			delDynamic () {
-				this.$emit('delItem', this.index);
 			},
 			replaceUser (data) {
 				return util.replaceUser(data);

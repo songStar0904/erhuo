@@ -24,7 +24,7 @@
 			        </MenuItem>
 			    </Menu>
 				<transition-group name="slide-fade">
-				    <dynamic-item :dynamic="item" v-for="(item, index) in data" :key="index" :index="index" @delItem="delItem" @share="share"></dynamic-item>
+				    <dynamic-item :dynamic="item" v-for="(item, index) in data" :key="index" :index="index" @share="share" @openModal="openModal"></dynamic-item>
 				</transition-group>
 				<div class="mt30">
 					<div v-if="noMore">
@@ -41,19 +41,23 @@
 	    		</div>
 			</div>
 		</layout>
+		<report-modal :type="3" :id="dynamic_id" ref="report"></report-modal>
+		<del-modal :type="3" :id="dynamic_id" ref="del" @delDynamic="delDynamic"></del-modal>
 		<share-modal :placeholder="shareContent" :type="1" :id="dynamic_id" ref="share" @shareDynamic="shareDynamic"></share-modal>
 	</div>
 </template>
 <script>
     import layout from '../layout/layout.vue';
-    import {inputBox, shareModal} from '../components';
+    import {inputBox, shareModal, delModal, reportModal} from '../components';
     import dynamicItem from './dynamic-components/dynamicItem.vue';
 	export default{
 		components: {
 			layout,
 			inputBox,
 			dynamicItem,
-			shareModal
+			shareModal,
+			delModal,
+			reportModal
 		},
 		data () {
 			return {
@@ -113,8 +117,10 @@
 					}
 				})
 			},
-			delItem (index) {
-				this.data.splice(index, 1);
+			delDynamic (index) {
+				this.data = [];
+				this.page = 1;
+				this.getData();
 			},
 			changeMeau (val) {
 				this.type = val;
@@ -130,6 +136,10 @@
 				this.page = 1;
 				this.data = [];
 				this.getData();
+			},
+			openModal (type, id) {
+				this.dynamic_id = id;
+				this.$refs[type].openModal();
 			}
 		},
 		computed: {
