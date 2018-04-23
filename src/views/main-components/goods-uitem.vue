@@ -7,12 +7,23 @@
 		color: rgb(185,185,185);
         text-decoration: line-through;
 	}
+	.tag{
+		position: absolute;
+		top: 116px;
+        left: 14px;
+		z-index: 10;
+	}
 </style>
 <template>
 	<Card :dis-hover="true">
 		<Row :gutter="16">
         <Col span="8">
             <img :src="data.goods_icon[0].url" :alt="data.goods_name" style="width:145px; height:145px;">
+            <div class="tag">
+				<Tag color="red" v-if="data.goods_spread === 1">精品</Tag>
+				<Tag color="gray" v-if="data.goods_status === 3">已出</Tag>
+				<Tag color="orange" v-if="data.goods_sell === 0">求购</Tag>
+			</div>
         </Col>
         <Col span="16">
             <div class="clearfix goods_info">

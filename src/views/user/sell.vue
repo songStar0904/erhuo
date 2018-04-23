@@ -1,5 +1,12 @@
+<style scoped>
+	.meau{
+		position: relative;
+		top: -30px;
+	}
+</style>
 <template>
 	<div>
+		<my-meau class="meau" :meau="meau" @changeMeau="changeMeau" :active="active"></my-meau>
 		<div v-if="data.length==0" style="text-align:center">
 			<p style="margin:50px 0;">没有找到任何二货哦~</p>
 			<Button type="success" @click="publish" v-if="user_id === uid && type === 'sell'">现在发布</Button>
@@ -13,20 +20,43 @@
 				<Page :total="total" show-total show-elevator size="small" @on-change="changePage" :current="page" :page-size="num"></Page>
 			</Row>
 		</div>
+		<Spin size="large" fix v-if="loading"></Spin>
 	</div>
 </template>
 <script>
     import goodsUitem from '../main-components/goods-uitem.vue';
+    import {myMeau} from '../components';
 	export default {
 		components: {
-			goodsUitem
+			goodsUitem,
+			myMeau
 		},
 		data () {
 			return {
 				data: [],
 				page: 1,
 				total: 0,
-				num: 5
+				num: 5,
+				meau: [{
+					name: 0,
+					icon: 'bag',
+					title: '全部'
+				}, {
+					name: 2,
+					icon: 'bag',
+					title: '出售'
+				}, {
+					name: 1,
+					icon: 'bag',
+					title: '未过审'
+				}, {
+					name: 3,
+					icon: 'happy-outline',
+					title: '已下架'
+				}],
+				active: 0,
+				status: 0,
+				loading: false
 			}
 		},
 		computed: {
@@ -66,10 +96,14 @@
 				}
 			},
 			getGoods () {
+				this.loading = true;
 				this.$fetch.goods.get({
 					uid: this.uid,
-					page: this.page
+					page: this.page,
+					num: this.num,
+					goods_status: this.status
 				}).then(res => {
+					this.loading = false;
 					if (res.code === 200) {
 						this.data = res.data;
 						this.total = res.total;
@@ -99,6 +133,11 @@
 			changePage (val) {
 				this.page = val;
 				this.init();
+			},
+			changeMeau (active) {
+				this.active = active;
+				this.status = active;
+				this.getGoods();
 			}
 		}
 	}

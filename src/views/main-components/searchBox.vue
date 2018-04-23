@@ -5,7 +5,7 @@
             <Button type="text" v-for="(item, index) in hot" :key="index" @click="toSearch(item.search_name)">{{item.search_name}}</Button>
           </Col>
           <Col span="12">
-            <Input v-model="search" icon="ios-search" @on-click="toSearch(search)"></Input>
+            <Input v-model="search" icon="ios-search" @on-click="toSearch(search)" @on-enter="toSearch(search)"></Input>
           </Col>
       </Row>
     </Card>
