@@ -14,6 +14,11 @@
 		props: ['uid', 'is_fans', 'size'],
 		mounted () {
 		},
+		watch: {
+			is_fans (val) {
+				console.log(val)
+			}
+		},
 		methods: {
 			follow () {
 				this.$fetch.user.follow({
@@ -21,6 +26,7 @@
 				}).then(res => {
 					if (res.code === 200) {
 						this.$emit('updateFans', res.data);
+						console.log(res.data)
 					} else {
 						this.$Message.error(res.msg);
 					}

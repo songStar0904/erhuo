@@ -142,18 +142,27 @@ const routers = [{
     name: 'goods',
     component: (resolve) => require(['../views/goods/index.vue'], resolve)
 }, {
-    path: '/message',
+    path: '/message/comment',
     name: 'message',
     access: 1,
+    meta: {
+        title: '我的消息'
+    },
     component: (resolve) => require(['../views/message/index.vue'], resolve),
     children: [{
         path: '/message/notice',
         name: 'notice',
         access: 1,
+        meta: {
+            title: '公告通知'
+        },
         component: (resolve) => require(['../views/message/notice.vue'], resolve)
     }, {
         path: '/message/comment',
         name: 'comment',
+        meta: {
+            title: '@ 我的'
+        },
         component: (resolve) => require(['../views/message/comment.vue'], resolve)
     }]
 }, {

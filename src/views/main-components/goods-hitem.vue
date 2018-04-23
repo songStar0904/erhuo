@@ -22,6 +22,7 @@
 			<div class="tag">
 				<Tag color="red" v-if="data.goods_spread === 1">精品</Tag>
 				<Tag color="gray" v-if="data.goods_status === 3">已出</Tag>
+				<Tag color="orange" v-if="data.goods_sell === 0">求购</Tag>
 			</div>
 			<img :src="data.goods_icon[0].url" :title="data.goods_name" class="goods_icon">
 			<div class="p8">

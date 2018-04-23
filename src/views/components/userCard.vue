@@ -3,7 +3,7 @@
 		<user-info :info="info" v-if="!loading">
 			<div slot="userInfo">
 				<p style="color: #999;" class="mb10"><span>{{info.user_sid | formatSid}}</span> | <span>{{info.user_sex | formatSex}}</span></p>
-				<fol-send :is_fans="info.user_is_fans" :uid="info.user_id" size="small" @updateFans="updateFans"></fol-send>
+				<fol-send :is_fans="info.is_fans" :uid="info.user_id" size="small" @updateFans="updateFans"></fol-send>
 			</div>
 		</user-info>
 		<Spin fix v-if="loading"></Spin>
@@ -20,7 +20,8 @@ export default {
 	props: ['info', 'loading'],
 	methods: {
 		updateFans (val) {
-			this.info.user_is_fans = val;
+			this.info.is_fans = val;
+			console.log(this.info.is_fans)
 		}
 	}
 }

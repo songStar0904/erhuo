@@ -12,9 +12,7 @@
 			    </Menu>
 	        </Col>
 	        <Col span="6" class="pr20">
-	        	<Input v-model="search" style="margin-top: 14px;">
-		          <Button slot="append" icon="ios-search" @click="click_search"></Button>
-		        </Input>
+	        <Input v-model="search" icon="ios-search" style="margin-top: 14px;" @on-click="click_search(search)"></Input>
 	        </Col>
 	    </Row> 
 	</Card>

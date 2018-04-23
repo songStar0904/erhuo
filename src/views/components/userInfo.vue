@@ -23,7 +23,7 @@
 </template>
 <script>
 import util from '../../libs/util.js';
-import userName from './userName.vue';
+import {userName} from './index.js';
 	export default {
 		props: ['info'],
         components: {

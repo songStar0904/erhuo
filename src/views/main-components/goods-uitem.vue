@@ -26,7 +26,8 @@
 			        </a>
 			        <DropdownMenu slot="list">
 			            <DropdownItem :name="0">删除</DropdownItem>
-			            <DropdownItem :name="1">下架</DropdownItem>
+			            <DropdownItem :name="1" v-if="data.goods_status === 2">下架</DropdownItem>
+			            <!-- <DropdownItem :name="1" v-if="data.goods_status === 3">上架</DropdownItem> -->
 			        </DropdownMenu>
 			    </Dropdown>
 		    </div>
@@ -96,7 +97,7 @@
 					if (res.code === 200) {
 						this.$refs.del.closeModal();
 						this.$Message.success(res.msg);
-						this.$emit('del_goods');
+						this.$emit('getGoods');
 					} else {
 						this.$Message.error(res.msg);
 					}
@@ -108,6 +109,7 @@
 				}).then(res => {
 					if (res.code === 200) {
 						this.$Message.success(res.msg);
+						this.$emit('getGoods');
 					} else {
 						this.$Message.error(res.msg);
 					}

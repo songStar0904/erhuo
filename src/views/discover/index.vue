@@ -16,6 +16,9 @@
 			        <Checkbox label="spread">
 			            <span>精品</span>
 			        </Checkbox>
+			        <Checkbox label="buy">
+			            <span>求购</span>
+			        </Checkbox>
 			        <Checkbox label="sold">
 			            <span>下架</span>
 			        </Checkbox>
@@ -66,6 +69,9 @@
 			},
 			sold () {
 				return this.hasTag('sold');
+			},
+			buy () {
+				return this.hasTag('buy');
 			}
 		},
 		mounted () {
@@ -87,7 +93,8 @@
 					search: this.search,
 					sort: this.sort,
 					spread: this.spread,
-					sold: this.sold
+					sold: this.sold,
+					buy: this.buy
 				}).then(res => {
 					this.loading = false;
 					if (res.code === 200) {
@@ -124,10 +131,8 @@
 						page,
 						sort,
 						spread: this.spread,
-						sold: this.sold
-					},
-					params: {
-						
+						sold: this.sold,
+						buy: this.buy
 					}
 				})
 			}

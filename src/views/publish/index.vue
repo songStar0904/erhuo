@@ -38,7 +38,7 @@
 </style>
 <template>
     <div class="box">
-        <Card :dis-hover="true" style="text-align:center; margin-bottom:30px;">发布二货</Card>
+        <Card :dis-hover="true" style="text-align:center; margin-bottom:30px;">{{title}}</Card>
         <Card :dis-hover="true" :padding="40">
             <Form ref="goods" :model="goods" :rules="ruleValidate" :label-width="80">
                 <FormItem label="二货图片" prop="name">
@@ -91,6 +91,12 @@
                         <Option v-for="(item, index) in classify" :key="index" :value="item.gclassify_id">{{item.gclassify_name}}</Option>
                     </Select>
                 </FormItem>
+                <FormItem label="出售/求购" prop="goods_sell">
+                    <Switch v-model="goods.goods_sell" :true-value="1" :false-value="0" size="large">
+                        <span slot="open">出售</span>
+                        <span slot="close">求购</span>
+                    </Switch>
+                </FormItem>
                 <FormItem label="交易方式" prop="goods_type">
                     <RadioGroup v-model="goods.goods_type">
                         <Radio :label="1">送货上门</Radio>
@@ -102,13 +108,13 @@
                     <Input v-model="goods.goods_address" placeholder="交易地址"></Input>
                 </FormItem>
                 <FormItem label="联系方式" prop="phone">
-                    <Input v-model="goods.phone" placeholder="手机号码"></Input>
-                </FormItem>
-                <FormItem label="QQ" prop="qq">
-                    <Input v-model="goods.qq" placeholder="QQ号码"></Input>
-                </FormItem>
-                <FormItem label="微信" prop="wechat">
-                    <Input v-model="goods.wechat" placeholder="微信号"></Input>
+                    <Row type="flex" justify="space-between">
+                        <Col span="7"><Input v-model="goods.phone" placeholder="手机号码"></Input></Col>
+                        <span>QQ</span>
+                        <Col span="7"><Input v-model="goods.qq" placeholder="QQ号码"></Input></Col>
+                        <span>微信</span>
+                        <Col span="7"><Input v-model="goods.wechat" placeholder="微信号"></Input></Col>
+                    </Row>
                 </FormItem>
                 <FormItem label="详情" prop="goods_summary">
                     <Input v-model="goods.goods_summary" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="输入详情"></Input>
@@ -126,11 +132,13 @@ import util from '../../libs/util.js';
     export default {
         data () {
             return {
+                title: '发布二货',
                 goods: {
                     goods_name: '',
                     goods_cid: null,
                     goods_summary: '',
                     goods_type: '0',
+                    goods_sell: 1,
                     goods_nprice: 1,
                     goods_oprice: 1,
                     goods_address: '',
@@ -181,6 +189,7 @@ import util from '../../libs/util.js';
         created () {
             this.goods.phone = this.$store.state.user.info.user_phone;
             this.setPath();
+            this.title = this.gid ? '修改二货' : '发布二货';
         },
         methods: {
             setPath () {

@@ -3,7 +3,7 @@
 <template>
 	<Row :gutter="15"><!-- :xs="{ span: 10, offset: 1 }":md="{ span: 6, offset: 2 }" :lg="{ span: 4, offset: 2 }" -->
 		<transition-group name="slide-fade">
-        <Col span="6" v-for="(item, index) in data" :key="index">
+        <Col :xs="12" :sm="8" :md="8" :lg="6"  v-for="(item, index) in data" :key="index">
 		        <goods-hitem :data="item"></goods-hitem>
 		 </Col>
 		</transition-group>

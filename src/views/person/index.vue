@@ -61,6 +61,9 @@ import {folSend} from '../components';
 		watch: {
 			user_id () {
 				this.get_user();
+			},
+			$route () {
+				this.active = this.$route.name;
 			}
 		},
 		created () {
