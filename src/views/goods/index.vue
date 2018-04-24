@@ -1,5 +1,5 @@
 <template>
-	<div class="box">
+	<div class="box" v-if="show">
 		<Row :gutter="50">
 			<Col span="17">
 				<goods-box :data="data" @updateFansNum="updateFansNum"></goods-box>
@@ -9,7 +9,7 @@
 					<user-card :info="info" :loading="false"></user-card>
 				</Card>
 				<dash-board :view="data.goods_view" :fans_num="data.fans_num" :msg_num="10" class="mb30"></dash-board>
-				<user-sell :uid="info.user_id" v-if="show"></user-sell>
+				<user-sell :uid="info.user_id"></user-sell>
 			</Col>
 		</Row>
 	</div>

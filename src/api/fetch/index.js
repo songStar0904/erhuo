@@ -17,7 +17,7 @@ const ajaxUrl = env === 'development'
     ? '/api'
     : env === 'production'
         ? 'http://api.erhuo.com'
-        : 'http://api.erhuo.com';
+        : 'http://123.207.59.229/api';
 axios.defaults.withCredentials=true;//让ajax携带cookie
 export default function fetch (options) {
   return new Promise((resolve, reject) => {

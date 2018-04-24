@@ -54,6 +54,10 @@ import {folSend} from '../components';
 					name: 'followers',
 					icon: 'android-happy',
 					title: '关注'
+				}, {
+					name: 'dynamic',
+					icon: 'ios-navigate',
+					title: '动态'
 				}],
 				active: this.$route.name
 			}

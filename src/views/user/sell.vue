@@ -5,31 +5,22 @@
 	}
 </style>
 <template>
-	<div>
-		<my-meau class="meau" :meau="meau" @changeMeau="changeMeau" :active="active"></my-meau>
-		<div v-if="data.length==0" style="text-align:center">
-			<p style="margin:50px 0;">没有找到任何二货哦~</p>
-			<Button type="success" @click="publish" v-if="user_id === uid && type === 'sell'">现在发布</Button>
-		</div>
-		<div v-else>
-			<Row type="flex" justify="end">
-				<Page :total="total" show-total show-elevator size="small" @on-change="changePage" :current="page" :page-size="num"></Page>
-			</Row>
-			<goods-uitem :data="item" :isOwn="isOwn" v-for="(item, index) in data" :key="index" style="margin: 20px 0" @getGoods="getGoods"></goods-uitem>
-			<Row type="flex" justify="end">
-				<Page :total="total" show-total show-elevator size="small" @on-change="changePage" :current="page" :page-size="num"></Page>
-			</Row>
-		</div>
-		<Spin size="large" fix v-if="loading"></Spin>
-	</div>
+	<data-box :data="data" :num="num" :page="page" :total="total" :loading="loading" @changePage="changePage" :meau="meau" @changeMeau="changeMeau" :noDataTitle="noDataTitle">
+		<goods-uitem slot="dataItem" :data="item" :isOwn="isOwn" v-for="(item, index) in data" :key="index" style="margin: 20px 0" @getGoods="getGoods"></goods-uitem>
+		<router-link slot="noDataBtn" :to="{ name: 'publish'}" target="_blank">
+		    <Button type="success" icon="card" style="width:150px; margin-top:10px;">发布二货</Button>
+		</router-link>
+	</data-box>
 </template>
 <script>
     import goodsUitem from '../main-components/goods-uitem.vue';
     import {myMeau} from '../components';
+    import dataBox from './user-components/dataBox.vue';
 	export default {
 		components: {
 			goodsUitem,
-			myMeau
+			myMeau,
+			dataBox
 		},
 		data () {
 			return {
@@ -37,24 +28,21 @@
 				page: 1,
 				total: 0,
 				num: 5,
-				meau: [{
+				t_meau: [{
 					name: 0,
-					icon: 'bag',
 					title: '全部'
 				}, {
 					name: 2,
-					icon: 'bag',
 					title: '出售'
 				}, {
 					name: 1,
-					icon: 'bag',
 					title: '未过审'
 				}, {
 					name: 3,
-					icon: 'happy-outline',
 					title: '已下架'
 				}],
-				active: 0,
+				noDataTitle: '没有找到相关二货o_O',
+				meau: [],
 				status: 0,
 				loading: false
 			}
@@ -77,19 +65,26 @@
 			},
 			type () {
 				return this.$route.meta.type;
+			},
+			showMeau () {
+				return this.$route.meta.showMeau;
 			}
 		},
 		watch: {
 			type () {
 				this.init();
+			},
+			showMeau (val) {
+				this.initMeau();
 			}
 		},
 		mounted () {
+			this.initMeau();
 			this.init();
 		},
 		methods: {
 			init () {
-				if (this.type === 'sell') {
+				if (this.type === 'sell' || 'usell') {
 					this.getGoods();
 				} else {
 					this.get_followers();
@@ -101,7 +96,7 @@
 					uid: this.uid,
 					page: this.page,
 					num: this.num,
-					goods_status: this.status
+					goods_status: this.active
 				}).then(res => {
 					this.loading = false;
 					if (res.code === 200) {
@@ -136,8 +131,14 @@
 			},
 			changeMeau (active) {
 				this.active = active;
-				this.status = active;
 				this.getGoods();
+			},
+			initMeau () {
+				if (this.showMeau) {
+					this.meau = this.t_meau;
+				} else {
+					this.meau = [];
+				}
 			}
 		}
 	}

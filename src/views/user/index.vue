@@ -35,6 +35,10 @@
 		                <Icon type="android-person"></Icon>
 		                个人信息
 		            </MenuItem>
+		            <MenuItem name="udynamic">
+		                <Icon type="ios-navigate"></Icon>
+		                我的动态
+		            </MenuItem>
 		            <MenuItem name="fmsg">
 		                <Icon type="ios-help-outline"></Icon>
 		                意见反馈

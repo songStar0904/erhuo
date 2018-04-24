@@ -15,7 +15,7 @@
                 <Tooltip placement="top" content="更改头像">
                     <Avatar :src="info.user_icon" class="large_icon btn"/>
                 </Tooltip>
-            </Upload>
+        </Upload>
     	<Avatar :src="info.user_icon" class="large_icon" v-else/>
     	<user-name :uid="info.user_id"><h3 slot="user" class="text-success user_name">{{info.user_name}}</h3></user-name>
     	<slot name="userInfo">slot出错啦</slot>
@@ -34,7 +34,7 @@ import {userName} from './index.js';
                 if (util.env == 'dev') {
                     return '/api/user/upload';
                 } else {
-                    return 'api.erhuo.com/user/upload';
+                    return 'http://123.207.59.229/api/user/upload';
                 }
             },
 			uid () {

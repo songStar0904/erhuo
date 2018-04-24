@@ -51,7 +51,8 @@ const routers = [{
         name: 'usell',
         meta: {
             title: '发布的二货',
-            type: 'sell'
+            type: 'usell',
+            showMeau: true
         },
         access: 1,
         component: (resolve) => require(['../views/user/sell.vue'], resolve),
@@ -60,7 +61,8 @@ const routers = [{
         name: 'ucollection',
         meta: {
             title: '收藏的二货',
-            type: 'collection'
+            type: 'collection',
+            showMeau: true
         },
         access: 1,
         component: (resolve) => require(['../views/user/sell.vue'], resolve),
@@ -82,6 +84,15 @@ const routers = [{
             type: 'followers'
         },
         component: (resolve) => require(['../views/user/fans.vue'], resolve),
+    }, {
+        path: '/user/dynamic',
+        name: 'udynamic',
+        meta: {
+            title: '我的动态',
+            showMeau: true
+        },
+        access: 1,
+        component: (resolve) => require(['../views/user/dynamic.vue'], resolve),
     }]
 }, {
     path: '/person/:uid/sell',
@@ -95,7 +106,8 @@ const routers = [{
         name: 'sell',
         meta: {
             title: '发布的二货',
-            type: 'sell'
+            type: 'sell',
+            showMeau: false
         },
         component: (resolve) => require(['../views/user/sell.vue'], resolve)
     }, {
@@ -103,7 +115,8 @@ const routers = [{
         name: 'collection',
         meta: {
             title: '收藏的二货',
-            type: 'collection'
+            type: 'collection',
+            showMeau: false
         },
         component: (resolve) => require(['../views/user/sell.vue'], resolve),
     }, {
@@ -122,6 +135,15 @@ const routers = [{
         },
         name: 'followers',
         component: (resolve) => require(['../views/user/fans.vue'], resolve)
+    }, {
+        path: '/person/:uid//dynamic',
+        name: 'dynamic',
+        meta: {
+            title: 'TA 的动态',
+            showMeau: false
+        },
+        access: 1,
+        component: (resolve) => require(['../views/user/dynamic.vue'], resolve),
     }]
 }, {
     path: '/publish',

@@ -205,7 +205,11 @@ util.cloneObj = function(obj){
 util.setData = function (k, data) {
     let newData = {};
     for (let key in data) {
-        newData[`${k}_${key}`] = data[key];
+        if (key !== 'is_fans') {
+            newData[`${k}_${key}`] = data[key];
+        } else {
+            newData[key] = data[key];
+        }
     }
     return newData;
 }
