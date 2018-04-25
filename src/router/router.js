@@ -136,8 +136,8 @@ const routers = [{
         name: 'followers',
         component: (resolve) => require(['../views/user/fans.vue'], resolve)
     }, {
-        path: '/person/:uid//dynamic',
-        name: 'dynamic',
+        path: '/person/:uid/dynamic',
+        name: 'pdynamic',
         meta: {
             title: 'TA 的动态',
             showMeau: false

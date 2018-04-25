@@ -2,6 +2,7 @@
 </style>
 <template>
 	<layout :info="user_info">
+		<div v-title>二货 - {{user_info.user_name}}</div>
 		<div slot="leftInfo" style="font-size:14px;">
 			<p>{{user_info.user_sex}}</p>
         	<p>{{user_info.user_sid}}</p>
@@ -55,7 +56,7 @@ import {folSend} from '../components';
 					icon: 'android-happy',
 					title: '关注'
 				}, {
-					name: 'dynamic',
+					name: 'pdynamic',
 					icon: 'ios-navigate',
 					title: '动态'
 				}],

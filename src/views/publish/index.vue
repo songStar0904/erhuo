@@ -38,6 +38,7 @@
 </style>
 <template>
     <div class="box">
+        <div v-title>二货 - 发布</div>
         <Card :dis-hover="true" style="text-align:center; margin-bottom:30px;">{{title}}</Card>
         <Card :dis-hover="true" :padding="40">
             <Form ref="goods" :model="goods" :rules="ruleValidate" :label-width="80">

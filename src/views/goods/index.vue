@@ -1,5 +1,6 @@
 <template>
 	<div class="box" v-if="show">
+		<div v-title>二货 - {{data.goods_name}}</div>
 		<Row :gutter="50">
 			<Col span="17">
 				<goods-box :data="data" @updateFansNum="updateFansNum"></goods-box>

@@ -21,6 +21,15 @@ Vue.use(iView);
 for (let key in vfilter) {
     Vue.filter(key, vfilter[key])
 }
+
+Vue.directive('title', {
+  inserted: function (el, binding) {
+    document.title = el.innerText
+    // el.remove() 这个在ie存在兼容性问题
+    el.parentNode.removeChild(el)
+  }
+})
+
 // 路由配置
 const RouterConfig = {
     mode: 'history',
@@ -30,7 +39,7 @@ const router = new VueRouter(RouterConfig);
 
 router.beforeEach((to, from, next) => {
     iView.LoadingBar.start();
-    util.title(to.meta.title);
+    // util.title(to.meta.title);
     const curRouterObj = util.getRouterObjByName([...Routers], to.name);
     if (curRouterObj && curRouterObj.access !== undefined) { // 需要判断权限的路由
         store.dispatch('is_login').then((res) => {

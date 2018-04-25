@@ -21,12 +21,12 @@
 		</span>
 		<Row :gutter="20">
 			<Col :span="12">
-				<Carousel v-model="value" v-if="data.goods_icon.length > 1">
+				<Carousel v-model="value" v-if="data.goods_icon.length > 1" :height="370">
 			        <CarouselItem v-for="(item ,index) in data.goods_icon" :key="index">
 			            <img :src="item.url" alt="" style="width: 100%; height:100%">
 			        </CarouselItem>
 			    </Carousel>
-			    <img :src="data.goods_icon[0].url" alt="" style="width: 100%; height:100%" v-else>
+			    <img :src="data.goods_icon[0].url" alt="" style="width: 100%; height:370px" v-else>
 			</Col>
 			<Col :span="12">
 			    <h2>{{data.goods_name}}</h2>

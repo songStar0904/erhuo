@@ -1,8 +1,8 @@
-<style scoped>
+<style lang="less" scoped>
 .layout-logo{
-    width: 100px;
-    height: 30px;
-    background: #19be6b;
+    width: 72px;
+    height: 32px;
+    // background: #19be6b;
     color: #fff;
     border-radius: 3px;
     float: left;
@@ -11,6 +11,10 @@
     left: 20px;
     text-align: center;
     line-height: 30px;
+    img{
+        width: 100%;
+        height: 100%;
+    }
 }
 .layout-nav{
     width: 420px;
@@ -35,7 +39,9 @@
 </style>
 <template>
     <Menu mode="horizontal" theme="light" :active-name="active" @on-select="changeMenu">
-        <div class="layout-logo">二 货</div>
+        <div class="layout-logo">
+            <img src="../../img/erhuo-logo.png" alt="">
+        </div>
         <div class="layout-nav">
             <MenuItem name="home">
                 <Icon type="social-windows"></Icon>

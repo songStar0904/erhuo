@@ -8,6 +8,7 @@
 </style>
 <template>
 	<Content class="content" style="padding: 0 50px"  v-infinite-scroll="loadMore" :infinite-scroll-disabled="busy" :infinite-scroll-distance="10">
+		<div v-title>二货 - 首页</div>
 	    <carousel-box></carousel-box>
 	    <search-box :style="{margin: '20px 0'}"></search-box>
 	    <Row :gutter="15">

@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<div v-title>二货 - 动态</div>
 		<layout :info="user_info">
 			<div slot="leftInfo" style="font-size:14px;" v-if="user_info">
 					<p>{{user_info.user_sex}}</p>

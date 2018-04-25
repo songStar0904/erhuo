@@ -5,6 +5,7 @@
 </style>
 <template>
 	<div class="box">
+		<div v-title>二货 - 发现</div>
 		<classify-box class="mb20" @changeMeau="changeMeau"></classify-box>
 		<Row type="flex" justify="space-between" class="mb20">
 			<Col span="12">
@@ -48,7 +49,7 @@
 			return {
 				data: [],
 				total: 0,
-				num: 8,
+				num: 12,
 				loading: false,
 				tag: [],
 				sort: 'new'

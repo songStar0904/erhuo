@@ -2,6 +2,7 @@
 </style>
 <template>
 	<layout :info="user_info">
+        <div v-title>二货 - 消息中心</div>
 		<div slot="leftInfo">
 			<p style="color: #999;"><span>{{user_info.user_sid}}</span> | <span>{{user_info.user_sex}}</span></p>
             <router-link :to="{ name: 'publish'}" target="_blank">
