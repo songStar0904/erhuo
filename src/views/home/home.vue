@@ -66,7 +66,11 @@ import {searchBox} from '../main-components';
 					this.busy = false;
 					if (res.code === 200) {
 						if (res.data.length > 0) {
-							this.data.push(...res.data);
+							if (this.data.length > 0 && this.data[0].goods_time < res.data[0].goods_time) {
+								this.data.unshift(...res.data);
+							} else {
+								this.data.push(...res.data);
+							}
 						} else {
 							this.noMore = true;
 						}

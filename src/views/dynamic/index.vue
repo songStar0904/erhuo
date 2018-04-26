@@ -88,7 +88,11 @@
 					this.busy = false;
 					if (res.code === 200) {
 						if (res.data.length > 0) {
-							this.data.push(...res.data);
+							if (this.data.length > 0 && this.data[0].dynamic_time < res.data[0].dynamic_time) {
+								this.data.unshift(...res.data);
+							} else {
+								this.data.push(...res.data);
+							}
 						} else {
 							this.noMore = true;
 						}

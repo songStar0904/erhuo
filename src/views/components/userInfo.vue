@@ -34,7 +34,7 @@ import {userName} from './index.js';
                 if (util.env == 'dev') {
                     return '/api/user/upload';
                 } else {
-                    return 'http://123.207.59.229/api/user/upload';
+                    return 'http://api.songstar.cn/api/user/upload';
                 }
             },
 			uid () {

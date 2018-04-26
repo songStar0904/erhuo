@@ -35,7 +35,9 @@ const user = {
             state.info = data;
         },
         getUser (state) {
-            state.info = JSON.parse(localStorage.user_info);
+            if (localStorage.user_info) {
+                state.info = JSON.parse(localStorage.user_info);
+            }
         },
         setIslogin (state, data) {
             state.isLogin = data;
