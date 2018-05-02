@@ -44,6 +44,7 @@ import util from './libs/util.js';
                     if (res.code === 200) {
                         this.$store.commit('setClassify', res.data);
                     } else {
+                        console.log(res)
                         this.$Message.error(res.msg);
                     }
                 })

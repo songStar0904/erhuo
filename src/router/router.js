@@ -142,7 +142,6 @@ const routers = [{
             title: 'TA 的动态',
             showMeau: false
         },
-        access: 1,
         component: (resolve) => require(['../views/user/dynamic.vue'], resolve),
     }]
 }, {
