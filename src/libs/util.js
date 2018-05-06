@@ -54,7 +54,7 @@ util.formatSchool = function (school_id) {
             }
         }
     }
-    return '未知';
+    return school_id;
 }
 util.formatDate = function(timestamp) {
     let date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000

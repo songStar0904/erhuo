@@ -17,7 +17,7 @@
 <template>
 	<Card :dis-hover="true">
 		<span slot="title" class="text-sub">
-			{{data.goods_time}} <span class="fr report btn" @click="openModal"><Icon type="alert-circled"></Icon> 举报</span>
+			{{data.goods_time}} <span class="fr report btn" @click="openModal(1)"><Icon type="alert-circled"></Icon> 举报</span>
 		</span>
 		<Row :gutter="20">
 			<Col :span="12">
@@ -99,7 +99,7 @@
 			            <Button icon="heart" :type="data.is_fans ? 'warning' : 'ghost'" class="mr30" @click="follow(data.goods_id)">{{data.is_fans ? '已' : ''}}收藏</Button>
 			        </Col>
 			        <Col span="16">
-			            <Button type="success">联系卖家</Button>
+			            <Button type="success" @click="openModal(2)">联系卖家</Button>
 			        </Col>
 			    </Row>
 			</Col>
@@ -122,15 +122,18 @@
 	    	</comment-box>
 	    </div>
 	    <report-modal :type="1" :id="data.goods_id" ref="report"></report-modal>
+	    <contect-modal :qq="data.qq" :wechat="data.wechat" :phone="data.phone" ref="contect"></contect-modal>
 	</Card>
 </template>
 <script>
     import {commentBox} from '../../main-components';
     import {reportModal} from '../../components';
+    import contectModal from './contectModal.vue';
 	export default {
 		components: {
 			commentBox,
-			reportModal
+			reportModal,
+			contectModal
 		},
 		props: ['data'],
 		data () {
@@ -156,8 +159,13 @@
 			changeMeau (val) {
 				this.active = val;
 			},
-			openModal () {
-				this.$refs.report.openModal();
+			openModal (type) {
+				if (type === 1) {
+					this.$refs.report.openModal();
+				} else {
+					this.$refs.contect.openModal();
+				}
+				
 			}
 		}
 	}

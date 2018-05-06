@@ -3,7 +3,7 @@
 	<div class="box">
 		<Row :gutter="40">
 	        <Col span="7">
-	        <Card :dis-hover="true" class="mb30">
+	        <Card :dis-hover="true" class="mb30" v-show="info">
 		        <user-info :info="info" v-if="info">
 		        	<div slot="userInfo">
 		        		<slot name="leftInfo"></slot>
