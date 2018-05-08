@@ -50,7 +50,7 @@
 						<Icon type="ios-chatbubble-outline"size="16" class="mr5"></Icon><span v-if="dynamic.comment_num > 0">{{dynamic.comment_num}}</span><span v-else="dynamic.comment_num === 0">评论</span>
 					</div>
 					<div class="btn" @click="praise" :class="{'text-error': dynamic.is_praise}">
-						<Icon type="thumbsup"size="16" class="mr5"></Icon>
+						<Icon type="thumbsup"size="16" class="mr5 "></Icon>
 						<span v-if="dynamic.praise_num > 0">{{dynamic.praise_num}}</span>
 						<span v-else>赞</span>
 					</div>

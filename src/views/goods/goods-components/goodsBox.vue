@@ -99,7 +99,7 @@
 			            <Button icon="heart" :type="data.is_fans ? 'warning' : 'ghost'" class="mr30" @click="follow(data.goods_id)">{{data.is_fans ? '已' : ''}}收藏</Button>
 			        </Col>
 			        <Col span="16">
-			            <Button type="success" @click="openModal(2)">联系卖家</Button>
+			            <Button type="success" @click="openModal(2)">联系{{data.goods_sell ? '卖' : '买'}}家</Button>
 			        </Col>
 			    </Row>
 			</Col>

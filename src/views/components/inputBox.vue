@@ -1,5 +1,20 @@
 <style scoped>
-	.emoji{
+    /*滚动条样式*/
+    .innerbox::-webkit-scrollbar {/*滚动条整体样式*/
+        width: 4px;     /*高宽分别对应横竖滚动条的尺寸*/
+        height: 4px;
+    }
+    .innerbox::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+        border-radius: 5px;
+        -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+        background: rgba(0,0,0,0.2);
+    }
+    .innerbox::-webkit-scrollbar-track {/*滚动条里面轨道*/
+        -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+        border-radius: 0;
+        background: #f8f8f9;
+    }
+	.emoji-icon{
 		font-size: 24px;
 		color: #999;
 	}
@@ -54,14 +69,14 @@
 		<Input type="textarea" :rows="rows" :placeholder="placeholder" v-model="value" :maxlength="max"></Input>
 		<div class="mt10 clearfix">
 			<span class="fl bp-icon-font">
-				<Poptip width="382" placement="bottom-start">
-			        <span class="emoji icon-emoji-btn btn"></span>
+				<Poptip width="375" placement="bottom-start" class="emoji">
+			        <span class="emoji-icon icon-emoji-btn btn"></span>
 			        <div slot="title">表情</div>
 			        <div class="api" slot="content">
-			        	<div class="emoji-page">
+			        	<div class="emoji-page innerbox">
 				            <ul>
 				            	<li v-for="item in emoji" class="emoji-item" @click="choseEmoji(item)">
-				            		<img :src="item.src | filterSrc" alt="">
+				            		<img :src="item.src | filterSrc" :title="item.name">
 				            	</li>
 				            </ul>
 				            <div class="ps__rail-y">

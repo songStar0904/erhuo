@@ -33,5 +33,65 @@
 }
 
 .bp-icon-font .icon-emoji-btn:before {
-    content: "\E006";
+  content: "\E006";
+}
+
+.bp-icon-font.icon-gantan-01:before {
+  content: "\E007";
+}
+
+.bp-icon-font.icon-good:before {
+  content: "\E008";
+}
+
+.bp-icon-font.icon-group-dynamic:before {
+  content: "\E009";
+}
+
+.bp-icon-font.icon-jinz-01:before {
+  content: "\E00A";
+}
+
+.bp-icon-font.icon-left-r-dynamic:before {
+  content: "\E00B";
+}
+
+.bp-icon-font.icon-link:before {
+  content: "\E00C";
+}
+
+.bp-icon-font.icon-more-1:before {
+  content: "\E00D";
+}
+
+.bp-icon-font.icon-pic-btn:before {
+  content: "\E00E";
+}
+
+.bp-icon-font.icon-play-a:before {
+  content: "\E00F";
+}
+
+.bp-icon-font.icon-right-r-dynamic:before {
+  content: "\E010";
+}
+
+.bp-icon-font.icon-sq-dynamic:before {
+  content: "\E011";
+}
+
+.bp-icon-font.icon-ss-dynamic:before {
+  content: "\E012";
+}
+
+.bp-icon-font.icon-top:before {
+  content: "\E013";
+}
+
+.bp-icon-font.icon-topic:before {
+  content: "\E014";
+}
+
+.bp-icon-font.icon-bp-icon-font.html:before {
+  content: "\E015";
 }

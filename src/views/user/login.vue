@@ -7,7 +7,7 @@
                 <Input v-model="userForm.user_name" placeholder="请输入您的手机号码或邮箱..."></Input>
             </FormItem>
             <FormItem label="密码" prop="user_psd">
-                <Input type="password" v-model="userForm.user_psd" placeholder="请输入您的密码..."></Input>
+                <Input type="password" v-model="userForm.user_psd" placeholder="请输入您的密码..." @on-enter="handleSubmit('userForm')"></Input>
             </FormItem>
             <Row type="flex" justify="end">
 	            <p class="text-success btn" style="margin-bottom:20px;" @click="forget">忘记密码？</p>
@@ -62,7 +62,7 @@ import layout from './user-components/layout.vue';
                                 this.$store.commit('setUser', util.formatUserData(res.data));
                                 this.$store.commit('setIslogin', 1);
                                 this.$router.push({
-                                    name: 'home'
+                                    path: this.beforePath
                                 });
                         	} else {
                         		this.$Message.error(res.msg);
@@ -77,6 +77,15 @@ import layout from './user-components/layout.vue';
             	this.$router.push({
                     name: 'forget'
                 });
+            }
+        },
+        computed: {
+            beforePath () {
+                if (this.$store.state.app.beforePath) {
+                    return this.$store.state.app.beforePath;
+                } else {
+                    return '/home';
+                }
             }
         }
     }

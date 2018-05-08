@@ -6,6 +6,7 @@ const user = {
         routers: [
             ...routers
         ],
+        beforePath: '/home',
         currentPath: [
             {
                 title: '首页',
@@ -26,6 +27,11 @@ const user = {
         }, 
         setCurrentPath (state, pathArr) {
             state.currentPath = pathArr;
+        },
+        setBeforePath (state, path) {
+            if (path !== '/regist') {
+                state.beforePath = path;
+            }
         }
     },
     getters: {

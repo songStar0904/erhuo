@@ -283,7 +283,6 @@ util.filterEmoji = function (cont) {
             str = str.replace(pattern2, `<img src="https://s1.hdslb.com/bfs/seed/bplus-common/emoji-assets/xiaodianshi1/${src}.png" alt="" style="display: inline-block; width: 25px; height: 25px; vertical-align: text-bottom;"/>`)
         }
     }
-    console.log(str)
     return str;
 
 }

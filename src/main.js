@@ -40,6 +40,10 @@ const router = new VueRouter(RouterConfig);
 router.beforeEach((to, from, next) => {
     iView.LoadingBar.start();
     // util.title(to.meta.title);
+    console.log(from);
+    if (to.name === 'login') {
+      store.commit('setBeforePath', from.path);
+    }
     const curRouterObj = util.getRouterObjByName([...Routers], to.name);
     if (curRouterObj && curRouterObj.access !== undefined) { // 需要判断权限的路由
         store.dispatch('is_login').then((res) => {

@@ -182,3 +182,6 @@ a{
   transform: translateY(30px);
   opacity: 0;
 }
+.emoji .ivu-poptip-body{
+	padding-right: 5px;
+}

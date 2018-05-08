@@ -82,7 +82,7 @@
 				<span class="info fr">
 					<span class="btn" v-show="report" @click="openReport"><Icon type="alert-circled" ></Icon> 举报</span>
 					<span class="btn" @click="reply = true"><Icon type="chatbox-working"></Icon></span>
-					<span class="btn" :class="{is_praise:comment.is_praise}" @click="praise(comment.lmsg_id)"><Icon type="thumbsup"></Icon> {{comment.praise_num}}</span>
+					<span class="btn" :class="{is_praise:comment.is_praise}" @click="praise(comment.lmsg_id)"><span class="bp-icon-font icon-good"></span> {{comment.praise_num}}</span>
 				</span>
 			</p>
 			<div class="child" v-if="comment.children">
