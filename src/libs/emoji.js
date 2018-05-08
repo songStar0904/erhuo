@@ -1,0 +1,151 @@
+const emoji = [{
+	name: '白眼',
+	src: 'baiyan'
+}, {
+    name: 'doge',
+	src: 'doge'
+}, {
+    name: '坏笑',
+	src: 'huaixiao'
+}, {
+    name: '难过',
+	src: 'nanguo'
+}, {
+    name: '生气',
+	src: 'shengqi'
+}, {
+    name: '委屈',
+	src: 'weiqu'
+}, {
+    name: '斜眼笑',
+	src: 'xieyanxiao'
+}, {
+    name: '发呆',
+	src: 'fadai'
+}, {
+    name: '发怒',
+	src: 'fanu'
+}, {
+    name: '惊吓',
+	src: 'jingxia'
+}, {
+    name: '呕吐',
+	src: 'outu'
+}, {
+    name: '思考',
+	src: 'sikao'
+}, {
+    name: '微笑',
+	src: 'weixiao'
+}, {
+    name: '疑问',
+	src: 'yiwen'
+}, {
+    name: '大哭',
+	src: 'daku'
+}, {
+    name: '鼓掌',
+	src: 'guzhang'
+}, {
+    name: '抠鼻',
+	src: 'koubi'
+}, {
+    name: '亲亲',
+	src: 'qinqin'
+}, {
+    name: '调皮',
+	src: 'tiaopi'
+}, {
+    name: '笑哭',
+	src: 'xiaoku'
+}, {
+    name: '晕',
+	src: 'yun'
+}, {
+    name: '点赞',
+	src: 'dianzan'
+}, {
+    name: '害羞',
+	src: 'haixiu'
+}, {
+    name: '睡着',
+	src: 'shuizhao'
+}, {
+    name: '色',
+	src: 'se'
+}, {
+    name: '吐血',
+	src: 'tuxue'
+}, {
+    name: '无奈',
+	src: 'wunai'
+}, {
+    name: '再见',
+	src: 'zaijian'
+}, {
+    name: '流汗',
+	src: 'liuhan'
+}, {
+    name: '偷笑',
+	src: 'touxiao'
+}, {
+    name: '抓狂',
+	src: 'zhuakuang'
+}, {
+    name: '黑人问号',
+	src: 'heirenwenhao'
+}, {
+    name: '困',
+	src: 'kun2'
+}, {
+    name: '打脸',
+	src: 'dalian'
+}, {
+    name: '闭嘴',
+	src: 'bizui'
+}, {
+    name: '鄙视',
+	src: 'bishi'
+}, {
+    name: '腼腆',
+	src: 'miantian'
+}, {
+    name: '馋',
+	src: 'chan'
+}, {
+    name: '可爱',
+	src: 'keai'
+}, {
+    name: '发财',
+	src: 'facai'
+}, {
+    name: '生病',
+	src: 'shengbing'
+}, {
+    name: '流鼻血',
+	src: 'liubixue'
+}, {
+    name: '尴尬',
+	src: 'ganga'
+}, {
+    name: '大佬',
+	src: 'dalao'
+}, {
+    name: '流泪',
+	src: 'liulei'
+}, {
+    name: '冷漠',
+	src: 'lengmo'
+}, {
+    name: '皱眉',
+	src: 'zhoumei'
+}, {
+    name: '鬼脸',
+	src: 'guilian'
+}, {
+    name: '调侃',
+	src: 'tiaokan'
+}, {
+	name: '目瞪口呆',
+	src: 'mudengkoudai'}];
+export default emoji;

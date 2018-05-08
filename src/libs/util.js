@@ -1,6 +1,7 @@
 import axios from 'axios';
 import env from '../config/env';
 import schoolData from './school.js';
+import emoji from './emoji.js';
 
 let util = {
 
@@ -266,4 +267,24 @@ util.setCurrentPath = function (vm, name) {
 
     return currentPathArr;
 };
+util.filterEmoji = function (cont) {
+    var pattern1 = /\[[\u4e00-\u9fa5|a-zA-Z]+\]/g;
+    var pattern2 = /\[[\u4e00-\u9fa5|a-zA-Z]+\]/;
+    var content = cont.match(pattern1);
+    var str = cont;
+    if (content) {
+        for (var i = 0; i < content.length; i++) {
+            for (var j = 0; j < emoji.length; j++) {
+                if (`[${emoji[j].name}]` === content[i]) {
+                    var src = emoji[j].src;
+                    break;
+                }
+            }
+            str = str.replace(pattern2, `<img src="https://s1.hdslb.com/bfs/seed/bplus-common/emoji-assets/xiaodianshi1/${src}.png" alt="" style="display: inline-block; width: 25px; height: 25px; vertical-align: text-bottom;"/>`)
+        }
+    }
+    console.log(str)
+    return str;
+
+}
 export default util;

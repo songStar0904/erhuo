@@ -27,8 +27,7 @@
 			</div>
 			<div slot="content">
 				<div class="ptb8">
-					<span v-if="dynamic.dynamic_lid === 0">
-						{{dynamic.dynamic_content}}
+					<span v-if="dynamic.dynamic_lid === 0" v-html="filterEmoji(dynamic.dynamic_content)">
 					</span>
 					<span  v-for="(item, index) in replaceUser(dynamic.dynamic_content)" v-else>
 						<user-name :uid="item.user" v-if="item.user">
@@ -134,6 +133,9 @@
 			},
 			replaceUser (data) {
 				return util.replaceUser(data);
+			},
+			filterEmoji (val) {
+				return util.filterEmoji(val);
 			}
 		},
 		computed: {

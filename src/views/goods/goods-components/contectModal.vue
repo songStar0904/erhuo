@@ -17,7 +17,7 @@
         title="联系方式"
         v-model="modal"
         class-name="vertical-center-modal">
-        <Row v-for="item in contect" v-if="item.value" style="line-height: 40px;" :gutter="10">
+        <Row v-for="(item, index) in contect" v-if="item.value" :key="index" style="line-height: 40px;" :gutter="10">
         	<Col span="4">{{item.name}}</Col>
         	<Col span="18">{{item.value}}
         	 <a v-if="item.name == 'QQ'" target="_blank" :href="href"><img border="0" :src="src" alt="点击这里给我发消息" title="点击这里给我发消息" class="t5"/></a>

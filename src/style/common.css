@@ -34,8 +34,11 @@ a{
 .fr{
 	float: right;
 }
-.clearfix{
-	overflow: hidden;
+.clearfix:after{
+	content: "";
+    display: block;
+    visibility: hidden;
+    clear: both;
 }
 .btn{
 	cursor: pointer;

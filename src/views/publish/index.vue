@@ -197,7 +197,7 @@ import util from '../../libs/util.js';
                 if (util.env == 'dev') {
                     this.path = '/api/goods/upload';
                 } else {
-                    this.path = 'http://api.songstar.cn/api/goods/upload';
+                    this.path = 'http://123.207.59.229/api/goods/upload';
                 }
             },
             getData () {

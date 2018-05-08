@@ -77,7 +77,7 @@
 					<span slot="user">{{comment.suser.name}}</span>
 				</user-name>
 			 - {{comment.lmsg_time | formatDate}}</p>
-			<p class="text">{{comment.lmsg_content}}</p>
+			<p class="text" v-html="filterEmoji(comment.lmsg_content)"></p>
 			<p class="clearfix">
 				<span class="info fr">
 					<span class="btn" v-show="report" @click="openReport"><Icon type="alert-circled" ></Icon> 举报</span>
@@ -101,7 +101,7 @@
 						<p class="text">
 							<user-name :uid="item.suser.id">
 							    <span slot="user">@{{item.ruser.name}}</span>
-							</user-name>  {{item.lmsg_content}}</p>
+							</user-name>  <span v-html="filterEmoji(item.lmsg_content)"></span></p>
 					</div>
 				</div>
 			</div>
@@ -116,6 +116,7 @@
 <script>
 import {userName, reportModal} from '../../components';
 import replyBox from './replyBox.vue';
+import util from '../../../libs/util.js';
 	export default{
 		components: {
 			userName,
@@ -149,6 +150,9 @@ import replyBox from './replyBox.vue';
 			},
 			openReport () {
 				this.$refs.report.openModal();
+			},
+			filterEmoji (val) {
+				return util.filterEmoji(val);
 			}
 		}
 	}

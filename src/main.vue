@@ -1,6 +1,7 @@
 <style lang="less" scoped>
 @import "./style/common.css";
-  @import "./main.less";
+@import "./style/font-face.css";
+@import "./main.less";
 </style>
 <template>
     <div class="layout">
