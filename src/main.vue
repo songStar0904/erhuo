@@ -9,9 +9,7 @@
             <Header>
                 <meau-header></meau-header>
             </Header>
-            <keep-alive>
-                <router-view></router-view>
-            </keep-alive>
+            <router-view></router-view>
             <Footer class="layout-footer-center">2017-2018 &copy; Songstar</Footer>
             <BackTop></BackTop>
         </Layout>

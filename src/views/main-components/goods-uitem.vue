@@ -63,7 +63,7 @@
 	        <div class="mt15">
 	        	<Button icon="heart" :type="data.is_fans ? 'warning' : 'ghost'" class="mr30" @click="follow(data.goods_id)">{{data.is_fans ? '已' : ''}}收藏</Button>
 	        	<router-link :to="{ name: 'gedit', params: { gid: data.goods_id }}" v-if="isOwn" target="_blank">
-	        		<Button icon="compose" type="success" class="w100">编辑</Button>
+	        		<Button icon="compose" type="success" class="w100" v-if="data.user.id == uid">编辑</Button>
 	        	</router-link>
 	            <Button icon="card" type="success" class="w100" v-else>购买</Button>
 	        </div>

@@ -62,7 +62,7 @@ const routers = [{
         meta: {
             title: '收藏的二货',
             type: 'collection',
-            showMeau: true
+            showMeau: false
         },
         access: 1,
         component: (resolve) => require(['../views/user/sell.vue'], resolve),

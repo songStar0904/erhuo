@@ -40,7 +40,6 @@ const router = new VueRouter(RouterConfig);
 router.beforeEach((to, from, next) => {
     iView.LoadingBar.start();
     // util.title(to.meta.title);
-    console.log(from);
     if (to.name === 'login') {
       store.commit('setBeforePath', from.path);
     }

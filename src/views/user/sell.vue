@@ -76,6 +76,11 @@
 			},
 			showMeau (val) {
 				this.initMeau();
+			},
+			data () {
+				if (this.data.length <= 0 && this.page > 1) {
+					this.page --;
+				}
 			}
 		},
 		mounted () {
@@ -84,7 +89,7 @@
 		},
 		methods: {
 			init () {
-				if (this.type === 'sell' || 'usell') {
+				if (this.type === 'sell' || this.type === 'usell') {
 					this.getGoods();
 				} else {
 					this.get_followers();
