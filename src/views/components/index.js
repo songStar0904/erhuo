@@ -10,6 +10,7 @@ import userInfo from './userInfo.vue'
 import folSend from './folSend.vue'
 import userCard from './userCard.vue'
 import breadcrumbNav from './breadcrumbNav.vue'
+import searchInput from './searchInput.vue'
 
 export {
 	userName,
@@ -23,5 +24,6 @@ export {
 	userInfo,
 	folSend,
 	userCard,
-	breadcrumbNav
+	breadcrumbNav,
+	searchInput
 }

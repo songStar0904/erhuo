@@ -15,3 +15,11 @@ export function report (data) {
     data
   })
 }
+// 获取用户搜索记录
+export function get_usearch (params) {
+  return fetch({
+    url: 'goods/get_usearch',
+    method: 'get',
+    params
+  })
+}

@@ -5,13 +5,18 @@
             <Button type="text" v-for="(item, index) in hot" :key="index" @click="toSearch(item.search_name)">{{item.search_name}}</Button>
           </Col>
           <Col span="12">
-            <Input v-model="search" icon="ios-search" @on-click="toSearch(search)" @on-enter="toSearch(search)"></Input>
+            <search-input @toSearch="toSearch"></search-input>
+            <!-- <Input v-model="search" icon="ios-search" @on-click="toSearch(search)" @on-enter="toSearch(search)"></Input> -->
           </Col>
       </Row>
     </Card>
 </template>
 <script>
+  import {searchInput} from '../components';
   export default{
+    components: {
+      searchInput
+    },
     data () {
       return {
         hot: [{
