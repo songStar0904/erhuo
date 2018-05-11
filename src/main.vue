@@ -6,6 +6,10 @@
 <template>
     <div class="layout">
         <Layout>
+            <Alert closable type="info" show-icon banner style="margin-bottom: 0">
+                <Icon type="speakerphone" slot="icon"></Icon>
+                公告： 请大家遵守网络道德标准, 维护社会良好风气。
+            </Alert>
             <Header>
                 <meau-header></meau-header>
             </Header>

@@ -14,11 +14,15 @@
                 <Icon type="speakerphone"></Icon>
                 通知
             </MenuItem>
-            <MenuItem name="comment">
-                <Icon type="at"></Icon>
-                我的
-            </MenuItem>
-            <MenuItem name="2">
+            <MenuGroup title="@ 我的">
+                <MenuItem name="l_comment">
+                    二货评论
+                </MenuItem>
+                <MenuItem name="d_comment">
+                    动态评论
+                </MenuItem>
+            </MenuGroup>
+            <MenuItem name="letter">
                 <Icon type="filing"></Icon>
                 私信
             </MenuItem>
@@ -81,7 +85,7 @@
             	return String(this.$route.query.status);
             },
             isShow () {
-                return this.active === 'comment' ? true : false;
+                return this.active.slice(2) === 'comment' ? true : false;
             }
         }
 	}

@@ -156,12 +156,6 @@ util.formatUserData = function(data) {
     if (data.user_sex) {
         data.user_sex = this.formatSex(data.user_sex);
     }
-    if (data.user_ltime) {
-        data.user_ltime = this.formatDateByNow(data.user_ltime);
-    }
-    if (data.user_rtime) {
-        data.user_rtime = this.formatDateByNow(data.user_rtime);
-    }
     return data;
 }
 util.formatGoodsData = function (data) {

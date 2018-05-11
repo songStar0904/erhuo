@@ -32,6 +32,7 @@
 		    		</div>
 	    	</Col>
 	    </Row>
+
 	</Content>
 	
 </template>

@@ -112,7 +112,7 @@
                     <Row type="flex" justify="space-between">
                         <Col span="7"><Input v-model="goods.phone" placeholder="手机号码"></Input></Col>
                         <span>QQ</span>
-                        <Col span="7"><Input v-model="goods.qq" placeholder="QQ号码"></Input></Col>
+                        <Col span="7"><Input v-model="goods.qq" placeholder="QQ号码" :number="true"></Input></Col>
                         <span>微信</span>
                         <Col span="7"><Input v-model="goods.wechat" placeholder="微信号"></Input></Col>
                     </Row>
@@ -188,7 +188,10 @@ import util from '../../libs/util.js';
             }
         },
         created () {
-            this.goods.phone = this.$store.state.user.info.user_phone;
+            let info = this.$store.state.user.info;
+            this.goods.phone = info.user_phone;
+            this.goods.qq = info.user_qq;
+            this.goods.wechat = info.user_wechat;
             this.setPath();
             this.title = this.gid ? '修改二货' : '发布二货';
         },

@@ -11,6 +11,7 @@ import folSend from './folSend.vue'
 import userCard from './userCard.vue'
 import breadcrumbNav from './breadcrumbNav.vue'
 import searchInput from './searchInput.vue'
+import contectModal from './contectModal.vue'
 
 export {
 	userName,
@@ -25,5 +26,6 @@ export {
 	folSend,
 	userCard,
 	breadcrumbNav,
-	searchInput
+	searchInput,
+	contectModal
 }

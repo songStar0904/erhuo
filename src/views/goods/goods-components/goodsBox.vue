@@ -127,8 +127,7 @@
 </template>
 <script>
     import {commentBox} from '../../main-components';
-    import {reportModal} from '../../components';
-    import contectModal from './contectModal.vue';
+    import {reportModal, contectModal} from '../../components';
 	export default {
 		components: {
 			commentBox,

@@ -15,6 +15,13 @@ export function get (params) {
     params
   })
 }
+export function get_count (params) {
+  return fetch({
+    url: 'message/get_count',
+    method: 'get',
+    params
+  })
+}
 export function get_by_id (params) {
   return fetch({
     url: 'message/get_by_id',

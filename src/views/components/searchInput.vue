@@ -5,6 +5,7 @@
 	    @on-select="toSearch"
 	    @on-search="filterMethod"
 	    icon="ios-search"
+	    style="width:450px"
 	    placeholder="请输出您想要的二货名称">
 	    <Option v-for="item in data" :value="item.usearch_name" :key="item.usearch_name">
             <span class="">{{ item.usearch_name }}</span>
@@ -38,9 +39,6 @@
 						this.$Message.error(res.msg);
 					}
 				})
-			},
-			del (id) {
-				console.log(id);
 			},
 			toSearch (value) {
 				this.value = value;

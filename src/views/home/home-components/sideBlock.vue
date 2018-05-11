@@ -11,7 +11,8 @@
 					</div>
 				</user-name>
 				</Col>
-				<Col span="4" style="line-height: 32px;">( {{item[order]}} )</Col>
+				<Col span="4" style="line-height: 32px;" v-if="order === 'user_pop'">({{item[order]}})</Col>
+				<Col span="4" style="line-height: 32px;" v-else>({{item[order] | formatDate}})</Col>
 			</Row>
 		</div>	
 	</Card>

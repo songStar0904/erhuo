@@ -14,7 +14,7 @@
 	}
 </style>
 <template>
-	<my-card :info="comment.suser" :time="comment.lmsg_time">
+	<my-card :info="comment.suser" :time="comment[`${key}_time`]">
 		<div slot="more">
 			<Dropdown trigger="click" class="more fr" @on-click="onClick">
 		        <a href="javascript:void(0)">
@@ -28,9 +28,12 @@
 		    </Dropdown>
 		</div>
 		<div slot="content">
-			<p class="ptb5">回复@{{comment.ruser.name}}: {{comment.lmsg_content}}</p>
-			<p class="text">
+			<p class="ptb5">回复@{{comment.ruser.name}}: {{comment[`${key}_content`]}}</p>
+			<p class="text" v-if="type==='goods'">
 			    <goods-name :gid="comment.goods.id" :name="comment.goods.name"></goods-name>  评论中@了你
+			</p>
+			<p class="text" v-else>
+			    {{comment.father}}  评论中@了你
 			</p>
 		</div>
 	</my-card>
@@ -43,12 +46,7 @@
 			goodsName,
 			myCard
 		},
-		props: ['comment', 'index'],
-		computed: {
-			status () {
-				return this.$route.query.status;
-			}
-		},
+		props: ['comment', 'index', 'type'],
 		methods: {
 			onClick (status) {
 				if (status === '3') {
@@ -60,7 +58,7 @@
 			del_msg () {
 				this.$fetch.msg.del_msg({
 					type: 'goods',
-					lmsg_id: this.comment.lmsg_id
+				    id: this.comment[`${key}_id`]
 				}).then(res => {
 					if (res.code === 200) {
 						// 未读页面删除 未读数-1
@@ -75,7 +73,7 @@
 			},
 			change_status (status) {
 				this.$fetch.msg.change_status({
-					type: 'goods',
+					type: this.type,
 					lmsg_id: this.comment.lmsg_id,
 					status
 				}).then(res => {
@@ -87,6 +85,18 @@
 						this.$Message.error(res.msg);
 					}
 				})
+			}
+		},
+		computed: {
+			key () {
+				if (this.type === 'goods') {
+					return 'lmsg';
+				} else if (this.type === 'dynamic') {
+					return 'dmsg';
+				}
+			},
+			status () {
+				return this.$route.query.status;
 			}
 		}
 	}

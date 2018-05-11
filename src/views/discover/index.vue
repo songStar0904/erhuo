@@ -20,8 +20,8 @@
 			        <Checkbox label="buy">
 			            <span>求购</span>
 			        </Checkbox>
-			        <Checkbox label="sold">
-			            <span>下架</span>
+			        <Checkbox label="sell">
+			            <span>在售</span>
 			        </Checkbox>
 			    </CheckboxGroup>
 		    </div>
@@ -68,8 +68,8 @@
 			spread () {
 				return this.hasTag('spread');
 			},
-			sold () {
-				return this.hasTag('sold');
+			sell () {
+				return this.hasTag('sell');
 			},
 			buy () {
 				return this.hasTag('buy');
@@ -94,7 +94,7 @@
 					search: this.search,
 					sort: this.sort,
 					spread: this.spread,
-					sold: this.sold,
+					goods_status: this.sell ? 2 :　0,
 					buy: this.buy
 				}).then(res => {
 					this.loading = false;
@@ -132,7 +132,7 @@
 						page,
 						sort,
 						spread: this.spread,
-						sold: this.sold,
+						sell: this.sell,
 						buy: this.buy
 					}
 				})

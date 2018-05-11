@@ -76,13 +76,13 @@
 				<user-name :uid="comment.suser.id">
 					<span slot="user">{{comment.suser.name}}</span>
 				</user-name>
-			 - {{comment.lmsg_time | formatDate}}</p>
-			<p class="text" v-html="filterEmoji(comment.lmsg_content)"></p>
+			 - {{comment[`${key}_time`] | formatDate}}</p>
+			<p class="text" v-html="filterEmoji(comment[`${key}_content`])"></p>
 			<p class="clearfix">
 				<span class="info fr">
 					<span class="btn" v-show="report" @click="openReport"><Icon type="alert-circled" ></Icon> 举报</span>
 					<span class="btn" @click="reply = true"><Icon type="chatbox-working"></Icon></span>
-					<span class="btn" :class="{is_praise:comment.is_praise}" @click="praise(comment.lmsg_id)"><span class="bp-icon-font icon-good"></span> {{comment.praise_num}}</span>
+					<span class="btn" :class="{is_praise:comment.is_praise}" @click="praise(comment[`${key}_id`])"><span class="bp-icon-font icon-good"></span> {{comment.praise_num}}</span>
 				</span>
 			</p>
 			<div class="child" v-if="comment.children">
@@ -97,20 +97,20 @@
 						<p class="name text-sub">
 							<user-name :uid="item.suser.id">
 								<span slot="user">{{item.suser.name}}</span>
-							</user-name> - {{item.lmsg_time | formatDate}}</p>
+							</user-name> - {{item[`${key}_time`] | formatDate}}</p>
 						<p class="text">
 							<user-name :uid="item.suser.id">
 							    <span slot="user">@{{item.ruser.name}}</span>
-							</user-name>  <span v-html="filterEmoji(item.lmsg_content)"></span></p>
+							</user-name>  <span v-html="filterEmoji(item[`${key}_content`])"></span></p>
 					</div>
 				</div>
 			</div>
-			<reply-box :placeholder="`回复 ${comment.suser.name}: `" :type="'goods'" :id="id" :lid="comment.lmsg_id" :rid="comment.suser.id" v-show="reply" @updateMsg="updateMsg">
+			<reply-box :placeholder="`回复 ${comment.suser.name}: `" :type="type" :id="id" :lid="comment[`${key}_id`]" :rid="comment.suser.id" v-show="reply" @updateMsg="updateMsg">
 				<p slot="icon">&nbsp;</p>
 				<Button type="text" slot="cancel" @click="reply = false">取消</Button>
 			</reply-box>	
 		</div>
-		<report-modal :type="2" :id="comment.lmsg_id" ref="report"></report-modal>
+		<report-modal :type="report_type" :id="comment[`${key}_id`]" ref="report"></report-modal>
 	</div>
 </template>
 <script>
@@ -123,11 +123,12 @@ import util from '../../../libs/util.js';
 			replyBox,
 			reportModal
 		},
-		props: ['comment', 'id'],
+		props: ['comment', 'id', 'type'],
 		data () {
 			return {
 				report: false,
-				reply: false
+				reply: false,
+				report_type: 2
 			}
 		},
 		methods: {
@@ -135,8 +136,9 @@ import util from '../../../libs/util.js';
 				this.$emit('updateMsg');
 			},
 			praise (mid) {
+				let type = this.type === 'goods' ? 0 : 2;
 				this.$fetch.msg.praise({
-					type: 0,
+					type,
 					mid
 				}).then(res => {
 					if (res.code === 200) {
@@ -153,6 +155,17 @@ import util from '../../../libs/util.js';
 			},
 			filterEmoji (val) {
 				return util.filterEmoji(val);
+			}
+		},
+		computed: {
+			key () {
+				if (this.type === 'goods') {
+					this.report_type = 2;
+					return 'lmsg';
+				} else if (this.type === 'dynamic') {
+					this.report_type = 4;
+					return 'dmsg';
+				}
 			}
 		}
 	}

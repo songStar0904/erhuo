@@ -1,3 +1,9 @@
+<style scoped>
+    .w300{
+        display: inline-block;
+        width: 300px;
+    }
+</style>
 <template>
     <Form 
         ref="userForm"
@@ -7,9 +13,7 @@
         :rules="inforValidate"
     >
         <FormItem label="用户昵称：" prop="user_name">
-            <div style="display:inline-block;width:300px;">
-                <Input v-model="userForm.user_name" ></Input>
-            </div>
+            <Input v-model="userForm.user_name" class="w300"></Input>
         </FormItem>
         <FormItem label="手机：">
             <Row v-if="userForm.user_phone">
@@ -31,6 +35,16 @@
                 <Col span="12"><Button type="text">绑定</Button></Col>
             </Row>
         </FormItem>
+        <FormItem label="QQ：" prop="user_qq">
+            <Poptip trigger="focus" placement="right" content="注： 此QQ可在发布二货时自动填写">
+               <Input v-model="userForm.user_qq" class="w300"></Input>
+           </Poptip>
+        </FormItem>
+        <FormItem label="微信：" prop="user_wechat">
+            <Poptip trigger="focus" placement="right" content="注： 此微信号可在发布二货时自动填写">
+               <Input v-model="userForm.user_wechat" class="w300"></Input>
+           </Poptip>
+        </FormItem>
         <FormItem label="性别：">
             <span>{{ userForm.user_sex}}</span>
         </FormItem>
@@ -38,10 +52,10 @@
             <span>{{userForm.user_sid}}</span>
         </FormItem>
         <FormItem label="二龄：">
-            <span>{{userForm.user_rtime}}</span>
+            <span>{{userForm.user_rtime | formatDate}}</span>
         </FormItem>
         <FormItem label="上次登录：">
-            <span>{{userForm.user_ltime}}</span>
+            <span>{{userForm.user_ltime | formatDate}} <Icon type="location" class="ml20 text-warning"></Icon> {{userForm.user_ip}}</span>
         </FormItem>
 
         <FormItem label="登录密码：">
@@ -94,6 +108,13 @@ export default {
                 callback();
             }
         };
+        const valideNumber = (rule, value, callback) => {
+            if (!isNaN(value)) {
+                callback();
+            } else {
+                callback(new Error('必须为纯数字'));
+            }
+        };
         return {
             userForm: {},
             uid: '', // 登录用户的userId
@@ -115,6 +136,13 @@ export default {
                 cellphone: [
                     { required: true, message: '请输入手机号码' },
                     { validator: validePhone }
+                ],
+                user_qq: [
+                    { message: 'QQ号码不得超过12位', max: 11, trigger: 'blur'},
+                    { validator: valideNumber }
+                ],
+                user_wechat: [
+                    { message: '微信号仅支持6-20个字符', max: 20, min: 6, trigger: 'blur'}
                 ]
             },
             editPasswordForm: {
@@ -207,7 +235,9 @@ export default {
             this.$fetch.user.edit({
                 user_id: this.userForm.user_id,
                 user_name: this.userForm.user_name,
-                user_sign:this.userForm.user_sign
+                user_sign:this.userForm.user_sign,
+                user_qq: this.userForm.user_qq,
+                user_wechat: this.userForm.user_wechat
             }).then(res => {
                 this.save_loading = false;
                 if (res.code === 200) {

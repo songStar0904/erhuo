@@ -127,12 +127,9 @@ import messageTip from './messageTip.vue';
                 })
             },
             getMsg () {
-                this.$fetch.msg.get({
-                    type: 'goods',
-                    status: 0
-                }).then(res => {
+                this.$fetch.msg.get_count().then(res => {
                     if (res.code === 200) {
-                        this.$store.commit('setMsgCount', res.total);
+                        this.$store.commit('setMsgCount', res.data);
                     }
                 })
             },

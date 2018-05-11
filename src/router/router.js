@@ -179,12 +179,31 @@ const routers = [{
         },
         component: (resolve) => require(['../views/message/notice.vue'], resolve)
     }, {
-        path: '/message/comment',
-        name: 'comment',
+        path: '/message/l_comment',
+        name: 'l_comment',
+        access: 1,
         meta: {
-            title: '@ 我的'
+            title: '二货评论',
+            type: 'goods'
         },
         component: (resolve) => require(['../views/message/comment.vue'], resolve)
+    },  {
+        path: '/message/d_comment',
+        name: 'd_comment',
+        access: 1,
+        meta: {
+            title: '动态评论',
+            type: 'dynamic'
+        },
+        component: (resolve) => require(['../views/message/comment.vue'], resolve)
+    }, {
+        path: '/message/letter',
+        name: 'letter',
+        access: 1,
+        meta: {
+            title: '私信'
+        },
+        component: (resolve) => require(['../views/error-page/404.vue'], resolve)
     }]
 }, {
     path: '/dynamic',

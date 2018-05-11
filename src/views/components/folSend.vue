@@ -14,11 +14,6 @@
 		props: ['uid', 'is_fans', 'size'],
 		mounted () {
 		},
-		watch: {
-			is_fans (val) {
-				console.log(val)
-			}
-		},
 		methods: {
 			follow () {
 				this.$fetch.user.follow({
@@ -31,6 +26,9 @@
 						this.$Message.error(res.msg);
 					}
 				})
+			},
+			openModal () {
+				this.$refs.contect.openModal();
 			}
 		}
 	}
