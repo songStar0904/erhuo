@@ -1,4 +1,5 @@
 <style lang="less" scoped>
+
 </style>
 <template>
 	<layout :info="user_info">
@@ -9,14 +10,16 @@
 			    <Button type="success" icon="card" style="width:150px; margin-top:10px;">发布二货</Button>
             </router-link>
 		</div>
-		<Menu :theme="'light'" :active-name="active" @on-select="changeMeau" slot="leftMeau" style="width: 246px;">
+		<Menu :theme="'light'" :active-name="active" @on-select="changeMeau" slot="leftMeau" style="width: 246px;" class="message">
             <MenuItem name="notice">
                 <Icon type="speakerphone"></Icon>
                 通知
             </MenuItem>
             <MenuGroup title="@ 我的">
                 <MenuItem name="l_comment">
+                    <Badge count="3">
                     二货评论
+                </Badge>
                 </MenuItem>
                 <MenuItem name="d_comment">
                     动态评论

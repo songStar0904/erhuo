@@ -163,7 +163,7 @@ const routers = [{
     name: 'goods',
     component: (resolve) => require(['../views/goods/index.vue'], resolve)
 }, {
-    path: '/message/comment',
+    path: '/message/l_comment',
     name: 'message',
     access: 1,
     meta: {
@@ -212,5 +212,12 @@ const routers = [{
         title: '动态'
     },
     component: (resolve) => require(['../views/dynamic/index.vue'], resolve)
-}, ];
+}, {
+    path: '/dynamic/:did',
+    name: 'dynamicOne',
+    meta: {
+        title: '动态详情'
+    },
+    component: (resolve) => require(['../views/dynamic/dynamicOne.vue'], resolve)
+}];
 export default routers;

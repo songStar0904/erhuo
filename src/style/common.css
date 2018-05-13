@@ -4,6 +4,9 @@ a{
 .ivu-page-item-active:hover a, .ivu-page-item-active a{
 	color: #fff!important;
 }
+.message .ivu-badge-count{
+    right: -20px !important;
+}
 .notice-content a, .ivu-notice-notice a{
     color: #19be6b !important;
 }

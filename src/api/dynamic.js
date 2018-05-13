@@ -7,6 +7,14 @@ export function get (params) {
     params
   })
 }
+// 获取 单个动态
+export function get_one (params) {
+  return fetch({
+    url: 'dynamic/get_one',
+    method: 'get',
+    params
+  })
+}
 // 修改动态
 export function edit (data) {
   return fetch({

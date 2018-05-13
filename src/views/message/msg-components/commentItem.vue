@@ -33,7 +33,7 @@
 			    <goods-name :gid="comment.goods.id" :name="comment.goods.name"></goods-name>  评论中@了你
 			</p>
 			<p class="text" v-else>
-			    {{comment.father}}  评论中@了你
+			    <router-link :to="{name: 'dynamicOne', params: {did: comment.dmsg_gid}}" target="_blank"><span class="text-success">{{comment.father}}</span></router-link>  评论中@了你
 			</p>
 		</div>
 	</my-card>
