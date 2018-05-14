@@ -189,6 +189,7 @@ import util from '../../libs/util.js';
         },
         created () {
             let info = this.$store.state.user.info;
+            console.log(info)
             this.goods.phone = info.user_phone;
             this.goods.qq = info.user_qq;
             this.goods.wechat = info.user_wechat;

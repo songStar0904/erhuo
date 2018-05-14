@@ -24,7 +24,7 @@ const user = {
         },
         setEditUser (state, data) {
             for (let key in data) {
-                if (state.info[key]) {
+                if (data[key] && key !== 'time' && key !== 'token') {
                     state.info[key] = data[key];
                 }
             }
